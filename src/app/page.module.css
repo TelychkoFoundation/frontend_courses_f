@@ -34,6 +34,11 @@
   grid-row-start: 2;
 }
 
+.main h1 {
+  font-family: var(--font-geist-mono);
+  font-size: 48px;
+}
+
 .main ol {
   font-family: var(--font-geist-mono);
   padding-left: 0;
@@ -158,11 +163,5 @@ a.secondary {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
   }
 }
