@@ -6,7 +6,8 @@
     "dev": "PORT=4000 next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "echo \"//registry.npmjs.org/:_authToken=$NPM_TOKEN\" > .npmrc && next build"
   },
   "dependencies": {
     "react": "^19.0.0",
