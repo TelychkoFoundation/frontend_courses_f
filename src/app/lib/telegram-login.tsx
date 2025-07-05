@@ -31,6 +31,7 @@ export default function TelegramLogin() {
         script.setAttribute('data-size', 'large')
         script.setAttribute('data-userpic', 'true')
         script.setAttribute('data-request-access', 'write')
+        script.setAttribute('data-lang', 'uk')
         script.setAttribute('data-onauth', 'onTelegramAuth(user)') // 👈 виклик глобальної функції
         script.id = scriptId
         script.async = true
