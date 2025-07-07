@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import TelegramLogin from "./lib/telegram-login";
+import Auth from "./auth/auth";
 
-export default function Home() {
+export default function RootPage() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -13,10 +13,11 @@ export default function Home() {
             Обирай веб технологію
           </li>
           <li>Обирай урок та починай навчання</li>
+          <li>Ментор буде поруч</li>
         </ol>
 
         <div className={styles.ctas}>
-          <TelegramLogin />
+          <Auth />
           <Link
             href="/tutorial"
             className={styles.secondary}
@@ -27,7 +28,7 @@ export default function Home() {
       </main>
       <footer className={styles.footer}>
         <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://www.linkedin.com/in/vitaliitelychko/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -38,10 +39,10 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Learn
+          Linkedin
         </a>
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://www.instagram.com/vitaliitelychko"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -52,10 +53,10 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Examples
+          Instagram
         </a>
         <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://t.me/vitalii_telychko"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -66,7 +67,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          Telegram
         </a>
       </footer>
     </div>

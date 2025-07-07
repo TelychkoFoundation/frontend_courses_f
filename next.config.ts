@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
+    matcher: ['/((?!api|_next|favicon.ico).*)'],
 };
 
 export default nextConfig;

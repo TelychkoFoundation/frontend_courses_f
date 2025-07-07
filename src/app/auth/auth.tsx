@@ -2,11 +2,14 @@
 
 import { useEffect } from 'react';
 
-export default function TelegramLogin() {
+export default function Auth() {
     useEffect(() => {
         // Створюємо глобальну функцію, яку Telegram викличе
         (window as any).onTelegramAuth = async (user: any) => {
             console.log("✅ Telegram user data:", user)
+
+            // Редірект
+            window.location.href = '/courses';
 
             // // Відправляємо user обʼєкт на сервер
             // const res = await fetch('/api/auth/telegram', {
@@ -27,7 +30,7 @@ export default function TelegramLogin() {
 
         const script = document.createElement('script')
         script.src = 'https://telegram.org/js/telegram-widget.js?7'
-        script.setAttribute('data-telegram-login', 'StretchingDemoBot') // 👈 заміни на свого бота
+        script.setAttribute('data-telegram-login', 'Telychko Frontend Courses') // 👈 заміни на свого бота
         script.setAttribute('data-size', 'large')
         script.setAttribute('data-userpic', 'true')
         script.setAttribute('data-request-access', 'write')
