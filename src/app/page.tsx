@@ -7,8 +7,8 @@ import Auth from "./auth/auth";
 export default async function RootPage() {
   const cookieStore = await cookies();
 
-  const handleLogin = async (value: string) => {
-    cookieStore.set("auth_token", value, {
+  const handleLogin = async ({ hash }: { hash: string }) => {
+    cookieStore.set("auth_token", hash, {
       httpOnly: true,
       secure: true,
       sameSite: "strict",

@@ -11,7 +11,7 @@ export default function Auth({ onLogin }: any) {
         const result = await createUser(userData);
 
         if (result.success) {
-          await onLogin(result.data.hash);
+          await onLogin(result.data);
           window.location.href = "/courses";
         }
       };
