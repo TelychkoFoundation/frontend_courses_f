@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { createUser } from "../lib/postActions";
 import { IUser } from "../models/User";
-import { UserContext } from "../context/UserContext";
+import { useUser } from "../hooks/useUser";
 
 export default function Auth() {
-  const { setUser } = useContext(UserContext);
+  const { setUser } = useUser();
 
   useEffect(() => {
     if (!(window as any).onTelegramAuth) {

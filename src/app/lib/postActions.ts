@@ -1,18 +1,15 @@
 "use server";
 
-import dbConnect from "./db";
 import User, { IUser } from "../models/User";
 import { cookies } from "next/headers";
 
 export async function createUser(userData: IUser) {
   const cookieStore = await cookies();
 
-  await dbConnect();
-
   try {
     const newUser = await User.create(userData);
 
-    cookieStore.set("auth_token", newUser.hash, {
+    cookieStore.set("token", newUser.id, {
       httpOnly: true,
       secure: true,
       sameSite: "strict",

@@ -1,15 +1,20 @@
+"use client";
+
 import styles from "./page.module.css";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { logout } from "../lib/deleteActions";
+import { useUser } from "../hooks/useUser";
 
 export default function Page() {
-  const { user } = useContext(UserContext);
+  const { setUser } = useUser();
 
-  console.log(user, "user");
+  const logoutHandler = async () => {
+    setUser(null);
+    await logout();
+  };
 
   return (
     <div className={styles.page}>
-      Courses <button>Logout</button>
+      Courses <button onClick={logoutHandler}>Logout</button>
     </div>
   );
 }

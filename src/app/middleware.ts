@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  const authToken = request.cookies.get("auth_token")?.value;
+  const authToken = request.cookies.get("token")?.value;
 
   console.log(authToken, "auth_token");
 
