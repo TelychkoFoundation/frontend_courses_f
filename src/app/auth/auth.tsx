@@ -3,24 +3,15 @@
 import { useEffect } from "react";
 import { createUser } from "../lib/postActions";
 import { IUser } from "../models/User";
-import { NextResponse } from "next/server";
 
-export default function Auth() {
+export default function Auth({ onLogin }: any) {
   useEffect(() => {
     if (!(window as any).onTelegramAuth) {
       (window as any).onTelegramAuth = async (userData: IUser) => {
         const result = await createUser(userData);
 
         if (result.success) {
-          const response = NextResponse.json({ ok: true });
-          response.cookies.set("auth_token", result.data.hash, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "strict",
-            path: "/",
-            maxAge: 60 * 60 * 24 * 7, // 1 тиждень
-          });
-
+          await onLogin(result.data.hash);
           window.location.href = "/courses";
         }
       };

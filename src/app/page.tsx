@@ -1,9 +1,22 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Auth from "./auth/auth";
 
-export default function RootPage() {
+export default async function RootPage() {
+  const cookieStore = await cookies();
+
+  const handleLogin = async (value: string) => {
+    cookieStore.set("auth_token", value, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+  };
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -15,7 +28,7 @@ export default function RootPage() {
         </ol>
 
         <div className={styles.ctas}>
-          <Auth />
+          <Auth onLogin={handleLogin} />
           <Link href="/tutorial" className={styles.secondary}>
             Як проходить навчання
           </Link>
