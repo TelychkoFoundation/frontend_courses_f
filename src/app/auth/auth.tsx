@@ -6,6 +6,7 @@ import { IUser } from "../models/User";
 
 export default function Auth() {
   useEffect(() => {
+    console.log("Auth");
     // Створюємо глобальну функцію, яку Telegram викличе
     (window as any).onTelegramAuth = async (userData: IUser) => {
       const response = await createUser(userData);
@@ -28,10 +29,12 @@ export default function Auth() {
     script.id = scriptId;
     script.async = true;
 
+    console.log(document.getElementById("telegram-login-btn"), script);
     document.getElementById("telegram-login-btn")?.appendChild(script);
 
     // Cleanup
     return () => {
+      console.log("unmount");
       document.getElementById(scriptId)?.remove();
     };
   }, []);
