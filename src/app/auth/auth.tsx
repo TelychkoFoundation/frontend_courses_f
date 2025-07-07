@@ -11,19 +11,6 @@ export default function Auth() {
             await createUser();
             // Редірект
             window.location.href = '/courses';
-
-            // // Відправляємо user обʼєкт на сервер
-            // const res = await fetch('/api/auth/telegram', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(user)
-            // })
-            //
-            // if (res.ok) {
-            //     window.location.href = '/dashboard'
-            // } else {
-            //     alert('❌ Помилка авторизації. Спробуйте ще раз.')
-            // }
         }
 
         const scriptId = "telegram-login-script"
