@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { createUser } from "../lib/postActions";
 import { IUser } from "../models/User";
+import { UserContext } from "../context/UserContext";
 
 export default function Auth() {
+  const { setUser } = useContext(UserContext);
+
   useEffect(() => {
     if (!(window as any).onTelegramAuth) {
       (window as any).onTelegramAuth = async (userData: IUser) => {
         const result = await createUser(userData);
 
         if (result.success) {
-          // context
+          setUser(result.data);
           window.location.href = "/courses";
         }
       };

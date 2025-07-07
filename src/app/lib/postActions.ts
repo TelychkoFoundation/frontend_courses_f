@@ -3,7 +3,6 @@
 import dbConnect from "./db";
 import User, { IUser } from "../models/User";
 import { cookies } from "next/headers";
-// import { revalidatePath } from "next/cache";
 
 export async function createUser(userData: IUser) {
   const cookieStore = await cookies();
