@@ -29,7 +29,7 @@ export default function Auth() {
         if (document.getElementById(scriptId)) return // вже є
 
         const script = document.createElement('script')
-        script.src = 'https://telegram.org/js/telegram-widget.js?7'
+        script.src = 'https://telegram.org/js/telegram-widget.js?22'
         script.setAttribute('data-telegram-login', 'telychko_frontend_courses_bot') // 👈 заміни на свого бота
         script.setAttribute('data-size', 'large')
         script.setAttribute('data-userpic', 'true')
@@ -43,9 +43,9 @@ export default function Auth() {
 
         // Cleanup
         return () => {
-            // document.getElementById(scriptId)?.remove()
+            document.getElementById(scriptId)?.remove()
         }
-    })
+    }, [])
 
     return (
         <div id="telegram-login-btn" />
