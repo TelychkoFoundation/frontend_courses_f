@@ -1,7 +1,3 @@
 export default function Loading() {
-    return (
-        <div>
-            sdf
-        </div>
-    )
+  return <div>sdf</div>;
 }

@@ -9,19 +9,14 @@ export default function RootPage() {
       <main className={styles.main}>
         <h1>Курси фронтенду</h1>
         <ol>
-          <li>
-            Обирай веб технологію
-          </li>
+          <li>Обирай веб технологію</li>
           <li>Обирай урок та починай навчання</li>
           <li>Ментор буде поруч</li>
         </ol>
 
         <div className={styles.ctas}>
           <Auth />
-          <Link
-            href="/tutorial"
-            className={styles.secondary}
-          >
+          <Link href="/tutorial" className={styles.secondary}>
             Як проходить навчання
           </Link>
         </div>

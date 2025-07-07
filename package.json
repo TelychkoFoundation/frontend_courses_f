@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "echo \"//registry.npmjs.org/:_authToken=$NPM_TOKEN\" > .npmrc && next build"
+    "vercel-build": "echo \"//registry.npmjs.org/:_authToken=$NPM_TOKEN\" > .npmrc && next build",
+    "format": "prettier --write \"**/*.{css,scss,js,jsx,ts,tsx,md}\""
   },
   "dependencies": {
     "mongoose": "^8.16.1",
     "next": "15.3.4",
+    "prettier": "^3.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
