@@ -43,9 +43,9 @@ export default function Auth() {
 
         // Cleanup
         return () => {
-            document.getElementById(scriptId)?.remove()
+            // document.getElementById(scriptId)?.remove()
         }
-    }, [])
+    })
 
     return (
         <div id="telegram-login-btn" />
