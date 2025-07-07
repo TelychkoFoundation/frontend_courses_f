@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { createUser } from "../lib/postActions";
 import { IUser } from "../models/User";
 
-export default function Auth({ onLogin }: any) {
+export default function Auth() {
   useEffect(() => {
     if (!(window as any).onTelegramAuth) {
       (window as any).onTelegramAuth = async (userData: IUser) => {
         const result = await createUser(userData);
 
         if (result.success) {
-          await onLogin(result.data);
+          // context
           window.location.href = "/courses";
         }
       };

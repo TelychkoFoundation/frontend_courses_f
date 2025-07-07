@@ -2,14 +2,25 @@
 
 import dbConnect from "./db";
 import User, { IUser } from "../models/User";
-import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+// import { revalidatePath } from "next/cache";
 
 export async function createUser(userData: IUser) {
+  const cookieStore = await cookies();
+
   await dbConnect();
 
   try {
     const newUser = await User.create(userData);
-    revalidatePath("/"); // Revalidate the path where posts are displayed
+
+    cookieStore.set("auth_token", newUser.hash, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
     return { success: true, data: JSON.parse(JSON.stringify(newUser)) };
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
