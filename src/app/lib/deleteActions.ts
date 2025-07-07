@@ -14,9 +14,7 @@ export async function deleteUser() {
   }
 
   try {
-    await User.findOneAndDelete({
-      id: Number(token.value),
-    });
+    await User.findOneAndDelete({ id: Number(token.value) });
 
     cookieStore.delete("token");
     redirect("/");

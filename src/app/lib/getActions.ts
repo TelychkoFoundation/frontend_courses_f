@@ -1,13 +1,10 @@
 "use server";
 
-import dbConnect from "./db";
 import User from "../models/User";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function getUser() {
-  await dbConnect();
-
   const cookieStore = await cookies();
 
   const token = cookieStore.get("token");

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { createUser } from "../lib/postActions";
+import { createUser, loginUser } from "../lib/postActions";
 import { IUser } from "../models/User";
 import { useUser } from "../hooks/useUser";
+import { getUser } from "../lib/getActions";
 
 export default function Auth() {
   const { setUser } = useUser();
@@ -11,11 +12,17 @@ export default function Auth() {
   useEffect(() => {
     if (!(window as any).onTelegramAuth) {
       (window as any).onTelegramAuth = async (userData: IUser) => {
-        const result = await createUser(userData);
+        const response = await getUser();
 
-        if (result.success) {
-          setUser(result.data);
-          window.location.href = "/courses";
+        if (!response.success) {
+          const result = await createUser(userData);
+
+          if (result.success) {
+            setUser(result.data);
+            window.location.href = "/courses";
+          }
+        } else {
+          await loginUser(userData);
         }
       };
     }

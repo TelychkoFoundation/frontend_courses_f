@@ -2,6 +2,7 @@
 
 import User, { IUser } from "../models/User";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function createUser(userData: IUser) {
   const cookieStore = await cookies();
@@ -23,4 +24,18 @@ export async function createUser(userData: IUser) {
     // @ts-expect-error
     return { success: false, error: error.message };
   }
+}
+
+export async function loginUser(userData: IUser) {
+  const cookieStore = await cookies();
+
+  cookieStore.set("token", String(userData.id), {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+
+  redirect("/courses");
 }
