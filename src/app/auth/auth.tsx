@@ -1,15 +1,16 @@
 "use client"
 
 import { useEffect } from 'react';
+import {createUser} from "../lib/actions";
 
 export default function Auth() {
     useEffect(() => {
         // Створюємо глобальну функцію, яку Telegram викличе
         (window as any).onTelegramAuth = async (user: any) => {
             console.log("✅ Telegram user data:", user)
-
+            await createUser();
             // Редірект
-            // window.location.href = '/courses';
+            window.location.href = '/courses';
 
             // // Відправляємо user обʼєкт на сервер
             // const res = await fetch('/api/auth/telegram', {
