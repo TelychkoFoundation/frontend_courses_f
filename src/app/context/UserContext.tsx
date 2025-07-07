@@ -2,8 +2,7 @@
 
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { IUser } from "../models/User";
-import { getUser } from "../lib/getActions";
-import dbConnect from "../lib/db";
+import { createDBConnection, getUser } from "../lib/getActions";
 
 interface UserContextType {
   user: IUser | null;
@@ -19,8 +18,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const fetchUserFromDB = async () => {
-      await dbConnect();
-
+      await createDBConnection();
       const response = await getUser();
 
       if (response.success) {
