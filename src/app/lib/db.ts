@@ -1,23 +1,23 @@
 import * as mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+async function dbConnect() {
+  const MONGODB_URI = process.env.MONGODB_URI;
 
-if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local",
-  );
-}
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-let cached = global.mongoose;
-
-if (!cached) {
+  if (!MONGODB_URI) {
+    throw new Error(
+      "Please define the MONGODB_URI environment variable inside .env.local",
+    );
+  }
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  cached = global.mongoose = { conn: null, promise: null };
-}
+  let cached = global.mongoose;
 
-async function dbConnect() {
+  if (!cached) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    cached = global.mongoose = { conn: null, promise: null };
+  }
+
   if (cached.conn) {
     return cached.conn;
   }
@@ -27,8 +27,6 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     cached.promise = mongoose.connect(MONGODB_URI, opts).then(mongoose => {
       return mongoose;
     });
