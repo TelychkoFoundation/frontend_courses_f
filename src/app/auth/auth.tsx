@@ -14,6 +14,8 @@ export default function Auth() {
       (window as any).onTelegramAuth = async (userData: IUser) => {
         const response = await getUser();
 
+        console.log(response);
+
         if (!response.success) {
           const result = await createUser(userData);
 
