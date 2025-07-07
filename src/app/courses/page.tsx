@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { logout } from "../lib/deleteActions";
+import { logout, deleteUser } from "../lib/deleteActions";
 import { useUser } from "../hooks/useUser";
 
 export default function Page() {
@@ -12,9 +12,15 @@ export default function Page() {
     await logout();
   };
 
+  const deleteUserHandler = async () => {
+    setUser(null);
+    await deleteUser();
+  };
+
   return (
     <div className={styles.page}>
       Courses <button onClick={logoutHandler}>Logout</button>
+      <button onClick={deleteUserHandler}>Delete user</button>
     </div>
   );
 }
