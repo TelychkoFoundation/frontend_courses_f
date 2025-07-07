@@ -8,14 +8,15 @@ export default function Auth() {
   console.log("RENDER");
   useEffect(() => {
     console.log("Auth");
-    // Створюємо глобальну функцію, яку Telegram викличе
-    (window as any).onTelegramAuth = async (userData: IUser) => {
-      const response = await createUser(userData);
+    if (!(window as any).onTelegramAuth) {
+      (window as any).onTelegramAuth = async (userData: IUser) => {
+        const response = await createUser(userData);
 
-      if (response.success) {
-        window.location.href = "/courses";
-      }
-    };
+        if (response.success) {
+          window.location.href = "/courses";
+        }
+      };
+    }
 
     const scriptId = "telegram-login-script";
     if (document.getElementById(scriptId)) return; // вже є
