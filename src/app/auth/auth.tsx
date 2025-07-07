@@ -9,7 +9,7 @@ export default function Auth() {
             console.log("✅ Telegram user data:", user)
 
             // Редірект
-            window.location.href = '/courses';
+            // window.location.href = '/courses';
 
             // // Відправляємо user обʼєкт на сервер
             // const res = await fetch('/api/auth/telegram', {
@@ -32,7 +32,7 @@ export default function Auth() {
         script.src = 'https://telegram.org/js/telegram-widget.js?22'
         script.setAttribute('data-telegram-login', 'telychko_frontend_courses_bot') // 👈 заміни на свого бота
         script.setAttribute('data-size', 'large')
-        script.setAttribute('data-userpic', 'true')
+        script.setAttribute('data-userpic', 'false')
         script.setAttribute('data-request-access', 'write')
         script.setAttribute('data-lang', 'uk')
         script.setAttribute('data-onauth', 'onTelegramAuth(user)') // 👈 виклик глобальної функції
