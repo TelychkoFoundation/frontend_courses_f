@@ -1,5 +1,4 @@
 // app/api/auth/route.ts
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { checkTelegramAuth } from "../../lib/auth";
 
@@ -10,8 +9,8 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
     }
 
-    const cookieStore = cookies()
-    cookieStore.set('auth_token', data.hash, {
+    const response = NextResponse.json({ ok: true })
+    response.cookies.set('auth_token', data.hash, {
         httpOnly: true,
         secure: true,
         sameSite: 'strict',
@@ -19,5 +18,5 @@ export async function POST(req: Request) {
         maxAge: 60 * 60 * 24 * 7 // 1 тиждень
     })
 
-    return NextResponse.json({ ok: true })
+    return response;
 }
