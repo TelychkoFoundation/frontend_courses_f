@@ -10,6 +10,8 @@ export function middleware(request: NextRequest) {
 
   const authToken = request.cookies.get("auth_token")?.value;
 
+  console.log(authToken, "auth_token");
+
   if (!authToken && !isPublic) {
     return NextResponse.redirect(new URL("/", request.url));
   }

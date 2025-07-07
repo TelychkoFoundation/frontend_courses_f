@@ -7,7 +7,6 @@ import { revalidatePath } from "next/cache";
 export async function createUser(userData: IUser) {
   await dbConnect();
 
-  console.log(userData, "userData");
   try {
     const newUser = await User.create(userData);
     revalidatePath("/"); // Revalidate the path where posts are displayed
