@@ -6,17 +6,19 @@ import { IUser } from "../models/User";
 
 export default function Auth() {
   console.log("RENDER");
+
+  if (!(window as any).onTelegramAuth) {
+    (window as any).onTelegramAuth = async (userData: IUser) => {
+      const response = await createUser(userData);
+
+      if (response.success) {
+        window.location.href = "/courses";
+      }
+    };
+  }
+
   useEffect(() => {
     console.log("Auth");
-    if (!(window as any).onTelegramAuth) {
-      (window as any).onTelegramAuth = async (userData: IUser) => {
-        const response = await createUser(userData);
-
-        if (response.success) {
-          window.location.href = "/courses";
-        }
-      };
-    }
 
     const scriptId = "telegram-login-script";
     if (document.getElementById(scriptId)) return; // вже є
