@@ -54,6 +54,6 @@ const UserSchema: Schema = new Schema({
 
 // 3. Створення та експорт моделі
 // Перевіряємо, чи модель вже існує, щоб уникнути помилок при гарячій перезавантаженні (hot reloading) у Next.js
-const User = mongoose.models.TelegramUser || mongoose.model<IUser>('User', UserSchema);
+const User = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
 
 export default User;

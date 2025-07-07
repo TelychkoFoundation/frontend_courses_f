@@ -1,16 +1,19 @@
 "use client"
 
 import { useEffect } from 'react';
-import {createUser} from "../lib/actions";
+import {createUser} from "../lib/postActions";
+import {IUser} from "../models/User";
 
 export default function Auth() {
     useEffect(() => {
         // Створюємо глобальну функцію, яку Telegram викличе
-        (window as any).onTelegramAuth = async (user: any) => {
-            console.log("✅ Telegram user data:", user)
-            await createUser();
-            // Редірект
-            window.location.href = '/courses';
+        (window as any).onTelegramAuth = async (userData: IUser) => {
+
+            const response = await createUser(userData);
+
+            if(response.success) {
+                window.location.href = '/courses';
+            }
         }
 
         const scriptId = "telegram-login-script"
