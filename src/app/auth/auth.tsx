@@ -8,7 +8,6 @@ import { getUser } from "../lib/getActions";
 import { useGlobal } from "../hooks/useGlobal";
 import { useRouter } from "next/navigation";
 import { useToast } from "../hooks/useToast";
-import { checkTelegramAuth } from "../lib/auth";
 
 export default function Auth() {
   const { setUser } = useUser();
@@ -27,13 +26,6 @@ export default function Auth() {
 
         if (!response.success) {
           setInitialLoadingMessage("Створюємо користувача ...");
-
-          // if (!checkTelegramAuth(userData)) {
-          //   setInitialLoading(false);
-          //   setInitialLoadingMessage("");
-          //   showToast("Не валідні телеграм дані", "error");
-          //   return;
-          // }
 
           const result = await createUser(userData);
 
