@@ -130,8 +130,12 @@ a.secondary {
     align-items: center;
   }
 
+  .main h1 {
+    width: 80%;
+  }
+
   .main ol {
-    text-align: center;
+    text-align: left;
   }
 
   .ctas {

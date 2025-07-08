@@ -2,18 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import { logout, deleteUser } from "../lib/deleteActions";
+import { deleteUser } from "../lib/deleteActions";
 import { useUser } from "../hooks/useUser";
 
 export default function Page() {
   const { setUser } = useUser();
   const router = useRouter();
-
-  const logoutHandler = async () => {
-    setUser(null);
-    await logout();
-    router.push("/");
-  };
 
   const deleteUserHandler = async () => {
     setUser(null);
@@ -23,7 +17,7 @@ export default function Page() {
 
   return (
     <div className={styles.page}>
-      Courses <button onClick={logoutHandler}>Logout</button>
+      Courses
       <button onClick={deleteUserHandler}>Delete user</button>
     </div>
   );

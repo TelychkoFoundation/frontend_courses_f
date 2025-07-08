@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   matcher: ["/((?!api|_next|.*\\..*).*)"],
+  images: {
+    remotePatterns: [new URL("https://t.me/i/userpic/**")],
+  },
 };
 
 export default nextConfig;
