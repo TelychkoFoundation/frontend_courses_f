@@ -2,7 +2,7 @@
 
 import User from "../models/User";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import dbConnect from "./db";
 
 export async function createDBConnection() {
@@ -14,9 +14,10 @@ export async function getUser() {
 
   const token = cookieStore.get("token");
 
-  if (!token) {
-    redirect("/");
-  }
+  // TODO
+  // if (!token) {
+  //   redirect("/");
+  // }
 
   try {
     const currentUser = await User.findOne({ id: Number(token.value) });

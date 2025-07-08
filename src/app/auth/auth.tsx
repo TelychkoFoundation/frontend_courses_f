@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { createUser, loginUser } from "../lib/postActions";
 import { IUser } from "../models/User";
 import { useUser } from "../hooks/useUser";
+import { useToast } from "../hooks/useToast";
 import { getUser } from "../lib/getActions";
 
 export default function Auth() {
   const { setUser } = useUser();
+  const { showToast } = useToast();
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
@@ -57,6 +59,9 @@ export default function Auth() {
 
   return (
     <div>
+      <button onClick={() => showToast("Все добре!", "error", 5000000000)}>
+        Натисни для нотифікації
+      </button>
       {!scriptLoaded && <p>Завантажуємо Телеграм ...</p>}
       <div
         id="telegram-login-btn"
