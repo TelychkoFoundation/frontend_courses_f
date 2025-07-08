@@ -12,29 +12,42 @@ export async function createUser(userData: IUser) {
     cookieStore.set("token", newUser.id, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "lax",
       path: "/",
-      maxAge: 10,
-      // maxAge: 60 * 60 * 24 * 30,
+      maxAge: 60 * 60 * 24 * 30,
     });
 
     return { success: true, data: JSON.parse(JSON.stringify(newUser)) };
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    return { success: false, error: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
   }
 }
 
 export async function loginUser(userData: IUser) {
   const cookieStore = await cookies();
 
-  cookieStore.set("token", String(userData.id), {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    path: "/",
-    maxAge: 10,
-    // maxAge: 60 * 60 * 24 * 30, // 1 month
-  });
+  try {
+    const user = await User.findOne({ id: userData.id });
+
+    if (!user) {
+      return { success: false, error: "Користувача не знайдено" };
+    }
+    await user.save();
+
+    cookieStore.set("token", String(userData.id), {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+    });
+
+    return { success: true, data: JSON.parse(JSON.stringify(user)) };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+  }
 }

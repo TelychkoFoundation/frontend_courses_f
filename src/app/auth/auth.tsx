@@ -24,20 +24,26 @@ export default function Auth() {
 
         const response = await getUser(String(userData.id));
 
-        if (!response.success) {
+        if (response && !response.success) {
           setInitialLoadingMessage("Створюємо користувача ...");
 
           const result = await createUser(userData);
 
-          if (result.success) {
+          if (result && result.success) {
             setUser(result.data);
             router.push("/courses");
           } else {
-            showToast(response.error, "error");
+            showToast(response.error as string, "error");
           }
         } else {
-          await loginUser(userData);
-          router.push("/courses");
+          const response = await loginUser(userData);
+
+          if (response && !response.success) {
+            showToast(response.error as string, "error");
+          } else {
+            setUser(response?.data);
+            router.push("/courses");
+          }
         }
 
         setInitialLoading(false);

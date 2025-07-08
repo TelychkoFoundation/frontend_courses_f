@@ -1,24 +1,24 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IUser extends Document {
-  id: number; // Унікальний ID користувача Telegram
+  id: number;
   first_name: string;
-  last_name?: string; // Опціональне поле
-  username?: string; // Опціональне поле
-  photo_url?: string; // Опціональне поле
-  auth_date: number; // Час авторизації у форматі Unix timestamp
-  hash: string; // Хеш для верифікації даних
-  createdAt?: Date; // Автоматично додається Mongoose
-  updatedAt?: Date; // Автоматично додається Mongoose
+  last_name?: string;
+  username?: string;
+  photo_url?: string;
+  auth_date: number;
+  hash: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 const UserSchema: Schema = new Schema(
   {
     id: {
       type: Number,
-      required: [true, "Telegram ID is required"], // Поле є обов'язковим
-      unique: true, // Кожен ID має бути унікальним
-      index: true, // Створюємо індекс для швидкого пошуку за ID
+      required: [true, "Telegram ID is required"],
+      unique: true,
+      index: true,
     },
     first_name: {
       type: String,
@@ -26,13 +26,13 @@ const UserSchema: Schema = new Schema(
     },
     last_name: {
       type: String,
-      required: false, // Поле не є обов'язковим
+      required: false,
     },
     username: {
       type: String,
-      required: false, // Поле не є обов'язковим
-      unique: true, // Username має бути унікальним (якщо існує)
-      sparse: true, // Дозволяє мати кілька документів з відсутнім (null) значенням username
+      required: false,
+      unique: true,
+      sparse: true,
     },
     photo_url: {
       type: String,
@@ -48,7 +48,7 @@ const UserSchema: Schema = new Schema(
     },
   },
   {
-    timestamps: true, // Автоматично додає поля `createdAt` та `updatedAt`
+    timestamps: true,
   },
 );
 

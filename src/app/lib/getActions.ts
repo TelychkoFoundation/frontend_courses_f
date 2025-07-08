@@ -26,9 +26,9 @@ export async function getUser(token: string) {
     }
 
     return { success: true, data: JSON.parse(JSON.stringify(currentUser)) };
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    return { success: false, error: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
   }
 }

@@ -39,11 +39,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
         const response = await getUser(token);
 
-        if (response.success) {
+        if (response && response.success) {
           setUser(response.data);
         } else {
           router.push("/");
-          showToast(response.error, "error");
+          showToast(response?.error as string, "error");
         }
       } else {
         router.push("/");
