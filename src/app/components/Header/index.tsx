@@ -23,14 +23,14 @@ export default function Header() {
       {user ? (
         <div className={styles.avatars}>
           <Image
-            src={user.photo_url}
+            src={user.photo_url || "./next.svg"}
             alt="Mentor Avatar"
             width={40}
             height={40}
             className={styles.avatar}
           />
           <Image
-            src={user.photo_url}
+            src={user.photo_url || "./next.svg"}
             alt="User Avatar"
             width={40}
             height={40}
