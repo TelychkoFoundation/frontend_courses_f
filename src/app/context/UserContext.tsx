@@ -47,7 +47,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         }
       } else {
         router.push("/");
-        showToast("Будь ласка, авторизуйтесь!", "error");
       }
 
       setInitialLoading(false);
