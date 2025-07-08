@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createUser, loginUser } from "../lib/postActions";
 import { IUser } from "../models/User";
 import { useUser } from "../hooks/useUser";
@@ -8,10 +8,11 @@ import { getUser } from "../lib/getActions";
 
 export default function Auth() {
   const { setUser } = useUser();
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
-    if (!(window as any).onTelegramAuth) {
-      (window as any).onTelegramAuth = async (userData: IUser) => {
+    if (!window.onTelegramAuth) {
+      window.onTelegramAuth = async (userData: IUser) => {
         const response = await getUser();
 
         console.log(response);
@@ -30,6 +31,7 @@ export default function Auth() {
     }
 
     const scriptId = "telegram-login-script";
+
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.src = "https://telegram.org/js/telegram-widget.js?22";
@@ -43,6 +45,7 @@ export default function Auth() {
       script.setAttribute("data-onauth", "onTelegramAuth(user)");
       script.id = scriptId;
       script.async = true;
+      script.onload = () => setScriptLoaded(true);
 
       document.getElementById("telegram-login-btn")?.appendChild(script);
     }
@@ -50,7 +53,15 @@ export default function Auth() {
     return () => {
       document.getElementById(scriptId)?.remove();
     };
-  });
+  }, []);
 
-  return <div id="telegram-login-btn" />;
+  return (
+    <div>
+      {!scriptLoaded && <p>Завантажуємо Телеграм ...</p>}
+      <div
+        id="telegram-login-btn"
+        style={{ display: scriptLoaded ? "block" : "none" }}
+      />
+    </div>
+  );
 }

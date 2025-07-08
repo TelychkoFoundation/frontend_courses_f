@@ -15,7 +15,9 @@ export default async function RootPage() {
         </ol>
 
         <div className={styles.ctas}>
-          <Auth />
+          <div className={styles.secondary}>
+            <Auth />
+          </div>
           <Link href="/tutorial" className={styles.secondary}>
             Як проходить навчання
           </Link>
