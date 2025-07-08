@@ -20,7 +20,7 @@ export async function getUser() {
   // }
 
   try {
-    const currentUser = await User.findOne({ id: Number(token.value) });
+    const currentUser = await User.findOne({ id: Number(token?.value) });
 
     return { success: true, data: JSON.parse(JSON.stringify(currentUser)) };
   } catch (error) {
