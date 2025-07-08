@@ -17,7 +17,6 @@ export async function deleteUser() {
     await User.findOneAndDelete({ id: Number(token.value) });
 
     cookieStore.delete("token");
-    redirect("/");
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
@@ -27,7 +26,5 @@ export async function deleteUser() {
 
 export async function logout() {
   const cookieStore = await cookies();
-
   cookieStore.delete("token");
-  redirect("/");
 }

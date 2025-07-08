@@ -2,7 +2,10 @@
 
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { IUser } from "../models/User";
-import { createDBConnection, getUser } from "../lib/getActions";
+import { createDBConnection, getCookieToken, getUser } from "../lib/getActions";
+import { useGlobal } from "../hooks/useGlobal";
+import { useToast } from "../hooks/useToast";
+import { useRouter } from "next/navigation";
 
 interface UserContextType {
   user: IUser | null;
@@ -14,19 +17,44 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
+  const { showToast } = useToast();
+  const router = useRouter();
+
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
-    const fetchUserFromDB = async () => {
-      await createDBConnection();
-      const response = await getUser();
+    const initialCheck = async () => {
+      setInitialLoading(true);
+      setInitialLoadingMessage("Налаштування даних ...");
 
-      if (response.success) {
-        setUser(response.data);
+      await createDBConnection();
+
+      setInitialLoadingMessage("Перевірка токену ...");
+
+      const token = await getCookieToken();
+
+      if (token) {
+        setInitialLoadingMessage("Завантаження даних користувача ...");
+
+        const response = await getUser(token);
+
+        if (response.success) {
+          setUser(response.data);
+        } else {
+          router.push("/");
+          showToast(response.error, "error");
+        }
+      } else {
+        router.push("/");
+        showToast("Будь ласка, авторизуйтесь!", "error");
       }
+
+      setInitialLoading(false);
+      setInitialLoadingMessage("");
     };
 
-    fetchUserFromDB();
+    initialCheck();
   }, []);
 
   return (

@@ -2,25 +2,28 @@
 
 import User from "../models/User";
 import { cookies } from "next/headers";
-// import { redirect } from "next/navigation";
 import dbConnect from "./db";
 
 export async function createDBConnection() {
   await dbConnect();
 }
 
-export async function getUser() {
+export async function getCookieToken() {
   const cookieStore = await cookies();
-
   const token = cookieStore.get("token");
+  return token?.value;
+}
 
-  // TODO
-  // if (!token) {
-  //   redirect("/");
-  // }
-
+export async function getUser(token: string) {
   try {
-    const currentUser = await User.findOne({ id: Number(token?.value) });
+    const currentUser = await User.findOne({ id: Number(token) });
+
+    if (!currentUser) {
+      return {
+        success: false,
+        error: "Користувача не знайдено. Будь ласка, зареєструйтесь!",
+      };
+    }
 
     return { success: true, data: JSON.parse(JSON.stringify(currentUser)) };
   } catch (error) {

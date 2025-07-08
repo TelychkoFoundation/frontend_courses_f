@@ -6,10 +6,15 @@ import { IUser } from "../models/User";
 import { useUser } from "../hooks/useUser";
 import { getUser } from "../lib/getActions";
 import { useGlobal } from "../hooks/useGlobal";
+import { useRouter } from "next/navigation";
+import { useToast } from "../hooks/useToast";
+import { checkTelegramAuth } from "../lib/auth";
 
-export default function Auth() {
+export default function Auth({ token }: { token: string }) {
   const { setUser } = useUser();
+  const { showToast } = useToast();
   const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
+  const router = useRouter();
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
@@ -18,19 +23,29 @@ export default function Auth() {
         setInitialLoading(true);
         setInitialLoadingMessage("Завантаження даних ...");
 
-        const response = await getUser();
-
-        console.log(response);
+        const response = await getUser(token);
 
         if (!response.success) {
+          setInitialLoadingMessage("Створюємо користувача ...");
+
+          if (!checkTelegramAuth(userData)) {
+            setInitialLoading(false);
+            setInitialLoadingMessage("");
+            showToast("Не валідні телеграм дані", "error");
+            return;
+          }
+
           const result = await createUser(userData);
 
           if (result.success) {
             setUser(result.data);
-            window.location.href = "/courses";
+            router.push("/courses");
+          } else {
+            showToast(response.error, "error");
           }
         } else {
           await loginUser(userData);
+          router.push("/courses");
         }
 
         setInitialLoading(false);

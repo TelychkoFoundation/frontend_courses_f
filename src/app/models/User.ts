@@ -1,7 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// 1. Визначення інтерфейсу для типу документа
-// Це допомагає з типобезпекою в TypeScript
 export interface IUser extends Document {
   id: number; // Унікальний ID користувача Telegram
   first_name: string;
@@ -14,7 +12,6 @@ export interface IUser extends Document {
   updatedAt?: Date; // Автоматично додається Mongoose
 }
 
-// 2. Визначення схеми Mongoose
 const UserSchema: Schema = new Schema(
   {
     id: {
@@ -55,8 +52,6 @@ const UserSchema: Schema = new Schema(
   },
 );
 
-// 3. Створення та експорт моделі
-// Перевіряємо, чи модель вже існує, щоб уникнути помилок при гарячій перезавантаженні (hot reloading) у Next.js
 const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 
 export default User;

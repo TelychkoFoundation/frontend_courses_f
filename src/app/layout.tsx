@@ -29,12 +29,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <GlobalProvider>
-          <UserProvider>
-            <ToastProvider>
+          <ToastProvider>
+            <UserProvider>
               {children}
               <ToastContainer />
-            </ToastProvider>
-          </UserProvider>
+            </UserProvider>
+          </ToastProvider>
         </GlobalProvider>
       </body>
     </html>

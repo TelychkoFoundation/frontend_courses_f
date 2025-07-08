@@ -2,7 +2,6 @@
 
 import User, { IUser } from "../models/User";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function createUser(userData: IUser) {
   const cookieStore = await cookies();
@@ -15,7 +14,8 @@ export async function createUser(userData: IUser) {
       secure: true,
       sameSite: "strict",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 10,
+      // maxAge: 60 * 60 * 24 * 30,
     });
 
     return { success: true, data: JSON.parse(JSON.stringify(newUser)) };
@@ -34,8 +34,7 @@ export async function loginUser(userData: IUser) {
     secure: true,
     sameSite: "strict",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: 10,
+    // maxAge: 60 * 60 * 24 * 30, // 1 month
   });
-
-  redirect("/courses");
 }

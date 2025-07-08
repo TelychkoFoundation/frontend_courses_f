@@ -2,8 +2,11 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Auth from "./auth/auth";
+import { getCookieToken } from "./lib/getActions";
 
 export default async function RootPage() {
+  const token = await getCookieToken();
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -16,7 +19,7 @@ export default async function RootPage() {
 
         <div className={styles.ctas}>
           <div className={styles.secondary}>
-            <Auth />
+            <Auth token={token as string} />
           </div>
           <Link href="/tutorial" className={styles.secondary}>
             Як проходить навчання

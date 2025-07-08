@@ -7,11 +7,11 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  const authToken = request.cookies.get("token")?.value;
+  const token = request.cookies.get("token")?.value;
 
-  console.log(authToken, "auth_token");
+  console.log(token, "token");
 
-  if (!authToken && !isPublic) {
+  if (!token && !isPublic) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
