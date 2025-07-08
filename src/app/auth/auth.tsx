@@ -5,14 +5,19 @@ import { createUser, loginUser } from "../lib/postActions";
 import { IUser } from "../models/User";
 import { useUser } from "../hooks/useUser";
 import { getUser } from "../lib/getActions";
+import { useGlobal } from "../hooks/useGlobal";
 
 export default function Auth() {
   const { setUser } = useUser();
+  const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
     if (!window.onTelegramAuth) {
       window.onTelegramAuth = async (userData: IUser) => {
+        setInitialLoading(true);
+        setInitialLoadingMessage("Завантаження даних ...");
+
         const response = await getUser();
 
         console.log(response);
@@ -27,6 +32,9 @@ export default function Auth() {
         } else {
           await loginUser(userData);
         }
+
+        setInitialLoading(false);
+        setInitialLoadingMessage("");
       };
     }
 

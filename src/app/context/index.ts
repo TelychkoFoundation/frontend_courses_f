@@ -1,4 +1,3 @@
-import { UserContext, UserProvider } from "./UserContext";
-import { ToastContext, ToastProvider } from "./ToastContext";
-
-export { UserContext, UserProvider, ToastContext, ToastProvider };
+export { UserContext, UserProvider } from "./UserContext";
+export { ToastContext, ToastProvider } from "./ToastContext";
+export { GlobalContext, GlobalProvider } from "./GlobalContext";

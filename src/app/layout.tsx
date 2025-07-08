@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { UserProvider, ToastProvider } from "./context";
+import { UserProvider, ToastProvider, GlobalProvider } from "./context";
 import ToastContainer from "./components/Toast";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,12 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <UserProvider>
-          <ToastProvider>
-            {children}
-            <ToastContainer />
-          </ToastProvider>
-        </UserProvider>
+        <GlobalProvider>
+          <UserProvider>
+            <ToastProvider>
+              {children}
+              <ToastContainer />
+            </ToastProvider>
+          </UserProvider>
+        </GlobalProvider>
       </body>
     </html>
   );
