@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "../hooks/useToast";
 import { checkTelegramAuth } from "../lib/auth";
 
-export default function Auth({ token }: { token: string }) {
+export default function Auth() {
   const { setUser } = useUser();
   const { showToast } = useToast();
   const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
@@ -23,7 +23,7 @@ export default function Auth({ token }: { token: string }) {
         setInitialLoading(true);
         setInitialLoadingMessage("Завантаження даних ...");
 
-        const response = await getUser(token);
+        const response = await getUser(String(userData.id));
 
         if (!response.success) {
           setInitialLoadingMessage("Створюємо користувача ...");
