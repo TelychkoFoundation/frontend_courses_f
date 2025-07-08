@@ -28,12 +28,12 @@ export default function Auth() {
         if (!response.success) {
           setInitialLoadingMessage("Створюємо користувача ...");
 
-          if (!checkTelegramAuth(userData)) {
-            setInitialLoading(false);
-            setInitialLoadingMessage("");
-            showToast("Не валідні телеграм дані", "error");
-            return;
-          }
+          // if (!checkTelegramAuth(userData)) {
+          //   setInitialLoading(false);
+          //   setInitialLoadingMessage("");
+          //   showToast("Не валідні телеграм дані", "error");
+          //   return;
+          // }
 
           const result = await createUser(userData);
 
