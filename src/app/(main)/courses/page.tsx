@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import { deleteUser } from "../lib/deleteActions";
-import { useUser } from "../hooks/useUser";
+import { deleteUser } from "../../lib/deleteActions";
+import { useUser } from "../../hooks/useUser";
 
 export default function Page() {
   const { setUser } = useUser();

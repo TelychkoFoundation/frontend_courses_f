@@ -1,7 +1,8 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Auth from "./auth/auth";
+import { FiLinkedin, FiInstagram } from "react-icons/fi";
+import { RiTelegram2Line } from "react-icons/ri";
 
 export default async function RootPage() {
   return (
@@ -29,13 +30,7 @@ export default async function RootPage() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
+          <FiLinkedin size={16} />
           Linkedin
         </a>
         <a
@@ -43,13 +38,7 @@ export default async function RootPage() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
+          <FiInstagram size={16} />
           Instagram
         </a>
         <a
@@ -57,13 +46,7 @@ export default async function RootPage() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
+          <RiTelegram2Line size={16} />
           Telegram
         </a>
       </footer>

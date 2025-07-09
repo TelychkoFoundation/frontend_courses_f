@@ -1,6 +1,7 @@
 "use server";
 
 import User, { IUser } from "../models/User";
+import Course from "../models/Course";
 import { cookies } from "next/headers";
 
 export async function createUser(userData: IUser) {
@@ -49,5 +50,15 @@ export async function loginUser(userData: IUser) {
     if (error instanceof Error) {
       return { success: false, error: error.message };
     }
+  }
+}
+
+export async function createCourse(data: any) {
+  console.log(data, "data");
+  try {
+    const newCourse = await Course.create(data);
+    return { success: true, data: newCourse };
+  } catch (error) {
+    return { success: false, error: (error as Error).message };
   }
 }

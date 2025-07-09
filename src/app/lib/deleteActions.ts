@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import User from "../models/User";
+import Course from "../models/Course";
 
 export async function deleteUser() {
   const cookieStore = await cookies();
@@ -21,4 +22,13 @@ export async function deleteUser() {
 export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
+}
+
+export async function deleteCourseById(id: string) {
+  try {
+    await Course.findByIdAndDelete(id);
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: (error as Error).message };
+  }
 }
