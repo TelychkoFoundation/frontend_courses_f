@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useState, ReactNode } from "react";
 import { ICourse } from "../models/Course";
 import { getAllCourses } from "../lib/getActions";
 import { deleteCourseById } from "../lib/deleteActions";
@@ -40,10 +40,6 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
       setActiveCourse(null);
     }
   };
-
-  useEffect(() => {
-    fetchCourses();
-  }, []);
 
   return (
     <AdminContext.Provider

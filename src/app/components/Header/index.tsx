@@ -38,6 +38,9 @@ export default function Header() {
       </div>
 
       <nav className={styles.nav}>
+        <Link href="/admin/courses" className={styles.link}>
+          Адмін
+        </Link>
         <Link href="/profile" className={styles.link}>
           Профіль
         </Link>

@@ -1,7 +1,5 @@
 import { Schema, model, models, Types } from "mongoose";
 
-// ====== Типи ======
-
 export interface IUserCourseStatus {
   userId: Types.ObjectId;
   status: "in_progress" | "completed";
