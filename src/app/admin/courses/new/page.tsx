@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { createCourse } from "../../../lib/postActions";
-import styles from "./new.module.css";
+import styles from "../course.module.css";
 import { SubmitButton } from "./SubmitButton";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 export default function AdminCoursesNewPage() {
   const formAction = async (formData: FormData) => {
@@ -38,7 +37,6 @@ export default function AdminCoursesNewPage() {
     const result = await createCourse(data);
 
     if (result.success) {
-      revalidatePath("/admin/courses");
       redirect("/admin/courses");
     }
   };
@@ -49,30 +47,30 @@ export default function AdminCoursesNewPage() {
 
       <div className={styles.grid}>
         <label>
-          Назва курсу:
+          Назва курсу
           <input name="title" required />
         </label>
 
         <label>
-          Опис:
-          <textarea name="description" required />
-        </label>
-
-        <label>
-          Ціна:
+          Ціна за повний курс
           <input name="price" type="number" min="0" required />
         </label>
 
         <label>
-          Безкоштовний?
+          Опис курсу
+          <textarea name="description" required />
+        </label>
+
+        <label>
+          Чи буде курс платний
           <select name="is_free">
-            <option value="false">Ні</option>
             <option value="true">Так</option>
+            <option value="false">Ні</option>
           </select>
         </label>
 
         <label>
-          Опубліковано?
+          Опубліковати
           <select name="is_published">
             <option value="false">Ні</option>
             <option value="true">Так</option>
@@ -80,7 +78,7 @@ export default function AdminCoursesNewPage() {
         </label>
 
         <label>
-          Рівень складності:
+          Рівень складності
           <select name="difficulty" required>
             <option value="beginner">Beginner</option>
             <option value="intermediate">Intermediate</option>
@@ -94,18 +92,18 @@ export default function AdminCoursesNewPage() {
         </label>
 
         <label>
-          Необхідні знання:
+          Необхідні знання
           <input name="prerequisites" required />
         </label>
 
         <label>
-          Результати (через кому):
+          Результати (через кому)
           <input name="outcomes" required />
         </label>
 
         <label>
-          Посилання на обкладинку:
-          <input name="thumbnail" type="url" required />
+          Посилання на обкладинку
+          <input name="thumbnail" type="url" />
         </label>
       </div>
 

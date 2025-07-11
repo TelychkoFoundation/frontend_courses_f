@@ -34,10 +34,24 @@ export async function getUser(token: string) {
   }
 }
 
-export async function getAllCourses() {
+export async function getAllAdminCourses() {
   try {
     const courses = await Course.find().sort({ createdAt: -1 });
     return { success: true, data: JSON.parse(JSON.stringify(courses)) };
+  } catch (error) {
+    return { success: false, error: (error as Error).message };
+  }
+}
+
+export async function getAdminCourse(id: string) {
+  try {
+    const course = await Course.findById(id);
+
+    if (!course) {
+      return { success: false, error: "Курс не знайдено" };
+    }
+
+    return { success: true, data: JSON.parse(JSON.stringify(course)) };
   } catch (error) {
     return { success: false, error: (error as Error).message };
   }

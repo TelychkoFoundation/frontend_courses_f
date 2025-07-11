@@ -46,7 +46,11 @@
 
 .buttons {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+}
+
+.nonDeleteButtons {
+    display: flex;
     gap: 16px;
 }
 
@@ -65,7 +69,19 @@
     background: #e0e0e0;
 }
 
-.form button {
+.form .remove {
+    background: #f30014;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    width: fit-content;
+}
+
+.form .submit {
     background: #0070f3;
     color: white;
     padding: 12px 16px;
@@ -77,7 +93,7 @@
     width: fit-content;
 }
 
-.form button:hover {
+.form .submit:hover {
     background: #005fc2;
 }
 

@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [new URL("https://t.me/i/userpic/**")],
   },
+  reactStrictMode: false,
 };
 
 export default nextConfig;

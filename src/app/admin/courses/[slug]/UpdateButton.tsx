@@ -3,12 +3,12 @@
 import { useFormStatus } from "react-dom";
 import styles from "../course.module.css";
 
-export function SubmitButton() {
+export default function UpdateButton() {
   const { pending } = useFormStatus();
 
   return (
     <button type="submit" disabled={pending} className={styles.submit}>
-      {pending ? "Створення..." : "Створити"}
+      {pending ? "Оновлюю..." : "Оновити"}
     </button>
   );
 }

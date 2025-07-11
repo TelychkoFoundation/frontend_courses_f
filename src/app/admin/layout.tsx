@@ -1,7 +1,6 @@
 import AdminHeader from "./header";
 import { AdminProvider } from "../context";
 import styles from "./layout.module.css";
-import ExitAdminButton from "./courses/ExitAdminButton";
 
 export default function AdminCoursesLayout({
   children,
@@ -11,10 +10,7 @@ export default function AdminCoursesLayout({
   return (
     <AdminProvider>
       <AdminHeader />
-      <div className={styles.container}>
-        {children}
-        <ExitAdminButton />
-      </div>
+      <div className={styles.container}>{children}</div>
     </AdminProvider>
   );
 }

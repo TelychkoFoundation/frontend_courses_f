@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./header.module.css";
 import { usePathname } from "next/navigation";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -30,6 +31,9 @@ export default function AdminHeader() {
           }`}
         >
           Метрики
+        </Link>
+        <Link href="/courses" className={styles.link}>
+          <CiLogout size={24} />
         </Link>
       </nav>
     </header>

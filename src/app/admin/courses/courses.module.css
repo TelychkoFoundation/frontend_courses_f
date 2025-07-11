@@ -12,13 +12,14 @@
 .headerActions {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
 }
 
 .createBtn {
+    display: flex;
     background-color: #0070f3;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 12px;
     text-decoration: none;
     border-radius: 8px;
     transition: background 0.2s ease;
@@ -26,6 +27,15 @@
 
 .createBtn:hover {
     background-color: #005bd1;
+}
+
+.nonDataMessage {
+    font-family: var(--font-geist-sans);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-style: italic;
 }
 
 .table {
@@ -48,12 +58,6 @@
 .row {
     cursor: pointer;
     transition: background 0.2s ease;
-}
-
-.row td:last-child div {
-    display: flex;
-    align-items: center;
-    gap: 24px;
 }
 
 .row:hover {
@@ -79,36 +83,5 @@
 .refresh:hover {
     background-color: #e0f7fa;
     color: #00796b;
-}
-
-.edit:hover {
-    background-color: #fff3e0;
-    color: #ef6c00;
-}
-
-.delete:hover {
-    background-color: #ffebee;
-    color: #c62828;
-}
-
-.exitButton {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: transparent;
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: #444;
-    margin-left: auto;
-    margin-top: 24px;
-}
-
-.exitButton:hover {
-    background: #f0f0f0;
-    border-color: #aaa;
 }
 

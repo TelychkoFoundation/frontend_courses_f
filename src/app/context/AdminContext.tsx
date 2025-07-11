@@ -2,7 +2,7 @@
 
 import { createContext, useState, ReactNode } from "react";
 import { ICourse } from "../models/Course";
-import { getAllCourses } from "../lib/getActions";
+import { getAllAdminCourses } from "../lib/getActions";
 import { deleteCourseById } from "../lib/deleteActions";
 
 interface AdminContextType {
@@ -25,7 +25,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchCourses = async () => {
     setLoading(true);
-    const result = await getAllCourses();
+    const result = await getAllAdminCourses();
 
     if (result.success) {
       setCourses(result.data);
