@@ -3,17 +3,21 @@ import styles from "./page.module.css";
 import { getAllAdminCourses } from "../../lib/getActions";
 import Course from "./course";
 import { ICourse } from "../../models/Course";
+import { CoursesHeader } from "./header";
 
 export default async function Page() {
-  const response = await getAllAdminCourses();
+  const response = await getAllAdminCourses("asc");
 
   return (
-    <div className={styles.coursesContainer}>
-      {response?.data?.map(
-        (course: ICourse): ReactElement => (
-          <Course key={course.id} data={course} />
-        ),
-      )}
-    </div>
+    <>
+      <CoursesHeader />
+      <div className={styles.coursesContainer}>
+        {response?.data?.map(
+          (course: ICourse): ReactElement => (
+            <Course key={course.id} data={course} />
+          ),
+        )}
+      </div>
+    </>
   );
 }

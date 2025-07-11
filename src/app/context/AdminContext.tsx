@@ -25,7 +25,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchCourses = async () => {
     setLoading(true);
-    const result = await getAllAdminCourses();
+    const result = await getAllAdminCourses("desc");
 
     if (result.success) {
       setCourses(result.data);

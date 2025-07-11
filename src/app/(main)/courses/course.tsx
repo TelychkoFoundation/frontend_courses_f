@@ -21,6 +21,14 @@ export default function Course({ data }: { data: ICourse }) {
     }
   };
 
+  const isNew = (updatedAt: string | Date) => {
+    const updated = new Date(updatedAt);
+    const now = new Date();
+    const diffInMs = now.getTime() - updated.getTime();
+    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+    return diffInDays < 14;
+  };
+
   const courseStatus = () => {
     if (!data.is_published) {
       return (
@@ -28,6 +36,10 @@ export default function Course({ data }: { data: ICourse }) {
           У процесі
         </span>
       );
+    }
+
+    if (isNew(data.updatedAt)) {
+      return <span className={`${styles.badge} ${styles.isNew}`}>Новий</span>;
     }
 
     return (

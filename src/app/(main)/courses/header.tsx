@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import Tabs from "../../components/Tabs";
 import { FaHome } from "react-icons/fa";
 import styles from "./layout.module.css";

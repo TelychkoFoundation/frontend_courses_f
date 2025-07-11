@@ -4,6 +4,7 @@ import User from "../models/User";
 import Course from "../models/Course";
 import { cookies } from "next/headers";
 import dbConnect from "./db";
+import { SortOrder } from "mongoose";
 
 export async function createDBConnection() {
   await dbConnect();
@@ -34,9 +35,9 @@ export async function getUser(token: string) {
   }
 }
 
-export async function getAllAdminCourses() {
+export async function getAllAdminCourses(createdAt: SortOrder) {
   try {
-    const courses = await Course.find().sort({ createdAt: -1 });
+    const courses = await Course.find().sort({ createdAt: createdAt });
     return { success: true, data: JSON.parse(JSON.stringify(courses)) };
   } catch (error) {
     return { success: false, error: (error as Error).message };
