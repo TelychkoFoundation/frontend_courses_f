@@ -24,15 +24,15 @@ export default function Header() {
         <Image
           src={user?.photo_url || "./next.svg"}
           alt="Mentor Avatar"
-          width={40}
-          height={40}
+          width={44}
+          height={44}
           className={styles.avatar}
         />
         <Image
           src={user?.photo_url || "./next.svg"}
           alt="User Avatar"
-          width={40}
-          height={40}
+          width={44}
+          height={44}
           className={styles.avatar}
         />
       </div>

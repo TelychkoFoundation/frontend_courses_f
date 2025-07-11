@@ -4,33 +4,25 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ICourse } from "../../models/Course";
 import styles from "./page.module.css";
+import { FaHtml5 } from "react-icons/fa";
 
 export default function Course({ data }: { data: ICourse }) {
-  const [shakeIndex, setShakeIndex] = useState<number | null>(null);
+  const [shakeIndex, setShakeIndex] = useState<string | null>(null);
 
   const router = useRouter();
 
   const handleClick = () => {
-    // if (blocks[index].status === ContentStatusEnum.IN_PROGRESS || disabled) {
-    //   setShakeIndex(index);
-    //   setTimeout(() => setShakeIndex(null), 1000);
-    // } else {
-    //   navigate(`/${blocks[index].content}`);
-    // }
-
-    router.push(`/courses/${data.id}`);
+    if (!data.is_published) {
+      setShakeIndex(data.id);
+      setTimeout(() => setShakeIndex(null), 1000);
+    } else {
+      router.push(`/courses/${data.id}`);
+    }
   };
 
   return (
     <div
-      className={`${styles.courseContainer}`}
-      // className={`${styles.tile} ${shakeIndex === index ? styles.shake : ""} ${block.status === ContentStatusEnum.IN_PROGRESS || disabled ? classes.disabled : ""}`}
-      // style={{
-      //   background:
-      //     block.status === ContentStatusEnum.IN_PROGRESS || disabled
-      //       ? "#d3d3d3"
-      //       : block.background,
-      // }}
+      className={`${styles.courseContainer} ${shakeIndex === data.id ? styles.shake : ""} ${!data.is_published ? styles.disabled : ""}`}
       // initial={directionVariants[block.direction]}
       // animate={directionVariants.visible}
       // transition={{
@@ -40,11 +32,10 @@ export default function Course({ data }: { data: ICourse }) {
       onClick={handleClick}
       onTouchStart={handleClick}
     >
-      {/*{block.status === ContentStatusEnum.IN_PROGRESS && (*/}
-      {/*  <span className={classes.badge}>У процесі</span>*/}
-      {/*)}*/}
-      {/*<div className={styles.icon}>{block.icon}</div>*/}
-      <span className={styles.badge}>У процесі</span>
+      {!data.is_published && <span className={styles.badge}>У процесі</span>}
+      <div className={styles.icon}>
+        <FaHtml5 />
+      </div>
       <h2 className={styles.title}>{data.title}</h2>
       <p className={styles.subtitle}>{data.description}</p>
     </div>

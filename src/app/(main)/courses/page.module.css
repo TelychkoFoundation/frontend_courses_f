@@ -1,12 +1,6 @@
-.page {
-  min-height: 100svh;
-  padding: 80px;
-  font-family: var(--font-geist-sans);
-}
-
 .coursesContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
 }
 
@@ -18,7 +12,6 @@
   justify-content: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /*color: white;*/
   text-align: center;
   position: relative;
   transition: transform 0.3s ease;
@@ -35,11 +28,11 @@
 }
 
 .courseContainer:nth-child(3) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
 }
 
 .courseContainer:nth-child(4) {
-  background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
 }
 
 .courseContainer:nth-child(5) {
@@ -48,6 +41,10 @@
 
 .courseContainer:nth-child(6) {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.courseContainer:nth-child(7) {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
 }
 
 .courseContainer:hover {

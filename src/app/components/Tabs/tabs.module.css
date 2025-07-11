@@ -1,7 +1,6 @@
 .tabs {
     display: flex;
     justify-content: center;
-    margin-bottom: 24px;
     gap: 16px;
 }
 
@@ -15,10 +14,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: var(--font-geist-sans);
-}
-
-.tab:hover {
-    background-color: #d4d4d4;
+    font-size: 14px;
 }
 
 .active {

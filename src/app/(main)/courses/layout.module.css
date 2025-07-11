@@ -1,0 +1,12 @@
+.container {
+    min-height: calc(100vh - 64px);
+    padding: 48px;
+    font-family: var(--font-geist-sans);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
