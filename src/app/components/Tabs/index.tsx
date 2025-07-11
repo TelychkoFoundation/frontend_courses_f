@@ -24,7 +24,9 @@ export default function Tabs({ values }: Props) {
   );
 
   useEffect(() => {
-    router.push(pathname + "?" + createQueryString("filter", "all"));
+    if (!searchParams.get("filter")) {
+      router.push(pathname + "?" + createQueryString("filter", "all"));
+    }
   }, []);
 
   const handleTabClick = (tab: "all" | "my") => {

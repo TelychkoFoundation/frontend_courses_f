@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ICourse } from "../../models/Course";
 import styles from "./page.module.css";
-import { FaHtml5 } from "react-icons/fa";
+// import { FaHtml5 } from "react-icons/fa";
+import { SiTypescript } from "react-icons/si";
 
 export default function Course({ data }: { data: ICourse }) {
   const [shakeIndex, setShakeIndex] = useState<string | null>(null);
@@ -20,6 +21,20 @@ export default function Course({ data }: { data: ICourse }) {
     }
   };
 
+  const courseStatus = () => {
+    if (!data.is_published) {
+      return (
+        <span className={`${styles.badge} ${styles.isInProgress}`}>
+          У процесі
+        </span>
+      );
+    }
+
+    return (
+      <span className={`${styles.badge} ${styles.isAvailable}`}>Доступний</span>
+    );
+  };
+
   return (
     <div
       className={`${styles.courseContainer} ${shakeIndex === data.id ? styles.shake : ""} ${!data.is_published ? styles.disabled : ""}`}
@@ -32,9 +47,9 @@ export default function Course({ data }: { data: ICourse }) {
       onClick={handleClick}
       onTouchStart={handleClick}
     >
-      {!data.is_published && <span className={styles.badge}>У процесі</span>}
+      {courseStatus()}
       <div className={styles.icon}>
-        <FaHtml5 />
+        <SiTypescript />
       </div>
       <h2 className={styles.title}>{data.title}</h2>
       <p className={styles.subtitle}>{data.description}</p>

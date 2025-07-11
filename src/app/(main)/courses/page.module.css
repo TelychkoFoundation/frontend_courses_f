@@ -17,6 +17,7 @@
   transition: transform 0.3s ease;
   opacity: 0.8;
   cursor: pointer;
+  padding: 16px;
 }
 
 .courseContainer:nth-child(1) {
@@ -57,6 +58,7 @@
   color: #757575;
   box-shadow: none;
   cursor: not-allowed;
+  transform: none !important;
 }
 
 .icon {
@@ -68,7 +70,6 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
-  /*color: white*/
   color: var(--text-color);
 }
 
@@ -76,13 +77,18 @@
   font-size: 12px;
   opacity: 0.8;
   color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 .badge {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: rgba(255, 105, 97, 1);
   color: white;
   font-size: 10px;
   font-weight: bold;
@@ -91,6 +97,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
   opacity: 1;
+}
+
+.isInProgress {
+  background: rgba(255, 105, 97, 1);
+}
+
+.isNew {
+  background: #17a2b8;
+}
+
+.isAvailable {
+  background: #28a745;
 }
 
 @keyframes shake {
