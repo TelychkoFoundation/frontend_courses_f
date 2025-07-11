@@ -16,11 +16,14 @@ export default function Page() {
   useEffect(() => {
     const b = async () => {
       const r = await getAllAdminCourses("asc");
+      console.log(r, "r");
       setData(r.data);
     };
 
     b();
   }, []);
+
+  console.log(data, "DATA");
 
   return (
     <>
