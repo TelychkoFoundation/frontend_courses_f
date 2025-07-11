@@ -10,6 +10,8 @@ import { SiTypescript } from "react-icons/si";
 export default function Course({ data }: { data: ICourse }) {
   const [shakeIndex, setShakeIndex] = useState<string | null>(null);
 
+  console.log(data, "DATA");
+
   const router = useRouter();
 
   const handleClick = () => {

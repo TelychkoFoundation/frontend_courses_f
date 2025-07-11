@@ -8,6 +8,8 @@ import { CoursesHeader } from "./header";
 export default async function Page() {
   const response = await getAllAdminCourses("asc");
 
+  console.log(response, "response");
+
   return (
     <>
       <CoursesHeader />
