@@ -5,13 +5,7 @@ import UpdateButton from "./UpdateButton";
 import { updateCourse } from "../../../lib/updateActions";
 import DeleteButton from "./DeleteButton";
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function AdminCourseViewPage({ params }: Props) {
+export default async function AdminCourseViewPage({ params }: any) {
   const { slug } = await params;
 
   const response = await getAdminCourse(slug);
