@@ -18,7 +18,7 @@
     --button-secondary-hover: #f2f2f2;
 
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 

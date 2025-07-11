@@ -5,7 +5,8 @@
 }
 
 .courseContainer {
-  height: 220px;
+  height: fit-content;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,6 +60,7 @@
   box-shadow: none;
   cursor: not-allowed;
   transform: none !important;
+  user-select: none;
 }
 
 .icon {
@@ -83,6 +85,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
+}
+
+.info {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.done {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.progress {
+  position: absolute;
+  bottom: 10px;
+  left: 40px;
 }
 
 .badge {

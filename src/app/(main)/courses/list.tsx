@@ -9,17 +9,16 @@ import { ICourse } from "../../models/Course";
 export default function CoursesList() {
   const [data, setData] = useState<ICourse[]>([]);
 
-  // const response = await getAllAdminCourses("asc");
-  //
-  // console.log(response, "response");
   useEffect(() => {
-    const b = async () => {
-      const r = await getAllAdminCourses("asc");
-      console.log(r, "r");
-      setData(r.data);
+    const getAllAdminCoursesHandler = async () => {
+      const response = await getAllAdminCourses("asc");
+
+      if (response.success) {
+        setData(response.data);
+      }
     };
 
-    b();
+    getAllAdminCoursesHandler();
   }, []);
 
   return (

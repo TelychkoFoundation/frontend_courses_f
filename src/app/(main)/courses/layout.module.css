@@ -10,3 +10,9 @@
     align-items: center;
     margin-bottom: 32px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 24px;
+    }
+}

@@ -6,6 +6,9 @@ import { ICourse } from "../../models/Course";
 import styles from "./page.module.css";
 // import { FaHtml5 } from "react-icons/fa";
 import { SiTypescript } from "react-icons/si";
+import { MdOutlineInfo } from "react-icons/md";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
+import { RiProgress3Fill } from "react-icons/ri";
 
 export default function Course({ data }: { data: ICourse }) {
   const [shakeIndex, setShakeIndex] = useState<string | null>(null);
@@ -49,6 +52,10 @@ export default function Course({ data }: { data: ICourse }) {
     );
   };
 
+  const showCourseInfo = (event: any) => {
+    event.stopPropagation();
+  };
+
   return (
     <div
       className={`${styles.courseContainer} ${shakeIndex === data.id ? styles.shake : ""} ${!data.is_published ? styles.disabled : ""}`}
@@ -67,6 +74,19 @@ export default function Course({ data }: { data: ICourse }) {
       </div>
       <h2 className={styles.title}>{data.title}</h2>
       <p className={styles.subtitle}>{data.description}</p>
+      <MdOutlineInfo
+        size={20}
+        className={styles.info}
+        onClick={showCourseInfo}
+      />
+      {data.is_published ? (
+        <IoCheckmarkDoneCircleSharp
+          color="green"
+          size={24}
+          className={styles.done}
+        />
+      ) : null}
+      {/*<RiProgress3Fill color="#ff5300" size={24} className={styles.progress} />*/}
     </div>
   );
 }
