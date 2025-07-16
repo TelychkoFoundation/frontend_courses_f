@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactElement, useEffect, useCallback } from "react";
+import { ReactElement, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import styles from "./tabs.module.css";
+import { createQueryString } from "../../utils";
 
 interface Props {
   values: { id: "all" | "my"; name: string }[];
@@ -13,24 +14,22 @@ export default function Tabs({ values }: Props) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams],
-  );
-
   useEffect(() => {
     if (!searchParams.get("filter")) {
-      router.push(pathname + "?" + createQueryString("filter", "all"));
+      router.push(
+        pathname +
+          "?" +
+          createQueryString("filter", "all", searchParams.toString()),
+      );
     }
   }, []);
 
   const handleTabClick = (tab: "all" | "my") => {
-    router.push(pathname + "?" + createQueryString("filter", tab));
+    router.push(
+      pathname +
+        "?" +
+        createQueryString("filter", tab, searchParams.toString()),
+    );
   };
 
   return (

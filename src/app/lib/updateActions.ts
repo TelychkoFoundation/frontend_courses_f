@@ -1,8 +1,9 @@
 "use server";
 
 import Course from "../models/Course";
+import { ICourseBasePayload } from "../typings/course";
 
-export async function updateCourse(id: string, data: any) {
+export async function updateCourse(id: string, data: ICourseBasePayload) {
   try {
     const updated = await Course.findByIdAndUpdate(id, data, {
       new: true,

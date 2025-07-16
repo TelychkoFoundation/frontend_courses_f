@@ -1,8 +1,9 @@
 "use server";
 
 import User, { IUser } from "../models/User";
-import Course, { ICourse } from "../models/Course";
+import Course from "../models/Course";
 import { cookies } from "next/headers";
+import { ICourseBasePayload } from "../typings/course";
 
 export async function createUser(userData: IUser) {
   const cookieStore = await cookies();
@@ -53,8 +54,17 @@ export async function loginUser(userData: IUser) {
   }
 }
 
-export async function createCourse(data: any) {
+export async function createCourse(data: ICourseBasePayload) {
   try {
+    const existingCourse = await Course.findOne({ courseKey: data.courseKey });
+
+    if (existingCourse) {
+      return {
+        success: false,
+        error: `Курс з ключем "${data.courseKey}" вже існує.`,
+      };
+    }
+
     await Course.create(data);
     return { success: true };
   } catch (error) {

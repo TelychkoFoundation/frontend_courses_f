@@ -1,24 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ICourse } from "../../models/Course";
 import styles from "./page.module.css";
-// import { FaHtml5 } from "react-icons/fa";
-import { SiTypescript } from "react-icons/si";
+import {
+  SiTypescript,
+  SiHtml5,
+  SiJavascript,
+  SiCss3,
+  SiReact,
+} from "react-icons/si";
+import { GiMuscleUp } from "react-icons/gi";
+import { FaPlus } from "react-icons/fa";
 import { MdOutlineInfo } from "react-icons/md";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
-import { RiProgress3Fill } from "react-icons/ri";
+import { CourseKeyTypes } from "../../typings/course";
+// import { RiProgress3Fill } from "react-icons/ri";
+import { useGlobal } from "../../hooks/useGlobal";
 
 export default function Course({ data }: { data: ICourse }) {
+  const { setActiveCourse } = useGlobal();
   const [shakeIndex, setShakeIndex] = useState<string | null>(null);
-
-  console.log(data, "DATA");
 
   const router = useRouter();
 
   const handleClick = () => {
     if (!data.is_published) {
+      console.log("clicked");
       setShakeIndex(data.id);
       setTimeout(() => setShakeIndex(null), 1000);
     } else {
@@ -52,41 +61,88 @@ export default function Course({ data }: { data: ICourse }) {
     );
   };
 
+  const setCourseIcon = (courseKey: CourseKeyTypes): ReactElement => {
+    switch (courseKey) {
+      case CourseKeyTypes.HTML5Basics:
+        return <SiHtml5 />;
+      case CourseKeyTypes.HTML5Advanced:
+        return (
+          <>
+            <SiHtml5 />
+            <FaPlus size={20} />
+          </>
+        );
+      case CourseKeyTypes.CSS3Basics:
+        return <SiCss3 />;
+      case CourseKeyTypes.CSS3Advanced:
+        return (
+          <>
+            <SiCss3 />
+            <FaPlus size={20} />
+          </>
+        );
+      case CourseKeyTypes.JSBasics:
+        return <SiJavascript />;
+      case CourseKeyTypes.JSAdvanced:
+        return (
+          <>
+            <SiJavascript />
+            <FaPlus size={20} />
+          </>
+        );
+      case CourseKeyTypes.JSProfessional:
+        return (
+          <>
+            <SiJavascript />
+            <GiMuscleUp size={20} />
+          </>
+        );
+      case CourseKeyTypes.Typescript:
+        return <SiTypescript />;
+      case CourseKeyTypes.React:
+        return <SiReact />;
+      case CourseKeyTypes.ReactInDepth:
+        return (
+          <>
+            <SiReact />
+            <GiMuscleUp size={20} />
+          </>
+        );
+      default:
+        return <span />;
+    }
+  };
+
   const showCourseInfo = (event: any) => {
     event.stopPropagation();
+    setActiveCourse(data);
   };
 
   return (
     <div
       className={`${styles.courseContainer} ${shakeIndex === data.id ? styles.shake : ""} ${!data.is_published ? styles.disabled : ""}`}
-      // initial={directionVariants[block.direction]}
-      // animate={directionVariants.visible}
-      // transition={{
-      //   duration: 0.4,
-      //   type: "spring",
-      // }}
       onClick={handleClick}
       onTouchStart={handleClick}
     >
       {courseStatus()}
-      <div className={styles.icon}>
-        <SiTypescript />
+      <div className={styles.courseContent}>
+        <div className={styles.icons}>{setCourseIcon(data.courseKey)}</div>
+        <h2 className={styles.title}>{data.title}</h2>
+        <p className={styles.subtitle}>{data.short_description}</p>
       </div>
-      <h2 className={styles.title}>{data.title}</h2>
-      <p className={styles.subtitle}>{data.description}</p>
-      <MdOutlineInfo
-        size={20}
-        className={styles.info}
-        onClick={showCourseInfo}
-      />
       {data.is_published ? (
-        <IoCheckmarkDoneCircleSharp
-          color="green"
-          size={24}
-          className={styles.done}
-        />
-      ) : null}
-      {/*<RiProgress3Fill color="#ff5300" size={24} className={styles.progress} />*/}
+        <div onClick={showCourseInfo} className={styles.info}>
+          <MdOutlineInfo size={20} />
+        </div>
+      ) : (
+        <p className={styles.waiting}>🕒&nbsp;&nbsp; Старт 20 серпня</p>
+      )}
+      <div className={styles.done}>
+        {data.is_published ? (
+          <IoCheckmarkDoneCircleSharp color="green" size={24} />
+        ) : // <RiProgress3Fill color="#ff5300" size={24} />
+        null}
+      </div>
     </div>
   );
 }

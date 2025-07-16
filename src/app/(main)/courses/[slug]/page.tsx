@@ -16,7 +16,7 @@ export default async function BlogPostPage({
         {[
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 23, 34, 45, 56, 67, 86, 756,
           4545, 3434, 23323,
-        ].map(k => (
+        ].map((k, index) => (
           <div className={styles.videoCard} key={k}>
             <div className={styles.videoContainer}>
               <video controls className={styles.video}>
@@ -35,7 +35,7 @@ export default async function BlogPostPage({
             </div>
             <div className={styles.videoInfo}>
               <div className={styles.videoDetails}>
-                <h3>Реакт хуки. useEffect</h3>
+                <h3>{index + 1}. Реакт хуки. useEffect</h3>
                 <p>Завантаження даних, підписки та очищення.</p>
               </div>
               <div className={styles.videoPrice}></div>

@@ -6,9 +6,9 @@ export default function CoursesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <>
       <Header />
       {children}
-    </main>
+    </>
   );
 }

@@ -5,7 +5,6 @@
 }
 
 .courseContainer {
-  height: fit-content;
   min-height: 220px;
   display: flex;
   flex-direction: column;
@@ -19,6 +18,7 @@
   opacity: 0.8;
   cursor: pointer;
   padding: 16px;
+  font-family: var(--font-geist-sans);
 }
 
 .courseContainer:nth-child(1) {
@@ -49,6 +49,19 @@
   background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
 }
 
+.courseContainer:nth-child(8) {
+  background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.courseContainer:nth-child(9) {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+}
+
+.courseContainer:nth-child(10) {
+  background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
+}
+
+
 .courseContainer:hover {
   transform: scale(1.03);
   opacity: 1;
@@ -59,20 +72,32 @@
   color: #757575;
   box-shadow: none;
   cursor: not-allowed;
-  transform: none !important;
+  /*transform: none !important;*/
   user-select: none;
 }
 
-.icon {
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 40px;
   margin-bottom: 10px;
+}
+
+.courseContainer .courseContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 60%;
 }
 
 .courseContainer .title {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
-  color: var(--text-color);
+  /*color: var(--text-color);*/
+  font-family: var(--font-geist-sans);
 }
 
 .courseContainer .subtitle {
@@ -89,8 +114,24 @@
 
 .info {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waiting {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }
 
 .done {
@@ -99,21 +140,15 @@
   left: 10px;
 }
 
-.progress {
-  position: absolute;
-  bottom: 10px;
-  left: 40px;
-}
-
 .badge {
   position: absolute;
   top: -5px;
   right: -5px;
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 10px;
+  padding: 4px 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
   opacity: 1;

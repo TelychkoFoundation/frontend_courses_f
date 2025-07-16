@@ -1,6 +1,6 @@
 import styles from "./layout.module.css";
 
-export default function AdminCoursesLayout({
+export default function CoursesLayout({
   children,
 }: {
   children: React.ReactNode;

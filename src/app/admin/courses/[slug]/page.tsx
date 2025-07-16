@@ -4,6 +4,12 @@ import styles from "../course.module.css";
 import UpdateButton from "./UpdateButton";
 import { updateCourse } from "../../../lib/updateActions";
 import DeleteButton from "./DeleteButton";
+import {
+  CourseDifficultyType,
+  CourseKeyTypes,
+  ICourseBasePayload,
+} from "../../../typings/course";
+import { coursesTitles } from "../../../constants";
 
 export default async function AdminCourseViewPage({ params }: any) {
   const { slug } = await params;
@@ -19,30 +25,37 @@ export default async function AdminCourseViewPage({ params }: any) {
   const formAction = async (formData: FormData) => {
     "use server";
 
-    const title = formData.get("title")?.toString() || "";
+    const courseKey = formData.get("courseKey") as CourseKeyTypes;
+
+    const { categories, title } = coursesTitles[courseKey as CourseKeyTypes];
+
+    console.log(categories, courseKey, "!!!");
+
     const description = formData.get("description")?.toString() || "";
+    const short_description =
+      formData.get("short_description")?.toString() || "";
     const price = Number(formData.get("price")) || 0;
     const is_free = formData.get("is_free") === "true";
     const is_published = formData.get("is_published") === "true";
-    const difficulty = formData.get("difficulty")?.toString() || "beginner";
-    const category = formData.get("category")?.toString() || "";
+    const difficulty = formData
+      .get("difficulty")
+      ?.toString() as CourseDifficultyType;
     const prerequisites = formData.get("prerequisites")?.toString() || "";
-    const thumbnail = formData.get("thumbnail")?.toString() || "";
-    const outcomes = formData.get("outcomes")?.toString().split(",") || [];
+    const outcomes = formData.get("outcomes")?.toString() || "";
 
-    const data = {
+    const data: ICourseBasePayload = {
+      courseKey,
       title,
       description,
+      short_description,
       price,
       is_free,
       is_published,
       difficulty,
-      category,
+      categories,
       prerequisites,
-      thumbnail,
       outcomes,
       lessons: [],
-      recommended_order: [],
     };
 
     const r = await updateCourse(slug, data);
@@ -56,11 +69,19 @@ export default async function AdminCourseViewPage({ params }: any) {
       <div className={styles.grid}>
         <label>
           Назва курсу
-          <input name="title" defaultValue={course.title} required />
+          <select name="courseKey" required defaultValue={course.title}>
+            {(
+              Object.keys(coursesTitles) as Array<keyof typeof coursesTitles>
+            ).map((key: CourseKeyTypes) => (
+              <option key={key} value={coursesTitles[key].courseKey}>
+                {coursesTitles[key].title}
+              </option>
+            ))}
+          </select>
         </label>
 
         <label>
-          Ціна за повний курс
+          Ціна за повний курс, грн
           <input
             name="price"
             type="number"
@@ -71,10 +92,19 @@ export default async function AdminCourseViewPage({ params }: any) {
         </label>
 
         <label>
-          Опис курсу
+          Детальний опис курсу
           <textarea
             name="description"
             defaultValue={course.description}
+            required
+          />
+        </label>
+
+        <label>
+          Короткий опис курсу
+          <textarea
+            name="short_description"
+            defaultValue={course.short_description}
             required
           />
         </label>
@@ -112,13 +142,8 @@ export default async function AdminCourseViewPage({ params }: any) {
         </label>
 
         <label>
-          Категорія
-          <input name="category" defaultValue={course.category} required />
-        </label>
-
-        <label>
           Необхідні знання
-          <input
+          <textarea
             name="prerequisites"
             defaultValue={course.prerequisites}
             required
@@ -126,17 +151,8 @@ export default async function AdminCourseViewPage({ params }: any) {
         </label>
 
         <label>
-          Результати (через кому)
-          <input
-            name="outcomes"
-            defaultValue={course.outcomes.join(", ")}
-            required
-          />
-        </label>
-
-        <label>
-          Посилання на обкладинку
-          <input name="thumbnail" type="url" defaultValue={course.thumbnail} />
+          Результати
+          <textarea name="outcomes" defaultValue={course.outcomes} required />
         </label>
       </div>
 

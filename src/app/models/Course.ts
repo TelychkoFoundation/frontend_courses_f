@@ -1,57 +1,69 @@
 import { Schema, model, models, Types } from "mongoose";
-
-export interface IUserCourseStatus {
-  userId: Types.ObjectId;
-  status: "in_progress" | "completed";
-  updatedAt: Date;
-}
-
-export interface ICourseBase {
-  title: string;
-  description: string;
-  lessons: Types.ObjectId[];
-  recommended_order: Types.ObjectId[];
-  price: number;
-  is_free: boolean;
-  is_published: boolean;
-  difficulty?: "beginner" | "intermediate" | "advanced";
-  category?: string;
-  prerequisites?: string;
-  outcomes?: string[];
-  thumbnail?: string;
-  user_statuses: IUserCourseStatus[];
-  createdAt: Date;
-  updatedAt: Date;
-  isNew?: boolean;
-  id: string;
-}
+import {
+  CourseDifficultyType,
+  CourseKeyTypes,
+  ICourseBase,
+} from "../typings/course";
 
 export interface ICourse extends ICourseBase {
   _id: Types.ObjectId;
 }
 
-// ====== Mongoose схема ======
-
 const CourseSchema = new Schema<ICourseBase>(
   {
-    title: { type: String, required: true, index: "text" },
-    description: { type: String, required: true, index: "text" },
+    title: {
+      type: String,
+      required: true,
+      index: "text",
+    },
+    courseKey: {
+      type: String,
+      enum: Object.values(CourseKeyTypes),
+      required: true,
+    },
+    short_description: {
+      type: String,
+    },
+    description: {
+      type: String,
+      index: "text",
+    },
+    categories: {
+      base: [{ type: String }],
+      levelTopics: [{ type: String }],
+      practical: [{ type: String }],
+      professional: [{ type: String }],
+      audience: [{ type: String }],
+      tags: [{ type: String }],
+    },
+    prerequisites: { type: String },
+    outcomes: { type: String },
 
-    lessons: [{ type: Schema.Types.ObjectId, ref: "Lesson", required: true }],
-    recommended_order: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
+    lessons: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Lesson",
+        required: true,
+      },
+    ],
 
-    price: { type: Number, required: true },
-    is_free: { type: Boolean, default: false },
-    is_published: { type: Boolean, default: false },
+    price: {
+      type: Number,
+      required: true,
+    },
+    is_free: {
+      type: Boolean,
+      default: false,
+    },
+    is_published: {
+      type: Boolean,
+      default: false,
+    },
 
     difficulty: {
       type: String,
-      enum: ["beginner", "intermediate", "advanced"],
+      enum: Object.values(CourseDifficultyType),
     },
-    category: { type: String },
-    prerequisites: { type: String },
-    outcomes: [{ type: String }],
-    thumbnail: { type: String },
 
     user_statuses: [
       {
@@ -72,7 +84,6 @@ const CourseSchema = new Schema<ICourseBase>(
   },
 );
 
-// Повнотекстовий індекс
 CourseSchema.index({ title: "text", description: "text" });
 
 const Course = models.Course || model<ICourseBase>("Course", CourseSchema);

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import Tabs from "../../../components/Tabs";
+import { LuTableOfContents } from "react-icons/lu";
+
 import { FaHome } from "react-icons/fa";
 import styles from "./page.module.css";
 
@@ -15,12 +16,7 @@ export async function CourseHeader() {
           <span>-</span>
           <strong>HTML Basics</strong>
         </div>
-        <Tabs
-          values={[
-            { id: "all", name: "Всі відео" },
-            { id: "my", name: "Мої відео" },
-          ]}
-        />
+        <LuTableOfContents size={24} />
       </header>
     </Suspense>
   );
