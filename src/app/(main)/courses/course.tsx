@@ -27,7 +27,6 @@ export default function Course({ data }: { data: ICourse }) {
 
   const handleClick = () => {
     if (!data.is_published) {
-      console.log("clicked");
       setShakeIndex(data.id);
       setTimeout(() => setShakeIndex(null), 1000);
     } else {
