@@ -5,6 +5,7 @@ import Course from "../models/Course";
 import { cookies } from "next/headers";
 import dbConnect from "./db";
 import { SortOrder } from "mongoose";
+import { CourseKeyTypes } from "../typings/course";
 
 export async function createDBConnection() {
   await dbConnect();
@@ -47,6 +48,20 @@ export async function getAllAdminCourses(createdAt: SortOrder) {
 export async function getAdminCourse(id: string) {
   try {
     const course = await Course.findById(id);
+
+    if (!course) {
+      return { success: false, error: "Курс не знайдено" };
+    }
+
+    return { success: true, data: JSON.parse(JSON.stringify(course)) };
+  } catch (error) {
+    return { success: false, error: (error as Error).message };
+  }
+}
+
+export async function getCurrentCourse(courseKey: string) {
+  try {
+    const course = await Course.findOne({ courseKey });
 
     if (!course) {
       return { success: false, error: "Курс не знайдено" };

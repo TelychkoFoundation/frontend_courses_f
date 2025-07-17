@@ -1,35 +1,27 @@
 "use client";
 
 import { ReactElement, useEffect } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import styles from "./tabs.module.css";
-import { createQueryString } from "../../utils";
+import { ModalType } from "../../typings/modals";
+import { useQuery } from "../../hooks/useQuery";
 
 interface Props {
   values: { id: "all" | "my"; name: string }[];
 }
 
 export default function Tabs({ values }: Props) {
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { addQueryString } = useQuery();
 
   useEffect(() => {
-    if (!searchParams.get("filter")) {
-      router.push(
-        pathname +
-          "?" +
-          createQueryString("filter", "all", searchParams.toString()),
-      );
+    if (!searchParams.get(ModalType.CoursesFilter)) {
+      addQueryString(ModalType.CoursesFilter, "all");
     }
   }, []);
 
   const handleTabClick = (tab: "all" | "my") => {
-    router.push(
-      pathname +
-        "?" +
-        createQueryString("filter", tab, searchParams.toString()),
-    );
+    addQueryString(ModalType.CoursesFilter, tab);
   };
 
   return (
@@ -38,7 +30,7 @@ export default function Tabs({ values }: Props) {
         ({ id, name }): ReactElement => (
           <div
             key={id}
-            className={`${styles.tab} ${id === searchParams.get("filter") ? styles.active : ""}`}
+            className={`${styles.tab} ${id === searchParams.get(ModalType.CoursesFilter) ? styles.active : ""}`}
             onClick={() => handleTabClick(id)}
           >
             {name}

@@ -11,8 +11,8 @@
     "format": "prettier --write \"**/*.{css,scss,js,jsx,ts,tsx,md}\""
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.846.0",
-    "@aws-sdk/s3-request-presigner": "^3.846.0",
+    "@aws-sdk/client-s3": "^3.848.0",
+    "@aws-sdk/s3-request-presigner": "^3.848.0",
     "@next/env": "^15.4.1",
     "mongoose": "^8.16.1",
     "next": "15.3.4",

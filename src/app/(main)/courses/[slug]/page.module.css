@@ -113,10 +113,19 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 32px;
+    height: 34px;
 }
 
 .breadcrumbs {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.contents {
+    cursor: pointer;
 }

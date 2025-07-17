@@ -3,7 +3,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { getAllAdminCourses } from "../../lib/getActions";
-import Course from "./course";
+import CoursesListItem from "./coursesListItem";
 import { ICourse } from "../../models/Course";
 
 export default function CoursesList() {
@@ -25,7 +25,7 @@ export default function CoursesList() {
     <div className={styles.coursesContainer}>
       {data.map(
         (course: ICourse): ReactElement => (
-          <Course key={course.id} data={course} />
+          <CoursesListItem key={course.id} data={course} />
         ),
       )}
     </div>

@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
-import { CourseHeader } from "./header";
+import CourseHeader from "./header";
+import { getAdminCourse } from "../../../lib/getActions";
 
 export default async function BlogPostPage({
   params,
@@ -7,11 +8,18 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  console.log(slug);
+  const response = await getAdminCourse(slug);
+
+  console.log(response, slug, "!!!");
+  if (!response.success) {
+    return null;
+  }
+
+  const { title } = response.data;
 
   return (
     <>
-      <CourseHeader />
+      <CourseHeader title={title} />
       <div className={styles.videos}>
         {[
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 23, 34, 45, 56, 67, 86, 756,

@@ -5,7 +5,7 @@
 }
 
 .tab {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
     border-radius: 25px;
     background-color: #e0e0e0;
@@ -14,7 +14,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: var(--font-geist-sans);
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .active {

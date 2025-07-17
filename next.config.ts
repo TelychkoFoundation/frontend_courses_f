@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // matcher: ["/((?!api|_next|.*\\..*).*)"],
   images: {
     remotePatterns: [new URL("https://t.me/i/userpic/**")],
   },
