@@ -12,16 +12,8 @@ export default memo(function AdminCoursesTableRow({
 }) {
   const router = useRouter();
   const { courses } = useAdmin();
-  const {
-    id,
-    title,
-    price,
-    is_free,
-    lessons,
-    category,
-    createdAt,
-    is_published,
-  } = courses[index];
+  const { id, title, price, is_free, lessons, createdAt, is_published } =
+    courses[index];
 
   const handleActiveCourse = (id: string) => {
     router.push(`/admin/courses/${id}`);
@@ -33,7 +25,6 @@ export default memo(function AdminCoursesTableRow({
       <td title={title}>{title}</td>
       <td title={String(price)}>{is_free ? "Безкоштовний" : `${price}₴`}</td>
       <td>{lessons.length}</td>
-      <td>{category || "—"}</td>
       <td>{is_published ? "✅" : "❌"}</td>
       <td>{new Date(createdAt).toLocaleDateString("uk-UA")}</td>
     </tr>
