@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./page.module.css";
 import { MdOutlineInfo } from "react-icons/md";
 import { FC, MouseEvent } from "react";

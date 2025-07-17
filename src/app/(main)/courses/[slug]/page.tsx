@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import CourseHeader from "./header";
 import { getAdminCourse } from "../../../lib/getActions";
+import { Suspense } from "react";
 
 export default async function BlogPostPage({
   params,
@@ -18,7 +19,7 @@ export default async function BlogPostPage({
   const { title } = response.data;
 
   return (
-    <>
+    <Suspense>
       <CourseHeader title={title} />
       <div className={styles.videos}>
         {[
@@ -54,6 +55,6 @@ export default async function BlogPostPage({
           </div>
         ))}
       </div>
-    </>
+    </Suspense>
   );
 }
