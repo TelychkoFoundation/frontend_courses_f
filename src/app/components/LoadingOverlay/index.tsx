@@ -1,5 +1,7 @@
-import styles from "./loading.module.css";
-import { useGlobal } from "../../hooks/useGlobal";
+"use client";
+
+import styles from "./index.module.css";
+import { useGlobal } from "@/hooks";
 
 export default function LoadingOverlay() {
   const { initialLoading, initialLoadingMessage } = useGlobal();

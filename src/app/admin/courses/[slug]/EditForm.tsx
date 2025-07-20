@@ -1,18 +1,17 @@
-import { getAdminCourse } from "../../../lib/getActions";
 import Link from "next/link";
 import styles from "../course.module.css";
 import UpdateButton from "./UpdateButton";
-import { updateCourse } from "../../../lib/updateActions";
+import { updateCourse, getCurrentCourse } from "@/lib";
 import DeleteButton from "./DeleteButton";
 import {
   CourseDifficultyType,
   CourseKeyTypes,
   ICourseBasePayload,
-} from "../../../typings/course";
-import { coursesTitles } from "../../../constants";
+} from "@/typings";
+import { coursesTitles } from "@/constants";
 
 export default async function EditForm({ slug }: { slug: string }) {
-  const response = await getAdminCourse(slug);
+  const response = await getCurrentCourse(slug as CourseKeyTypes);
 
   if (!response.success) {
     return <div>Курс не знайдено</div>;

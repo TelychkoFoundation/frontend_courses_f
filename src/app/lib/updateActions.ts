@@ -1,7 +1,7 @@
 "use server";
 
-import Course from "../models/Course";
-import { ICourseBasePayload } from "../typings/course";
+import { Course } from "@/models";
+import { ICourseBasePayload } from "@/typings";
 
 export async function updateCourse(id: string, data: ICourseBasePayload) {
   try {

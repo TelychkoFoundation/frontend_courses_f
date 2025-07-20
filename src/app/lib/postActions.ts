@@ -1,9 +1,8 @@
 "use server";
 
-import User, { IUser } from "../models/User";
-import Course from "../models/Course";
+import { Course, User } from "@/models";
 import { cookies } from "next/headers";
-import { ICourseBasePayload } from "../typings/course";
+import { ICourseBasePayload, IUser } from "@/typings";
 
 export async function createUser(userData: IUser) {
   const cookieStore = await cookies();

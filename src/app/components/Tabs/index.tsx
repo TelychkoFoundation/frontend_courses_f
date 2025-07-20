@@ -1,37 +1,22 @@
-"use client";
+import { ReactElement } from "react";
+import styles from "./index.module.css";
+import { CoursesFilterType } from "@/typings";
 
-import { ReactElement, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import styles from "./tabs.module.css";
-import { ModalType } from "../../typings/modals";
-import { useQuery } from "../../hooks/useQuery";
-
-interface Props {
-  values: { id: "all" | "my"; name: string }[];
+interface ITabsProps {
+  data: { id: CoursesFilterType; name: string }[];
+  onSelect: (tab: CoursesFilterType) => void;
+  param: string | null;
 }
 
-export default function Tabs({ values }: Props) {
-  const searchParams = useSearchParams();
-  const { addQueryString } = useQuery();
-
-  useEffect(() => {
-    if (!searchParams.get(ModalType.CoursesFilter)) {
-      addQueryString(ModalType.CoursesFilter, "all");
-    }
-  }, []);
-
-  const handleTabClick = (tab: "all" | "my") => {
-    addQueryString(ModalType.CoursesFilter, tab);
-  };
-
+export default function Tabs({ data, onSelect, param }: ITabsProps) {
   return (
     <div className={styles.tabs}>
-      {values.map(
+      {data.map(
         ({ id, name }): ReactElement => (
           <div
             key={id}
-            className={`${styles.tab} ${id === searchParams.get(ModalType.CoursesFilter) ? styles.active : ""}`}
-            onClick={() => handleTabClick(id)}
+            className={`${styles.tab} ${id === param ? styles.active : ""}`}
+            onClick={() => onSelect(id)}
           >
             {name}
           </div>

@@ -1,7 +1,7 @@
-import { ICourse } from "../../models/Course";
+import { ICourse } from "@/typings";
 import { ReactElement } from "react";
 import AdminCoursesTableRow from "./AdminCoursesTableRow";
-import { useAdmin } from "../../hooks/useAdmin";
+import { useAdmin } from "@/hooks";
 
 export default function AdminCoursesTableBody() {
   const { courses } = useAdmin();

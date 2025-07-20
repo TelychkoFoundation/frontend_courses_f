@@ -2,7 +2,7 @@ import {
   CourseKeyTypes,
   ICourseAdminStatic,
   CourseDifficultyType,
-} from "./typings/course";
+} from "../typings/course";
 
 export const coursesTitles: Record<CourseKeyTypes, ICourseAdminStatic> = {
   [CourseKeyTypes.HTML5Basics]: {

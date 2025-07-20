@@ -1,4 +1,4 @@
-import { CourseKeyTypes } from "../../typings/course";
+import { CourseKeyTypes } from "@/typings";
 import {
   SiCss3,
   SiHtml5,

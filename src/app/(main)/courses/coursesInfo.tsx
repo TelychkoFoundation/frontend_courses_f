@@ -3,10 +3,9 @@
 import styles from "./page.module.css";
 import { MdOutlineInfo } from "react-icons/md";
 import { FC, MouseEvent } from "react";
-import { useGlobal } from "../../hooks/useGlobal";
-import { CourseKeyTypes } from "../../typings/course";
-import { ModalType } from "../../typings/modals";
-import { useQuery } from "../../hooks/useQuery";
+import { useCourses, useDrawer } from "@/hooks";
+import { CourseKeyTypes, QueryDrawerType } from "@/typings";
+import { getCurrentCourse } from "@/lib";
 
 interface CoursesInfoProps {
   is_published: boolean;
@@ -17,13 +16,17 @@ export const CoursesInfo: FC<CoursesInfoProps> = ({
   is_published,
   courseKey,
 }) => {
-  const { setActiveCourseModalOpen } = useGlobal();
-  const { addQueryString } = useQuery();
+  const { openDrawerWithQueryString } = useDrawer();
+  const { setCurrentCourse } = useCourses();
 
-  const showCourseInfo = (event: MouseEvent<HTMLDivElement>) => {
+  const showCourseInfo = async (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    setActiveCourseModalOpen(true);
-    addQueryString(ModalType.CourseDetailsModal, courseKey);
+    const response = await getCurrentCourse(courseKey);
+
+    if (response.success) {
+      setCurrentCourse(response.data);
+      openDrawerWithQueryString(QueryDrawerType.CourseDetailsDrawer, courseKey);
+    }
   };
 
   if (is_published) {

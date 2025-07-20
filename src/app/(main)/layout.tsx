@@ -1,4 +1,6 @@
-import Header from "../components/Header";
+import { Header } from "@/components";
+import { DrawerProvider, CoursesProvider } from "@/context";
+import styles from "./layout.module.css";
 
 export default function CoursesLayout({
   children,
@@ -6,9 +8,11 @@ export default function CoursesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <Header />
-      {children}
-    </>
+    <CoursesProvider>
+      <DrawerProvider>
+        <Header />
+        <main className={styles.container}>{children}</main>
+      </DrawerProvider>
+    </CoursesProvider>
   );
 }

@@ -1,17 +1,19 @@
-import styles from "./page.module.css";
 import CourseHeader from "./header";
-import { getAdminCourse } from "../../../lib/getActions";
+import { getCurrentCourse } from "@/lib";
 import { Suspense } from "react";
+import { QueryDrawerType, CourseKeyTypes } from "@/typings";
+import { Drawer } from "@/components";
+import CourseTopicsDrawerContent from "./drawerContent";
+import styles from "./page.module.css";
 
-export default async function BlogPostPage({
+export default async function CoursePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: CourseKeyTypes }>;
 }) {
   const { slug } = await params;
-  const response = await getAdminCourse(slug);
+  const response = await getCurrentCourse(slug);
 
-  console.log(response, slug, "!!!");
   if (!response.success) {
     return null;
   }
@@ -54,6 +56,12 @@ export default async function BlogPostPage({
             </div>
           </div>
         ))}
+        <Drawer
+          title="Список тем"
+          drawerID={QueryDrawerType.CourseTopicsDrawer}
+        >
+          <CourseTopicsDrawerContent />
+        </Drawer>
       </div>
     </Suspense>
   );

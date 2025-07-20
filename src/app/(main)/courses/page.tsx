@@ -1,14 +1,14 @@
 import { Suspense } from "react";
-import { CoursesHeader } from "./coursesHeader";
+import CoursesHeader from "./coursesHeader";
 import CoursesList from "./coursesList";
-import CourseDetailModal from "../modal";
+import DrawerWrapper from "../drawerContent/wrapper";
 
 export default function Page() {
   return (
     <Suspense>
       <CoursesHeader />
       <CoursesList />
-      <CourseDetailModal />
+      <DrawerWrapper />
     </Suspense>
   );
 }

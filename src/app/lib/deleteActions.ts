@@ -1,8 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import User from "../models/User";
-import Course from "../models/Course";
+import { User, Course } from "@/models";
 
 export async function deleteUser() {
   const cookieStore = await cookies();

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styles from "../course.module.css";
-import { createCourse } from "../../../lib/postActions";
+import { createCourse } from "@/lib";
 import { SubmitButton } from "./SubmitButton";
-import { coursesTitles } from "../../../constants";
-import { CourseKeyTypes, ICourseBasePayload } from "../../../typings/course";
+import { coursesTitles } from "@/constants";
+import { CourseKeyTypes, ICourseBasePayload } from "@/typings";
 import { redirect } from "next/navigation";
 
 export default function AdminCoursesNewPage() {

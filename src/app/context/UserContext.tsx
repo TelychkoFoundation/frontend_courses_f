@@ -3,8 +3,7 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { IUser } from "../models/User";
 import { createDBConnection, getCookieToken, getUser } from "../lib/getActions";
-import { useGlobal } from "../hooks/useGlobal";
-import { useToast } from "../hooks/useToast";
+import { useGlobal, useToast } from "../hooks";
 import { useRouter } from "next/navigation";
 
 interface UserContextType {

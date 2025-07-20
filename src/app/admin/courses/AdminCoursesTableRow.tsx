@@ -3,7 +3,7 @@
 import styles from "./courses.module.css";
 import { useRouter } from "next/navigation";
 import { memo } from "react";
-import { useAdmin } from "../../hooks/useAdmin";
+import { useAdmin } from "@/hooks";
 
 export default memo(function AdminCoursesTableRow({
   index,

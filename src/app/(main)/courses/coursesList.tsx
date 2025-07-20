@@ -1,29 +1,19 @@
-"use client";
-
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
 import styles from "./page.module.css";
-import { getAllAdminCourses } from "../../lib/getActions";
+import { getAllCourses } from "@/lib";
 import CoursesListItem from "./coursesListItem";
-import { ICourse } from "../../models/Course";
+import { ICourse } from "@/typings";
 
-export default function CoursesList() {
-  const [data, setData] = useState<ICourse[]>([]);
+export default async function CoursesList() {
+  const response = await getAllCourses();
 
-  useEffect(() => {
-    const getAllAdminCoursesHandler = async () => {
-      const response = await getAllAdminCourses("asc");
-
-      if (response.success) {
-        setData(response.data);
-      }
-    };
-
-    getAllAdminCoursesHandler();
-  }, []);
+  if (!response.success) {
+    return null;
+  }
 
   return (
     <div className={styles.coursesContainer}>
-      {data.map(
+      {response.data.map(
         (course: ICourse): ReactElement => (
           <CoursesListItem key={course.id} data={course} />
         ),

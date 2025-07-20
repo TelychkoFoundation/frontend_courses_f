@@ -1,7 +1,7 @@
 "use client";
 
-import { deleteUser } from "../../lib/deleteActions";
-import { useUser } from "../../hooks/useUser";
+import { deleteUser } from "@/lib";
+import { useUser } from "@/hooks";
 import { useRouter } from "next/navigation";
 
 export default function Page() {

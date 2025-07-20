@@ -1,13 +1,5 @@
-import { Schema, model, models, Types } from "mongoose";
-import {
-  CourseDifficultyType,
-  CourseKeyTypes,
-  ICourseBase,
-} from "../typings/course";
-
-export interface ICourse extends ICourseBase {
-  _id: Types.ObjectId;
-}
+import { Schema, model, models } from "mongoose";
+import { CourseDifficultyType, CourseKeyTypes, ICourseBase } from "@/typings";
 
 const CourseSchema = new Schema<ICourseBase>(
   {

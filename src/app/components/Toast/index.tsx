@@ -1,7 +1,7 @@
 "use client";
 
-import { useToast } from "../../hooks/useToast";
-import styles from "./toast.module.css";
+import { useToast } from "@/hooks";
+import styles from "./index.module.css";
 
 export default function ToastContainer() {
   const { toasts, hideToast } = useToast();

@@ -4,8 +4,7 @@ import User from "../models/User";
 import Course from "../models/Course";
 import { cookies } from "next/headers";
 import dbConnect from "./db";
-import { SortOrder } from "mongoose";
-import { CourseKeyTypes } from "../typings/course";
+import { CourseKeyTypes } from "@/typings";
 
 export async function createDBConnection() {
   await dbConnect();
@@ -36,30 +35,16 @@ export async function getUser(token: string) {
   }
 }
 
-export async function getAllAdminCourses(createdAt: SortOrder) {
+export async function getAllCourses() {
   try {
-    const courses = await Course.find().sort({ createdAt: createdAt });
+    const courses = await Course.find().sort({ createdAt: "asc" });
     return { success: true, data: JSON.parse(JSON.stringify(courses)) };
   } catch (error) {
     return { success: false, error: (error as Error).message };
   }
 }
 
-export async function getAdminCourse(id: string) {
-  try {
-    const course = await Course.findById(id);
-
-    if (!course) {
-      return { success: false, error: "Курс не знайдено" };
-    }
-
-    return { success: true, data: JSON.parse(JSON.stringify(course)) };
-  } catch (error) {
-    return { success: false, error: (error as Error).message };
-  }
-}
-
-export async function getCurrentCourse(courseKey: string) {
+export async function getCurrentCourse(courseKey: CourseKeyTypes) {
   try {
     const course = await Course.findOne({ courseKey });
 

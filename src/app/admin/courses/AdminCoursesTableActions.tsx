@@ -5,7 +5,7 @@ import styles from "./courses.module.css";
 import { FiRefreshCcw } from "react-icons/fi";
 import { IoMdAdd } from "react-icons/io";
 import Link from "next/link";
-import { useAdmin } from "../../hooks/useAdmin";
+import { useAdmin } from "@/hooks";
 // import {
 //   listCourseFiles,
 //   uploadLesson,

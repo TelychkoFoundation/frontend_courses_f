@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../course.module.css";
-import { deleteCourseById } from "../../../lib/deleteActions";
+import { deleteCourseById } from "@/lib";
 import { useTransition } from "react";
 import { redirect } from "next/navigation";
 

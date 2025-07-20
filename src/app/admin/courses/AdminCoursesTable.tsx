@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import AdminCoursesTableHeader from "./AdminCoursesTableHeader";
 import AdminTableBody from "./AdminCoursesTableBody";
 import styles from "./courses.module.css";
-import { useAdmin } from "../../hooks/useAdmin";
+import { useAdmin } from "@/hooks";
 
 export default function AdminCoursesTable() {
   const { fetchCourses, loading, courses } = useAdmin();
@@ -22,9 +22,11 @@ export default function AdminCoursesTable() {
   }
 
   return (
-    <table className={styles.table}>
-      <AdminCoursesTableHeader />
-      <AdminTableBody />
-    </table>
+    <Suspense>
+      <table className={styles.table}>
+        <AdminCoursesTableHeader />
+        <AdminTableBody />
+      </table>
+    </Suspense>
   );
 }

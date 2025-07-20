@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ICourse } from "../../models/Course";
+import { ICourse } from "@/typings";
 import { CoursesIcon } from "./coursesIcon";
 import { CourseStatus } from "./coursesStatus";
 import { CoursesInfo } from "./coursesInfo";
@@ -19,7 +19,7 @@ export default function CoursesListItem({ data }: { data: ICourse }) {
       setShakeIndex(data.id);
       setTimeout(() => setShakeIndex(null), 1000);
     } else {
-      router.push(`/courses/${data.id}`);
+      router.push(`/courses/${data.courseKey}`);
     }
   };
 

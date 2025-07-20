@@ -1,20 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createUser, loginUser } from "../lib/postActions";
-import { IUser } from "../models/User";
-import { useUser } from "../hooks/useUser";
-import { getUser } from "../lib/getActions";
-import { useGlobal } from "../hooks/useGlobal";
+import { createUser, loginUser, getUser } from "@/lib";
+import { IUser } from "@/typings";
+import { useUser, useGlobal, useToast } from "@/hooks";
 import { useRouter } from "next/navigation";
-import { useToast } from "../hooks/useToast";
 
 export default function Auth() {
   const { setUser } = useUser();
   const { showToast } = useToast();
   const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
   const router = useRouter();
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     if (!window.onTelegramAuth) {

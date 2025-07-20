@@ -53,6 +53,10 @@ export interface ICourseBase extends ICourseBasePayload {
   id: string;
 }
 
+export interface ICourse extends ICourseBase {
+  _id: Types.ObjectId;
+}
+
 export interface ICourseBasePayload {
   title: string;
   courseKey: CourseKeyTypes;
@@ -67,3 +71,5 @@ export interface ICourseBasePayload {
   prerequisites?: string;
   outcomes?: string;
 }
+
+export type CoursesFilterType = "all" | "my";
