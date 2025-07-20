@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-import { ICourse } from "../models/Course";
+import { ICourse } from "@/typings";
 
 interface CoursesContextType {
   allCourses: ICourse[] | null;

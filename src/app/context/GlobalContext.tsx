@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useState, ReactNode } from "react";
-import LoadingOverlay from "../components/LoadingOverlay";
+import { LoadingOverlay } from "@/components";
 
 interface GlobalContextType {
   initialLoading: boolean;

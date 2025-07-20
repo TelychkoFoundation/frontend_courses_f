@@ -1,9 +1,9 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-import LoadingOverlay from "../components/LoadingOverlay";
-import { useQuery } from "../hooks";
-import { QueryParamsKeyType, QueryParamsValueType } from "../typings/drawers";
+import { LoadingOverlay } from "@/components";
+import { useQuery } from "@/hooks";
+import { QueryParamsKeyType, QueryParamsValueType } from "@/typings";
 
 interface DrawerContextType {
   isDrawerOpen: boolean;
