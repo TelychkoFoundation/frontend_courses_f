@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./header.module.css";
+import styles from "./index.module.css";
 import { usePathname } from "next/navigation";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";

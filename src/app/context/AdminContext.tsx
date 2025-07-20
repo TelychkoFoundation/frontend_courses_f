@@ -1,9 +1,8 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-import { ICourse } from "../models/Course";
-import { getAllCourses } from "../lib/getActions";
-import { deleteCourseById } from "../lib/deleteActions";
+import { ICourse } from "@/typings";
+import { getAllCourses, deleteCourseById } from "@/lib";
 
 interface AdminContextType {
   courses: ICourse[];
