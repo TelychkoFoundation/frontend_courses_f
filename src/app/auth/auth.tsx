@@ -3,30 +3,24 @@
 import { useEffect, useState } from "react";
 import { createUser, loginUser, getUser } from "@/lib";
 import { IUser } from "@/typings";
-import { useUser, useGlobal, useToast } from "@/hooks";
+import { useUser, useToast } from "@/hooks";
 import { useRouter } from "next/navigation";
 
 export default function Auth() {
   const { setUser } = useUser();
   const { showToast } = useToast();
-  const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
   const router = useRouter();
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     if (!window.onTelegramAuth) {
       window.onTelegramAuth = async (userData: IUser) => {
-        setInitialLoading(true);
-        setInitialLoadingMessage("Завантаження даних ...");
-
         const response = await getUser(String(userData.id));
 
         if (response && !response.success) {
-          setInitialLoadingMessage("Створюємо користувача ...");
-
           const result = await createUser(userData);
 
-          if (result && result.success) {
+          if (result?.success) {
             setUser(result.data);
             router.push("/courses");
           } else {
@@ -35,16 +29,13 @@ export default function Auth() {
         } else {
           const response = await loginUser(userData);
 
-          if (response && !response.success) {
-            showToast(response.error as string, "error");
+          if (!response?.success) {
+            showToast(response?.error as string, "error");
           } else {
             setUser(response?.data);
             router.push("/courses");
           }
         }
-
-        setInitialLoading(false);
-        setInitialLoadingMessage("");
       };
     }
 

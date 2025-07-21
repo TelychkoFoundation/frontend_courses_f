@@ -1,0 +1,19 @@
+.avatarSkeleton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #eeeeee;
+    }
+    50% {
+        background-color: #dddddd;
+    }
+    100% {
+        background-color: #eeeeee;
+    }
+}

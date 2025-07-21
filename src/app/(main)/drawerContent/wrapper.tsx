@@ -27,16 +27,14 @@ export default function DrawerWrapper() {
     }
   }, []);
 
-  if (!currentCourse) {
-    return null;
-  }
-
   return (
     <Drawer
       drawerID={QueryDrawerType.CourseDetailsDrawer}
-      title={currentCourse.title}
+      title={currentCourse?.title || ""}
     >
-      <CourseDetailDrawerContent currentCourse={currentCourse} />
+      {currentCourse ? (
+        <CourseDetailDrawerContent currentCourse={currentCourse} />
+      ) : null}
     </Drawer>
   );
 }

@@ -1,5 +1,4 @@
 export { useQuery } from "./useQuery";
-export { useGlobal } from "./useGlobal";
 export { useAdmin } from "./useAdmin";
 export { useToast } from "./useToast";
 export { useUser } from "./useUser";

@@ -3,7 +3,7 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { IUser } from "@/typings";
 import { createDBConnection, getCookieToken, getUser } from "@/lib";
-import { useGlobal, useToast } from "@/hooks";
+import { useToast } from "@/hooks";
 import { useRouter } from "next/navigation";
 
 interface UserContextType {
@@ -16,7 +16,6 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const { setInitialLoading, setInitialLoadingMessage } = useGlobal();
   const { showToast } = useToast();
   const router = useRouter();
 
@@ -24,21 +23,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const initialCheck = async () => {
-      setInitialLoading(true);
-      setInitialLoadingMessage("Налаштування даних ...");
-
       await createDBConnection();
-
-      setInitialLoadingMessage("Перевірка токену ...");
 
       const token = await getCookieToken();
 
       if (token) {
-        setInitialLoadingMessage("Завантаження даних користувача ...");
-
         const response = await getUser(token);
 
-        if (response && response.success) {
+        if (response?.success) {
           setUser(response.data);
         } else {
           router.push("/");
@@ -47,9 +39,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       } else {
         router.push("/");
       }
-
-      setInitialLoading(false);
-      setInitialLoadingMessage("");
     };
 
     initialCheck();

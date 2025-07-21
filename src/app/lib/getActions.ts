@@ -45,6 +45,26 @@ export const getAllCourses = cache(async () => {
   }
 });
 
+// export const getMyCourses = cache(async (userId: string) => {
+//   try {
+//     if (!userId) {
+//       throw new Error("User ID is required");
+//     }
+//
+//     const courses = await Course.find({ userId }).sort({ createdAt: "asc" });
+//
+//     return {
+//       success: true,
+//       data: JSON.parse(JSON.stringify(courses)),
+//     };
+//   } catch (error) {
+//     return {
+//       success: false,
+//       error: (error as Error).message,
+//     };
+//   }
+// });
+
 export async function getCurrentCourse(courseKey: CourseKeyTypes) {
   try {
     const course = await Course.findOne({ courseKey });

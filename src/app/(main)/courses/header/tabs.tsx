@@ -11,6 +11,7 @@ export const TabsWrapper = () => {
 
   useEffect(() => {
     if (!filterParam) {
+      console.log("filterParam !!!", filterParam);
       addQueryString(QueryType.CoursesFilter, "all");
     }
   }, []);

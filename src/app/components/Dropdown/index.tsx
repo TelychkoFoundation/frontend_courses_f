@@ -17,7 +17,12 @@ export default function Dropdown(props: IUserDropdownProps) {
 
   return (
     <div className={styles.dropdownContainer} ref={dropdownRef}>
-      <div onClick={() => setOpen(prev => !prev)}>{props.targetElement}</div>
+      <div
+        className={styles.targetElementWrapper}
+        onClick={() => setOpen(prev => !prev)}
+      >
+        {props.targetElement}
+      </div>
       {open && (
         <div className={styles.dropdown} onClick={() => setOpen(prev => !prev)}>
           {open ? props.children : null}

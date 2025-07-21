@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FiUser } from "react-icons/fi";
 import Logout from "./logout";
+import { Avatar } from "./avatar";
 
 export default function Header() {
   return (
@@ -28,17 +29,7 @@ export default function Header() {
           </Link>
         </nav>
 
-        <Dropdown
-          targetElement={
-            <Image
-              src="/vercel.svg"
-              alt="User Avatar"
-              width={40}
-              height={40}
-              className={styles.avatar}
-            />
-          }
-        >
+        <Dropdown targetElement={<Avatar />}>
           <Link href="/profile" className={styles.dropdownItem}>
             <FiUser size={16} />
             <span>Профіль</span>

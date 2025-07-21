@@ -4,6 +4,11 @@
     align-items: center;
 }
 
+.targetElementWrapper {
+    display: inline-block;
+    line-height: 0;
+}
+
 .dropdown {
     position: absolute;
     top: 46px;

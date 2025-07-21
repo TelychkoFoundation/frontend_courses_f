@@ -1,4 +1,4 @@
-import { ReactElement, Suspense } from "react";
+import { ReactElement } from "react";
 import styles from "./page.module.css";
 import { getAllCourses } from "@/lib";
 import Item from "./course/item";
@@ -8,23 +8,23 @@ import { CourseSkeleton } from "@/components";
 export default async function List() {
   const response = await getAllCourses();
 
-  return (
-    <Suspense
-      fallback={Array.from({ length: 10 }).map((_, idx) => (
-        <CourseSkeleton key={idx} />
-      ))}
-    >
-      <div className={styles.coursesContainer}>
-        {response.data
-          ? response.data.map(
-              (course: ICourse): ReactElement => (
-                <Item key={course.id} course={course} />
-              ),
-            )
-          : Array.from({ length: 10 }).map((_, idx) => (
-              <CourseSkeleton key={idx} />
-            ))}
-      </div>
-    </Suspense>
-  );
+  const renderList = () => {
+    if (response?.success) {
+      if (response.data.length) {
+        return response.data.map(
+          (course: ICourse): ReactElement => (
+            <Item key={course.id} course={course} />
+          ),
+        );
+      }
+
+      return <p>No courses ...</p>;
+    }
+
+    return Array.from({ length: 10 }).map((_, idx) => (
+      <CourseSkeleton key={idx} />
+    ));
+  };
+
+  return <div className={styles.coursesContainer}>{renderList()}</div>;
 }

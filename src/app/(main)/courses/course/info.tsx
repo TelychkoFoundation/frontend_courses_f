@@ -18,6 +18,8 @@ export const Info: FC<CoursesInfoProps> = ({ is_published, courseKey }) => {
 
   const showCourseInfo = async (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
+    event.preventDefault();
+
     const response = await getCurrentCourse(courseKey);
 
     if (response.success) {
