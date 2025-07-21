@@ -6,7 +6,7 @@ interface ICoursesInfoProps {
   is_published: boolean;
 }
 
-export const CoursesUserStatus: FC<ICoursesInfoProps> = ({ is_published }) => {
+export const UserStatus: FC<ICoursesInfoProps> = ({ is_published }) => {
   if (is_published) {
     return <IoCheckmarkDoneCircleSharp color="green" size={24} />;
   }

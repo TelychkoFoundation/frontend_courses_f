@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-import { LoadingOverlay } from "@/components";
 import { useQuery } from "@/hooks";
 import { QueryParamsKeyType, QueryParamsValueType } from "@/typings";
 
@@ -45,7 +44,6 @@ export const DrawerProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
-      <LoadingOverlay />
     </DrawerContext.Provider>
   );
 };

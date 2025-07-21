@@ -1,5 +1,6 @@
 "use server";
 
+import { cache } from "react";
 import User from "../models/User";
 import Course from "../models/Course";
 import { cookies } from "next/headers";
@@ -35,14 +36,14 @@ export async function getUser(token: string) {
   }
 }
 
-export async function getAllCourses() {
+export const getAllCourses = cache(async () => {
   try {
     const courses = await Course.find().sort({ createdAt: "asc" });
     return { success: true, data: JSON.parse(JSON.stringify(courses)) };
   } catch (error) {
     return { success: false, error: (error as Error).message };
   }
-}
+});
 
 export async function getCurrentCourse(courseKey: CourseKeyTypes) {
   try {

@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import styles from "./index.module.css";
 import { CoursesFilterType } from "@/typings";

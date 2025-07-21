@@ -1,16 +1,15 @@
-import styles from "./page.module.css";
-import { isNewCourse } from "../../utils";
-import { FC } from "react";
+import styles from "../page.module.css";
+import { isNewCourse } from "../../../utils";
 
 interface CourseStatusProps {
   is_published: boolean;
   updatedAt: Date;
 }
 
-export const CourseStatus: FC<CourseStatusProps> = ({
+export const CourseStatus = ({
   is_published,
   updatedAt,
-}) => {
+}: CourseStatusProps) => {
   if (!is_published) {
     return (
       <span className={`${styles.badge} ${styles.isInProgress}`}>

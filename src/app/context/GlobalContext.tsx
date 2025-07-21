@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useState, ReactNode } from "react";
-import { LoadingOverlay } from "@/components";
+import { createContext, useState, ReactNode } from "react";
+// import { LoadingOverlay } from "@/components";
 
 interface GlobalContextType {
   initialLoading: boolean;
@@ -29,7 +29,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
-      <LoadingOverlay />
+      {/*<LoadingOverlay />*/}
     </GlobalContext.Provider>
   );
 };

@@ -1,14 +1,13 @@
-import { Suspense } from "react";
-import CoursesHeader from "./coursesHeader";
-import CoursesList from "./coursesList";
+import Header from "./header";
+import List from "./list";
 import DrawerWrapper from "../drawerContent/wrapper";
 
 export default function Page() {
   return (
-    <Suspense>
-      <CoursesHeader />
-      <CoursesList />
+    <>
+      <Header />
+      <List />
       <DrawerWrapper />
-    </Suspense>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import { MdOutlineInfo } from "react-icons/md";
 import { FC, MouseEvent } from "react";
 import { useCourses, useDrawer } from "@/hooks";
@@ -12,10 +12,7 @@ interface CoursesInfoProps {
   courseKey: CourseKeyTypes;
 }
 
-export const CoursesInfo: FC<CoursesInfoProps> = ({
-  is_published,
-  courseKey,
-}) => {
+export const Info: FC<CoursesInfoProps> = ({ is_published, courseKey }) => {
   const { openDrawerWithQueryString } = useDrawer();
   const { setCurrentCourse } = useCourses();
 

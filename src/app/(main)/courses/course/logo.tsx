@@ -14,7 +14,7 @@ interface CoursesIconProps {
   courseKey: CourseKeyTypes;
 }
 
-export const CoursesIcon: FC<CoursesIconProps> = ({ courseKey }) => {
+export const Logo: FC<CoursesIconProps> = ({ courseKey }) => {
   if (courseKey === CourseKeyTypes.HTML5Basics) {
     return <SiHtml5 />;
   }
