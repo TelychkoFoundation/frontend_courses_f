@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../course.module.css";
-import { deleteCourseById } from "@/lib";
+// import { deleteCourseById } from "@/actions";
 import { useTransition } from "react";
 import { redirect } from "next/navigation";
 
@@ -10,7 +10,7 @@ export default function DeleteButton({ slug }: { slug: string }) {
 
   const deleteCourse = () => {
     startTransition(async () => {
-      await deleteCourseById(slug);
+      // await deleteCourseById(slug);
       redirect("/admin/courses");
     });
   };

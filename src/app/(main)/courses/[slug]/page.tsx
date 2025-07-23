@@ -1,5 +1,5 @@
 import CourseHeader from "./header";
-import { getCurrentCourse } from "@/lib";
+import { getCurrentCourse } from "@/actions";
 import { Suspense } from "react";
 import { QueryDrawerType, CourseKeyTypes } from "@/typings";
 import { Drawer } from "@/components";

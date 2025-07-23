@@ -5,7 +5,7 @@ import { MdOutlineInfo } from "react-icons/md";
 import { FC, MouseEvent } from "react";
 import { useCourses, useDrawer } from "@/hooks";
 import { CourseKeyTypes, QueryDrawerType } from "@/typings";
-import { getCurrentCourse } from "@/lib";
+import { getCurrentCourse } from "@/actions";
 
 interface CoursesInfoProps {
   is_published: boolean;
@@ -20,12 +20,12 @@ export const Info: FC<CoursesInfoProps> = ({ is_published, courseKey }) => {
     event.stopPropagation();
     event.preventDefault();
 
-    const response = await getCurrentCourse(courseKey);
-
-    if (response.success) {
-      setCurrentCourse(response.data);
-      openDrawerWithQueryString(QueryDrawerType.CourseDetailsDrawer, courseKey);
-    }
+    // const response = await getCurrentCourse(courseKey);
+    //
+    // if (response.success) {
+    //   setCurrentCourse(response.data);
+    //   openDrawerWithQueryString(QueryDrawerType.CourseDetailsDrawer, courseKey);
+    // }
   };
 
   if (is_published) {

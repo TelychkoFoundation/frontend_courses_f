@@ -1,14 +1,15 @@
 "use client";
 
-import { createContext, useState, ReactNode, useEffect } from "react";
-import { IUser } from "@/typings";
-import { createDBConnection, getCookieToken, getUser } from "@/lib";
-import { useToast } from "@/hooks";
-import { useRouter } from "next/navigation";
+import { createContext, useState, ReactNode } from "react";
+import { ITelegramUserData } from "@/typings";
+// import { createDBConnection, verifySession } from "@/lib";
+// import { getUser } from "@/actions";
+// import { useToast } from "@/hooks";
+// import { useRouter } from "next/navigation";
 
 interface UserContextType {
-  user: IUser | null;
-  setUser: (user: IUser | null) => void;
+  user: ITelegramUserData | null;
+  setUser: (user: ITelegramUserData | null) => void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -16,33 +17,12 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const { showToast } = useToast();
-  const router = useRouter();
+  // const { showToast } = useToast();
+  // const router = useRouter();
 
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<ITelegramUserData | null>(null);
 
-  useEffect(() => {
-    const initialCheck = async () => {
-      await createDBConnection();
-
-      const token = await getCookieToken();
-
-      if (token) {
-        const response = await getUser(token);
-
-        if (response?.success) {
-          setUser(response.data);
-        } else {
-          router.push("/");
-          showToast(response?.error as string, "error");
-        }
-      } else {
-        router.push("/");
-      }
-    };
-
-    initialCheck();
-  }, []);
+  console.log("user", user);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

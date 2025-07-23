@@ -1,25 +1,27 @@
+"use client";
+
 import Link from "next/link";
-import { Stepper } from "./stepper";
-import { Buttons } from "./buttons";
+import Stepper from "./stepper";
 import TutorialContent from "./content";
 import { tutorialMainHeaders, tutorialSteps } from "@/constants";
 import styles from "./page.module.css";
+import { useState, useEffect } from "react";
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const { step } = await searchParams;
-  const tutorialStepParamAsNumber = Number(step);
+export default function Page() {
+  const [step, setStep] = useState<number>(1);
 
-  if (
-    !step ||
-    tutorialStepParamAsNumber > tutorialSteps.length ||
-    tutorialStepParamAsNumber <= 0
-  ) {
-    return null;
-  }
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        setStep(step < tutorialSteps.length ? step + 1 : step);
+      }
+      if (e.key === "ArrowLeft") {
+        setStep(step > 1 ? step - 1 : step);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [step]);
 
   return (
     <div className={styles.page}>
@@ -27,11 +29,21 @@ export default async function Page({
         <h1 className={styles.title}>{tutorialMainHeaders.title}</h1>
         <p className={styles.subtitle}>{tutorialMainHeaders.subTitle}</p>
 
-        <Stepper step={tutorialStepParamAsNumber} />
+        <Stepper step={step} setStepAction={setStep} />
 
-        <TutorialContent step={tutorialStepParamAsNumber} />
+        <TutorialContent step={step} />
 
-        <Buttons step={tutorialStepParamAsNumber} />
+        <div className={styles.buttons}>
+          <button onClick={() => setStep(step - 1)} disabled={step === 1}>
+            Назад
+          </button>
+          <button
+            onClick={() => setStep(step + 1)}
+            disabled={step === tutorialSteps.length}
+          >
+            Далі
+          </button>
+        </div>
       </section>
       <Link href="/services">Послуги</Link>
     </div>

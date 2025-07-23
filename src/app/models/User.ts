@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import { IUser } from "@/typings";
 
 const UserSchema: Schema = new Schema(
   {
@@ -41,6 +40,6 @@ const UserSchema: Schema = new Schema(
   },
 );
 
-const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
 
 export default User;

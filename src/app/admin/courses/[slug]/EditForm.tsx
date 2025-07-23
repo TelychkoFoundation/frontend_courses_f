@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "../course.module.css";
 import UpdateButton from "./UpdateButton";
-import { updateCourse, getCurrentCourse } from "@/lib";
+import { updateCourse, getCurrentCourse } from "@/actions";
 import DeleteButton from "./DeleteButton";
 import {
   CourseDifficultyType,

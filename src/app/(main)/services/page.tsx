@@ -1,11 +1,12 @@
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getCookieToken } from "@/lib";
+// import { verifySession } from "@/lib";
 import { services } from "@/constants";
 import { VscFilePdf } from "react-icons/vsc";
 
 export default async function ServicesPage() {
-  const token = await getCookieToken();
+  // const { isAuth } = await verifySession();
+  const isAuth = true;
 
   return (
     <div className={styles.container}>
@@ -33,13 +34,13 @@ export default async function ServicesPage() {
               {service.cta.authAlternative ? (
                 <Link
                   href={
-                    token
+                    isAuth
                       ? service.cta.authAlternative.loggedIn.href
                       : service.cta.authAlternative.guest.href
                   }
                   className={styles.link}
                 >
-                  {token
+                  {isAuth
                     ? service.cta.authAlternative.loggedIn.label
                     : service.cta.authAlternative.guest.label}
                 </Link>

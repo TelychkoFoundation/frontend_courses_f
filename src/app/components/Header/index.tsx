@@ -3,7 +3,7 @@ import { Dropdown } from "@/components";
 import Link from "next/link";
 import Image from "next/image";
 import { FiUser } from "react-icons/fi";
-import Logout from "./logout";
+// import Logout from "./logout";
 import { Avatar } from "./avatar";
 
 export default function Header() {
@@ -35,7 +35,7 @@ export default function Header() {
             <span>Профіль</span>
           </Link>
           <div className={styles.divider} />
-          <Logout />
+          {/*<Logout />*/}
         </Dropdown>
       </div>
     </header>

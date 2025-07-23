@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import styles from "./page.module.css";
-import { getAllCourses } from "@/lib";
+import { getAllCourses } from "@/actions";
 import Item from "./course/item";
 import { ICourse } from "@/typings";
 import { CourseSkeleton } from "@/components";

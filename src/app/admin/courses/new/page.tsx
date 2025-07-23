@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "../course.module.css";
-import { createCourse } from "@/lib";
+import { createCourse } from "@/actions";
 import { SubmitButton } from "./SubmitButton";
 import { coursesTitles } from "@/constants";
 import { CourseKeyTypes, ICourseBasePayload } from "@/typings";

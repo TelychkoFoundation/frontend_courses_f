@@ -26,7 +26,8 @@
       "@/context": ["context/index.ts"],
       "@/constants": ["constants/index.ts"],
       "@/lib": ["lib/index.ts"],
-      "@/models": ["models/index.ts"]
+      "@/models": ["models/index.ts"],
+      "@/actions": ["actions/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "global.d.ts"],

@@ -4,7 +4,7 @@ export interface ITutorialMainHeaders {
 }
 
 export interface ITutorialStep {
-  id: string;
+  id: number;
   title: string;
   description: string;
 }

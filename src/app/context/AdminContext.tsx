@@ -2,7 +2,7 @@
 
 import { createContext, useState, ReactNode } from "react";
 import { ICourse } from "@/typings";
-import { getAllCourses, deleteCourseById } from "@/lib";
+import { getAllCourses, deleteCourseById } from "@/actions";
 
 interface AdminContextType {
   courses: ICourse[];

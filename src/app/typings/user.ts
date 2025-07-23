@@ -1,6 +1,6 @@
-import { Document } from "mongoose";
+// import { Document } from "mongoose";
 
-export interface IUser extends Document {
+export interface ITelegramUserData {
   id: number;
   first_name: string;
   last_name?: string;
@@ -8,6 +8,9 @@ export interface IUser extends Document {
   photo_url?: string;
   auth_date: number;
   hash: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
+
+// export interface IUserDatabaseData extends ITelegramUserData, Document {
+//   createdAt?: Date;
+//   updatedAt?: Date;
+// }

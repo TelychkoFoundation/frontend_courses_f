@@ -1,40 +1,32 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createUser, loginUser, getUser } from "@/lib";
-import { IUser } from "@/typings";
-import { useUser, useToast } from "@/hooks";
+import { ITelegramUserData } from "@/typings";
 import { useRouter } from "next/navigation";
+import { loginUser, signup } from "@/actions";
+import styles from "./page.module.css";
 
-export default function Auth() {
-  const { setUser } = useUser();
-  const { showToast } = useToast();
-  const router = useRouter();
+export default function AuthButton() {
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (!window.onTelegramAuth) {
-      window.onTelegramAuth = async (userData: IUser) => {
-        const response = await getUser(String(userData.id));
-
-        if (response && !response.success) {
-          const result = await createUser(userData);
-
-          if (result?.success) {
-            setUser(result.data);
-            router.push("/courses");
-          } else {
-            showToast(response.error as string, "error");
+      window.onTelegramAuth = async (userData: ITelegramUserData) => {
+        try {
+          setIsLoading(true);
+          const loginResponse = await loginUser(userData);
+          if (!loginResponse?.success) {
+            await signup(userData);
           }
-        } else {
-          const response = await loginUser(userData);
 
-          if (!response?.success) {
-            showToast(response?.error as string, "error");
-          } else {
-            setUser(response?.data);
-            router.push("/courses");
-          }
+          router.push("/courses");
+        } catch (error) {
+          console.error("Authorization error:", error);
+        } finally {
+          setIsLoading(false);
         }
       };
     }
@@ -66,11 +58,16 @@ export default function Auth() {
 
   return (
     <div>
-      {!scriptLoaded && <p>Завантажуємо Телеграм ...</p>}
-      <div
-        id="telegram-login-btn"
-        style={{ display: scriptLoaded ? "block" : "none" }}
-      />
+      {isLoading && <div className="loading-indicator">Завантаження...</div>}
+      {!scriptLoaded && !isLoading && (
+        <div className={`${styles.skeleton} ${styles.skeletonButton}`} />
+      )}
+      {!isLoading ? (
+        <div
+          id="telegram-login-btn"
+          style={{ display: scriptLoaded ? "block" : "none" }}
+        />
+      ) : null}
     </div>
   );
 }
