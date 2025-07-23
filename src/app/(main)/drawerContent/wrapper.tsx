@@ -15,15 +15,15 @@ export default function DrawerWrapper() {
 
   useEffect(() => {
     if (courseKey) {
-      // const getCurrentCourseAsync = async () => {
-      //   const response = await getCurrentCourse(courseKey as CourseKeyTypes);
-      //
-      //   if (response.success) {
-      //     setCurrentCourse(response.data);
-      //   }
-      // };
-      //
-      // getCurrentCourseAsync();
+      const getCurrentCourseAsync = async () => {
+        const response = await getCurrentCourse(courseKey as CourseKeyTypes);
+
+        if (response.success) {
+          setCurrentCourse(response.data);
+        }
+      };
+
+      getCurrentCourseAsync();
     }
   }, []);
 

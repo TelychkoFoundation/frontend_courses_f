@@ -2,7 +2,7 @@
 
 import { ITelegramUserData } from "@/typings";
 import { User } from "@/models";
-import { createSession, updateSession } from "@/lib";
+import { createSession } from "@/lib";
 import { redirect } from "next/navigation";
 
 export async function signup(userData: ITelegramUserData) {
@@ -16,14 +16,11 @@ export async function loginUser(userData: ITelegramUserData) {
     const user = await User.findOne({ id: userData.id });
 
     if (!user) {
-      return { success: false, error: "Користувача не знайдено" };
+      await signup(userData);
+      return;
     }
 
     await createSession(user.id);
-    // await user.save();
-    // await updateSession();
-
-    return { success: true, data: JSON.parse(JSON.stringify(user)) };
   } catch (error: unknown) {
     if (error instanceof Error) {
       return { success: false, error: error.message };

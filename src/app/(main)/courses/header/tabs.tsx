@@ -1,23 +1,23 @@
 "use client";
 
-import { useQuery } from "@/hooks";
+// import { useQuery } from "@/hooks";
 import { CoursesFilterType, QueryType } from "@/typings";
 import { useEffect } from "react";
 import { Tabs } from "@/components";
 
 export const TabsWrapper = () => {
-  const { addQueryString, getQueryString } = useQuery();
-  const filterParam: string | null = getQueryString(QueryType.CoursesFilter);
+  // const { addQueryString, getQueryString } = useQuery();
+  // const filterParam: string | null = getQueryString(QueryType.CoursesFilter);
 
   useEffect(() => {
-    if (!filterParam) {
-      console.log("filterParam !!!", filterParam);
-      addQueryString(QueryType.CoursesFilter, "all");
-    }
+    // if (!filterParam) {
+    //   console.log("filterParam !!!", filterParam);
+    //   addQueryString(QueryType.CoursesFilter, "all");
+    // }
   }, []);
 
   const onSelect = (tab: CoursesFilterType) => {
-    addQueryString(QueryType.CoursesFilter, tab);
+    // addQueryString(QueryType.CoursesFilter, tab);
   };
 
   return (
@@ -27,7 +27,7 @@ export const TabsWrapper = () => {
         { id: "my", name: "Мої курси" },
       ]}
       onSelect={onSelect}
-      param={filterParam}
+      param={"filterParam"}
     />
   );
 };

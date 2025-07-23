@@ -20,12 +20,12 @@ export const Info: FC<CoursesInfoProps> = ({ is_published, courseKey }) => {
     event.stopPropagation();
     event.preventDefault();
 
-    // const response = await getCurrentCourse(courseKey);
-    //
-    // if (response.success) {
-    //   setCurrentCourse(response.data);
-    //   openDrawerWithQueryString(QueryDrawerType.CourseDetailsDrawer, courseKey);
-    // }
+    const response = await getCurrentCourse(courseKey);
+
+    if (response.success) {
+      setCurrentCourse(response.data);
+      openDrawerWithQueryString(QueryDrawerType.CourseDetailsDrawer, courseKey);
+    }
   };
 
   if (is_published) {

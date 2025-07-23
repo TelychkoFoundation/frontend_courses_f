@@ -1,18 +1,16 @@
 "use client";
 
 import { FiLogOut } from "react-icons/fi";
-import { useUser } from "@/hooks";
-// import { deleteSession } from "@/lib";
-import { redirect } from "next/navigation";
+import { logoutUser } from "@/actions";
+import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 
 export default function Logout() {
-  const { setUser } = useUser();
+  const router = useRouter();
 
   const handleLogout = async () => {
-    setUser(null);
-    // await deleteSession();
-    redirect("/");
+    await logoutUser();
+    router.push("/login");
   };
 
   return (

@@ -1,11 +1,8 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { ITelegramUserData } from "@/typings";
-// import { createDBConnection, verifySession } from "@/lib";
-// import { getUser } from "@/actions";
-// import { useToast } from "@/hooks";
-// import { useRouter } from "next/navigation";
+import { getUser } from "@/actions";
 
 interface UserContextType {
   user: ITelegramUserData | null;
@@ -17,12 +14,18 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  // const { showToast } = useToast();
-  // const router = useRouter();
-
   const [user, setUser] = useState<ITelegramUserData | null>(null);
 
-  console.log("user", user);
+  useEffect(() => {
+    const getUserData = async () => {
+      const response = await getUser();
+      if (response?.success) {
+        setUser(response.data);
+      }
+    };
+
+    getUserData();
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

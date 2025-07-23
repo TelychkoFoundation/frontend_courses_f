@@ -1,8 +1,8 @@
 import CourseHeader from "./header";
 import { getCurrentCourse } from "@/actions";
-import { Suspense } from "react";
 import { QueryDrawerType, CourseKeyTypes } from "@/typings";
 import { Drawer } from "@/components";
+import { DrawerProvider } from "@/context";
 import CourseTopicsDrawerContent from "./drawerContent";
 import styles from "./page.module.css";
 
@@ -21,7 +21,7 @@ export default async function CoursePage({
   const { title } = response.data;
 
   return (
-    <Suspense>
+    <DrawerProvider>
       <CourseHeader title={title} />
       <div className={styles.videos}>
         {[
@@ -63,6 +63,6 @@ export default async function CoursePage({
           <CourseTopicsDrawerContent />
         </Drawer>
       </div>
-    </Suspense>
+    </DrawerProvider>
   );
 }

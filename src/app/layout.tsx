@@ -3,8 +3,8 @@ import { ToastProvider } from "@/context";
 import { ToastContainer } from "@/components";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ReactNode } from "react";
-import "./globals.css";
 import { createDBConnection } from "@/lib";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,17 +28,6 @@ export default async function RootLayout({
 }>) {
   let isDatabaseConnected: boolean = false;
   isDatabaseConnected = await createDBConnection();
-
-  if (!isDatabaseConnected) {
-    console.error("Database connection failed");
-    return (
-      <html lang="en">
-        <body>
-          <p>Ошибка подключения к базе данных. Попробуйте позже.</p>
-        </body>
-      </html>
-    );
-  }
 
   return (
     <html lang="en">
