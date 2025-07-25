@@ -1,13 +1,13 @@
 "use client";
 
 import { createContext, useState, ReactNode, useEffect } from "react";
-import { ITelegramUserData } from "@/typings";
+import { IUserDatabaseData } from "@/typings";
 import { getUser } from "@/actions";
 import { useRouter } from "next/navigation";
 
 interface UserContextType {
-  user: ITelegramUserData | null;
-  setUser: (user: ITelegramUserData | null) => void;
+  user: IUserDatabaseData | null;
+  setUser: (user: IUserDatabaseData | null) => void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -15,12 +15,13 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<ITelegramUserData | null>(null);
+  const [user, setUser] = useState<IUserDatabaseData | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const getUserData = async () => {
       const response = await getUser();
+      console.log(response, "getUserData");
       if (response?.success) {
         setUser(response.data);
       } else {

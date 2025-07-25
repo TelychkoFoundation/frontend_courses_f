@@ -55,6 +55,42 @@
         --tab-active-shadow: rgba(255, 255, 255, 0.2);
         --tab-active-border-color: #666666;
         --tab-active-line-color: #ffffff; /* Активная линия */
+
+        --backdrop-bg: rgba(0, 0, 0, 0.9); /* Глубокая тёмная затемка */
+        --modal-bg: #1c1c1e; /* Фон модального окна */
+        --modal-text-color: #e0e0e0; /* Основной текст */
+
+        /* Кнопки (Start Button) */
+        /*--button-bg: #e74c3c;*/
+        /*--button-hover-bg: #c0392b;*/
+        /*--button-text-color: white;*/
+
+        /* Close Button */
+        --close-btn-color: #999;
+        --close-btn-hover-color: #fff;
+
+        /* Difficulty Badges */
+        --beginner-bg: #27ae60; /* Тёмно-зелёный */
+        --beginner-text-color: white;
+
+        --intermediate-bg: #f39c12; /* Тёмно-жёлтый */
+        --intermediate-text-color: white;
+
+        --advanced-bg: #c0392b; /* Тёмно-красный */
+        --advanced-text-color: white;
+
+        /* Теги */
+        --tag-bg: #004d40;
+        --tag-text-color: #ffffff;
+        --tag-border-color: #00796b;
+        --tag-hover-bg: #00796b;
+
+        /* Лоадер */
+        --loader-bg: #333333;
+        --loader-text-color: #f0f0f0;
+
+        /* Анимации */
+        --pulse-scale: 1.1;
     }
 
     html {
@@ -116,4 +152,40 @@
     --tab-active-shadow: rgba(255, 255, 255, 0.2);
     --tab-active-border-color: #666666;
     --tab-active-line-color: #ffffff; /* Активная линия */
+
+    --backdrop-bg: rgba(0, 0, 0, 0.9); /* Глубокая тёмная затемка */
+    --modal-bg: #1c1c1e; /* Фон модального окна */
+    --modal-text-color: #e0e0e0; /* Основной текст */
+
+    /* Кнопки (Start Button) */
+    /*--button-bg: #e74c3c;*/
+    /*--button-hover-bg: #c0392b;*/
+    /*--button-text-color: white;*/
+
+    /* Close Button */
+    --close-btn-color: #999;
+    --close-btn-hover-color: #fff;
+
+    /* Difficulty Badges */
+    --beginner-bg: #27ae60; /* Тёмно-зелёный */
+    --beginner-text-color: white;
+
+    --intermediate-bg: #f39c12; /* Тёмно-жёлтый */
+    --intermediate-text-color: white;
+
+    --advanced-bg: #c0392b; /* Тёмно-красный */
+    --advanced-text-color: white;
+
+    /* Теги */
+    --tag-bg: #004d40;
+    --tag-text-color: #ffffff;
+    --tag-border-color: #00796b;
+    --tag-hover-bg: #00796b;
+
+    /* Лоадер */
+    --loader-bg: #333333;
+    --loader-text-color: #f0f0f0;
+
+    /* Анимации */
+    --pulse-scale: 1.1;
 }

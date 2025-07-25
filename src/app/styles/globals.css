@@ -61,3 +61,12 @@ a {
   border-color: var(--button-disabled-border-color, #ddd);
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 12px;
+    padding: 0 12px;
+    min-width: 86px;
+    height: 40px;
+  }
+}

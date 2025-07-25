@@ -59,4 +59,40 @@
     --tab-active-shadow: rgba(0, 0, 0, 0.2);
     --tab-active-border-color: transparent;
     --tab-active-line-color: #555; /* Активная линия */
+
+    --backdrop-bg: rgba(0, 0, 0, 0.5); /* Фон затемнения */
+    --modal-bg: #ffffff; /* Фон модального окна */
+    --modal-text-color: #333; /* Основной цвет текста */
+
+    /* Кнопки (Start Button) */
+    /*--button-bg: #ff5722;*/
+    /*--button-hover-bg: #FF3C22FF;*/
+    /*--button-text-color: white;*/
+
+    /* Close Button */
+    --close-btn-color: #444;
+    --close-btn-hover-color: #222;
+
+    /* Difficulty Badges */
+    --beginner-bg: #4caf50; /* Зелён */
+    --beginner-text-color: white;
+
+    --intermediate-bg: #ffc107; /* Жёлтый */
+    --intermediate-text-color: #333;
+
+    --advanced-bg: #f44336; /* Красный */
+    --advanced-text-color: white;
+
+    /* Теги */
+    --tag-bg: #e0f7fa;
+    --tag-text-color: #00796b;
+    --tag-border-color: #b2ebf2;
+    --tag-hover-bg: #b2ebf2;
+
+    /* Лоадер */
+    --loader-bg: #ffffff;
+    --loader-text-color: #333;
+
+    /* Анимации */
+    --pulse-scale: 1.05;
 }
