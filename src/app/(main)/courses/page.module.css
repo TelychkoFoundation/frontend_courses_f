@@ -18,7 +18,7 @@
   opacity: 0.8;
   cursor: pointer;
   padding: 16px;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-primary);
 }
 
 .courseContainer:nth-child(1) {
@@ -84,6 +84,10 @@
   margin-bottom: 10px;
 }
 
+.icons svg {
+  fill: #171717;
+}
+
 .courseContainer .courseContent {
   display: flex;
   flex-direction: column;
@@ -96,14 +100,13 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
-  /*color: var(--text-color);*/
-  font-family: var(--font-geist-sans);
+  color: #171717;
 }
 
 .courseContainer .subtitle {
   font-size: 12px;
   opacity: 0.8;
-  color: var(--text-color);
+  color: #171717;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -121,6 +124,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.info svg {
+  fill: #171717;
 }
 
 .waiting {

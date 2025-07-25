@@ -7,16 +7,16 @@ import { loginUser } from "@/actions";
 import { useToast } from "@/hooks";
 import styles from "./page.module.css";
 
-// const mock = {
-//   id: 388906921,
-//   first_name: "Vitalii",
-//   last_name: "Telychko",
-//   username: "vitalii_telychko",
-//   photo_url:
-//     "https://t.me/i/userpic/320/z4xccDXY19G8ATVczACbA6n4rSX7rHUYP7zchRCwR_8.jpg",
-//   auth_date: 1752256612,
-//   hash: "e4b4798625189e3cafe96e564599fe1818fd4746b0208314dd692912203f72ec",
-// };
+const mock = {
+  id: 388906921,
+  first_name: "Vitalii",
+  last_name: "Telychko",
+  username: "vitalii_telychko",
+  photo_url:
+    "https://t.me/i/userpic/320/z4xccDXY19G8ATVczACbA6n4rSX7rHUYP7zchRCwR_8.jpg",
+  auth_date: 1752256612,
+  hash: "e4b4798625189e3cafe96e564599fe1818fd4746b0208314dd692912203f72ec",
+};
 
 export default function AuthButton() {
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
@@ -66,21 +66,21 @@ export default function AuthButton() {
     };
   }, []);
 
-  // const boo = async () => {
-  //   try {
-  //     setIsLoading(true);
-  //     await loginUser(mock);
-  //     router.push("/courses");
-  //   } catch (error) {
-  //     console.error("Authorization error:", error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  const boo = async () => {
+    try {
+      setIsLoading(true);
+      await loginUser(mock);
+      router.push("/courses");
+    } catch (error) {
+      console.error("Authorization error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
-      {/*<button onClick={boo}>mock</button>*/}
+      <button onClick={boo}>mock</button>
       {isLoading && <div className="loading-indicator">Завантаження...</div>}
       {!scriptLoaded && !isLoading && (
         <div className={`${styles.skeleton} ${styles.skeletonButton}`} />

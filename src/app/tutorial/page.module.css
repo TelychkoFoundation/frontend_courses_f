@@ -1,7 +1,6 @@
 .page {
   min-height: 100svh;
   padding: 80px;
-  font-family: var(--font-geist-sans);
 }
 
 .section {
@@ -19,7 +18,7 @@
 
 .subtitle {
   font-size: 18px;
-  color: #555;
+  color: var(--secondary-text-color);
   margin-bottom: 32px;
 }
 
@@ -43,8 +42,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid lightgray;
-  background-color: white;
+  border: 1px solid var(--divider-color, lightgray);
+  background-color: var(--background, white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,9 +58,9 @@
 }
 
 .circleActive {
-  border-color: #000000;
-  background-color: #000000;
-  color: #ffffff;
+  border-color: var(--foreground, black);
+  background-color: var(--foreground, black);
+  color: var(--background, white);
 }
 
 .circleLastActive {
@@ -80,14 +79,14 @@
   top: 20px;
   left: 75%;
   height: 1px;
-  background-color: lightgray;
+  background-color: var(--divider-color, lightgray);
   z-index: 1;
   width: 50%;
   transition: background-color 0.3s ease;
 }
 
 .lineFilled {
-  background-color: #000000;
+  background-color: var(--foreground, black);
   animation: fillLine 0.4s ease-out forwards;
 }
 
@@ -95,15 +94,15 @@
   margin-top: 20px;
   text-align: center;
   padding: 20px;
-  border: 1px solid #eee;
+  border: 1px solid var(--divider-color, #eee);
   border-radius: 8px;
-  background-color: #fafafa;
+  background-color: var(--background, #fafafa);
   transition: all 0.3s ease;
 }
 
 .content p {
   font-size: 1rem;
-  color: #333;
+  color: var(--foreground, #333);
 }
 
 .buttons {
@@ -119,17 +118,18 @@
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: black;
-  color: white;
-  transition: background 0.2s ease;
+  background-color: var(--foreground, black);
+  color: var(--background, white);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .buttons button:hover {
-  background-color: #333;
+  background-color: var(--secondary-text-color, #333);
+  color: var(--background, white);
 }
 
 .buttons button:disabled {
-  background-color: #999;
+  background-color: var(--button-hover-border-color, #999);
   cursor: not-allowed;
 }
 

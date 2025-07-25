@@ -5,30 +5,26 @@ import Image from "next/image";
 import { FiUser } from "react-icons/fi";
 import Logout from "./logout";
 import { Avatar } from "./avatar";
+import { Theme } from "./theme";
+import { ServicesLink } from "./services";
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <div className={styles.avatars}>
-        <Image
-          src="/vercel.svg"
-          alt="Mentor Avatar"
-          width={40}
-          height={40}
-          className={styles.avatar}
-        />
-      </div>
+      <Image
+        src="/vercel.svg"
+        alt="Mentor Avatar"
+        width={40}
+        height={40}
+        className={styles.logo}
+      />
 
-      <div className={styles.navContainer}>
-        <nav className={styles.nav}>
-          <Link href="/admin/courses" className={styles.link}>
-            Адмін
-          </Link>
-          <Link href="/services" className={styles.link}>
-            Послуги
-          </Link>
-        </nav>
-
+      <nav className={styles.nav}>
+        <Theme />
+        <Link href="/admin/courses" className={styles.link}>
+          Адмін
+        </Link>
+        <ServicesLink />
         <Dropdown targetElement={<Avatar />}>
           <Link href="/profile" className={styles.dropdownItem}>
             <FiUser size={16} />
@@ -37,7 +33,7 @@ export default function Header() {
           <div className={styles.divider} />
           <Logout />
         </Dropdown>
-      </div>
+      </nav>
     </header>
   );
 }

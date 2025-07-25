@@ -18,7 +18,7 @@ export const Avatar = () => {
       alt="User Avatar"
       width={40}
       height={40}
-      className={styles.avatar}
+      className={styles.logo}
     />
   );
 };

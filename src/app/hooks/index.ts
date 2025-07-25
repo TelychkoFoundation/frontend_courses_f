@@ -6,3 +6,4 @@ export { useEscape } from "./useEscape";
 export { useOutsideClick } from "./useOutsideClick";
 export { useDrawer } from "./useDrawer";
 export { useCourses } from "./useCourses";
+export { useTheme } from "./useTheme";

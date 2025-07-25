@@ -2,45 +2,45 @@
     min-height: 220px;
     border-radius: 10px;
     padding: 16px;
-    background: #f0f0f0;
+    background: var(--skeleton-bg);
     animation: pulse 1.5s infinite ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--skeleton-box-shadow);
 }
 
 .icon {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: #e0e0e0;
+    background-color: var(--skeleton-icon-bg);
 }
 
 .title {
     width: 60%;
     height: 16px;
     border-radius: 4px;
-    background-color: #e0e0e0;
+    background-color: var(--skeleton-title-bg);
 }
 
 .subtitle {
     width: 80%;
     height: 12px;
     border-radius: 4px;
-    background-color: #dcdcdc;
+    background-color: var(--skeleton-subtitle-bg);
 }
 
 @keyframes pulse {
     0% {
-        background-color: #eeeeee;
+        background-color: var(--skeleton-pulse-start);
     }
     50% {
-        background-color: #dddddd;
+        background-color: var(--skeleton-pulse-middle);
     }
     100% {
-        background-color: #eeeeee;
+        background-color: var(--skeleton-pulse-end);
     }
 }

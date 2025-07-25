@@ -13,11 +13,12 @@
     position: absolute;
     top: 46px;
     right: 0;
-    background: white;
-    border: 1px solid #eee;
+    background: var(--dropdown-bg);
+    border: 1px solid var(--dropdown-border);
     border-radius: 12px;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--dropdown-shadow);
     min-width: 180px;
     z-index: 100;
     animation: fadeIn 0.2s ease;
+    overflow: hidden;
 }

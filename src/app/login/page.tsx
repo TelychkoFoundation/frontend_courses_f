@@ -19,7 +19,7 @@ export default async function LoginPage() {
           <div className={styles.secondary}>
             <AuthButton />
           </div>
-          <Link href="/tutorial" className={styles.secondary}>
+          <Link href="/tutorial" className="button">
             Як проходить навчання
           </Link>
         </div>

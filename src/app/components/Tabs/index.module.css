@@ -1,23 +1,44 @@
-.tabs {
+/* Контейнер для табов */
+.tabsContainer {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    position: relative;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--divider-color, #ebecee); /* Разделительная линия внизу */
 }
 
+/* Сами табы */
 .tab {
     padding: 8px 16px;
-    border: none;
-    border-radius: 25px;
-    background-color: #e0e0e0;
-    color: #333;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--tab-text-color, #666); /* Текст вкладки */
+    /*text-transform: uppercase; !* Заглавные буквы *!*/
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: var(--font-geist-sans);
-    font-size: 12px;
+    position: relative; /* Для активной линии */
+    transition: color 0.3s ease;
 }
 
-.active {
-    background-color: #222;
-    color: white;
+/* Hover для вкладок */
+.tab:hover {
+    color: var(--tab-hover-text-color, #333); /* Текст при наведении */
+}
+
+/* Активный таб */
+.tab.active {
+    color: var(--foreground);
+    border-bottom: 1px solid var(--foreground);
+}
+
+/* Линия для активного таба */
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--tab-active-line-color, #000); /* Подчёркивание активного таба */
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }

@@ -6,7 +6,6 @@
     align-items: center;
     text-align: center;
     padding: 20px;
-    font-family: var(--font-geist-sans);
     gap: 24px;
 }
 
@@ -19,29 +18,10 @@
     font-size: 24px;
     margin: 0 20px 0 0;
     padding: 0 23px 0 0;
-    border-right: 1px solid rgba(0, 0, 0, .3);
+    border-right: 1px solid var(--border-color);
 }
 
 .content h2 {
     font-size: 14px;
     font-weight: 400;
-}
-
-.back {
-    border-radius: 8px;
-    height: 44px;
-    padding: 0 20px;
-    border: 1px solid black;
-    transition:
-            background 0.2s,
-            color 0.2s,
-            border-color 0.2s;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    font-family: var(--font-geist-sans);
 }

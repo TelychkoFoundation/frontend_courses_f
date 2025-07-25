@@ -12,7 +12,7 @@ interface ITabsProps {
 
 export default function Tabs({ data, onSelect, param }: ITabsProps) {
   return (
-    <div className={styles.tabs}>
+    <div className={styles.tabsContainer}>
       {data.map(
         ({ id, name }): ReactElement => (
           <div

@@ -1,22 +1,23 @@
-import styles from "./page.module.css";
 import Link from "next/link";
-// import { verifySession } from "@/lib";
+import { verifySession } from "@/lib";
 import { services } from "@/constants";
 import { VscFilePdf } from "react-icons/vsc";
+import styles from "./page.module.css";
 
 export default async function ServicesPage() {
-  // const { isAuth } = await verifySession();
-  const isAuth = true;
+  const { isAuth } = await verifySession();
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Послуги</h1>
       <div className={styles.headerRow}>
-        <p className={styles.subheading}>
-          Виберіть те, що відповідає вашому рівню, цілям та формату навчання.
-        </p>
+        <div>
+          <h1 className={styles.heading}>Послуги</h1>
+          <p className={styles.subheading}>
+            Виберіть те, що відповідає вашому рівню, цілям та формату навчання.
+          </p>
+        </div>
 
-        <Link href="/courses" className={styles.backButton}>
+        <Link href="/courses" className="button">
           До курсів
         </Link>
       </div>

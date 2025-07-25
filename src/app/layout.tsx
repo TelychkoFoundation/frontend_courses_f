@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { ToastProvider } from "@/context";
+import { ToastProvider, ThemeProvider } from "@/context";
 import { ToastContainer } from "@/components";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import { createDBConnection } from "@/lib";
-import "./globals.css";
+import "./styles/globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-primary",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-secondary",
   subsets: ["latin"],
 });
 
@@ -32,10 +32,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ToastProvider>
-          {isDatabaseConnected ? children : null}
-          <ToastContainer />
-        </ToastProvider>
+        <ThemeProvider>
+          <ToastProvider>
+            {isDatabaseConnected ? children : null}
+            <ToastContainer />
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
