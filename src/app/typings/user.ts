@@ -57,6 +57,13 @@ export interface IReferral {
   bonus_granted: boolean; // Был ли выдан бонус
 }
 
+// My courses
+export interface IMyCourses {
+  course_id: Types.ObjectId; // ID приглашённого пользователя
+  started_on: Date; // Дата, когда пользователь был приглашён
+  status: "in_progress" | "completed"; // Был ли выдан бонус
+}
+
 // Полная информация о пользователе в базе данных (с расширением Telegram данных)
 export type IUserDatabaseData = ITelegramUserData &
   Document & {
@@ -68,6 +75,7 @@ export type IUserDatabaseData = ITelegramUserData &
     reminders?: IReminder[]; // Напоминания
     reviews?: IReview[]; // Отзывы и оценки
     referrals?: IReferral[]; // Рефералы
+    my_courses?: IMyCourses[];
 
     xp: number; // Очки опыта
     level: number; // Уровень пользователя

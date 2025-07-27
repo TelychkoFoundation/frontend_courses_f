@@ -209,6 +209,24 @@ const UserSchema: Schema = new Schema(
       required: false,
       default: 1, // Стартовый уровень
     },
+    my_courses: [
+      {
+        course_id: {
+          type: Types.ObjectId, // ID курса
+          ref: "Course",
+          required: true,
+        },
+        started_on: {
+          type: Date, // Дата начала курса
+          default: () => new Date(),
+        },
+        status: {
+          type: String, // Статус курса
+          enum: ["in_progress", "completed"],
+          default: "in_progress",
+        },
+      },
+    ],
 
     // Прочее
     total_spent: {

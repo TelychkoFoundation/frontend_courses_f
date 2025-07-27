@@ -35,6 +35,7 @@ export async function loginUser(userData: ITelegramUserData) {
           reminders: [],
           reviews: [],
           referrals: [],
+          my_courses: [],
         },
         $set: {
           // Если пользователь уже существует, обновляем поля
