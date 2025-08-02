@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 
 export default function Page() {
   const [step, setStep] = useState<number>(1);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,7 +30,23 @@ export default function Page() {
         <h1 className={styles.title}>{tutorialMainHeaders.title}</h1>
         <p className={styles.subtitle}>{tutorialMainHeaders.subTitle}</p>
 
-        <Stepper step={step} setStepAction={setStep} />
+        {isMobile ? (
+          <div className={styles.stepperContainer}>
+            {tutorialSteps.map((tutorialStep, index) => (
+              <div
+                key={index}
+                className={`${styles.cardStep} ${
+                  step === index + 1 ? styles.active : ""
+                }`}
+              >
+                <h2>{tutorialStep.title}</h2>
+                <p>{tutorialStep.description}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Stepper step={step} setStepAction={setStep} />
+        )}
 
         <TutorialContent step={step} />
 

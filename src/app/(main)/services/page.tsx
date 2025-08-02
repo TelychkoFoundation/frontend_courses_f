@@ -17,7 +17,7 @@ export default async function ServicesPage() {
           </p>
         </div>
 
-        <Link href="/courses" className="button">
+        <Link href="/courses?filter=all" className="button">
           До курсів
         </Link>
       </div>

@@ -4,3 +4,4 @@ export { AdminProvider, AdminContext } from "./AdminContext";
 export { DrawerProvider, DrawerContext } from "./DrawerContext";
 export { CoursesProvider, CoursesContext } from "./CoursesContext";
 export { ThemeProvider, ThemeContext } from "./ThemeContext";
+export { LessonsProvider, LessonsContext } from "./LessonsContext";

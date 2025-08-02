@@ -1,17 +1,31 @@
 "use client";
 
-import AdminCoursesTableActions from "./AdminCoursesTableActions";
-import AdminCoursesTable from "./AdminCoursesTable";
+import { useAdmin } from "@/hooks";
+import { useEffect } from "react";
 import styles from "./courses.module.css";
-import { Suspense } from "react";
+import CoursesTableHeader from "./CoursesTableHeader";
+import CoursesTableBody from "./CoursesTableBody";
 
 export default function AdminCoursesPage() {
+  const { fetchCourses, loading, totalCourses, courses } = useAdmin();
+
+  useEffect(() => {
+    fetchCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading) {
+    return <p className={styles.nonDataMessage}>Завантаження ...</p>;
+  }
+
+  if (totalCourses <= 0) {
+    return <p className={styles.nonDataMessage}>Курсів немає</p>;
+  }
+
   return (
-    <Suspense>
-      <div className={styles.container}>
-        <AdminCoursesTableActions />
-        <AdminCoursesTable />
-      </div>
-    </Suspense>
+    <table className={styles.table}>
+      <CoursesTableHeader />
+      <CoursesTableBody courses={courses} />
+    </table>
   );
 }

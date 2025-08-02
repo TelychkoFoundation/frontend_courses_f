@@ -8,7 +8,7 @@ export default async function NotFound() {
         <h1>404</h1>
         <h2>Сторінку не знайдено</h2>
       </div>
-      <Link href="/courses" className="button">
+      <Link href="/courses?filter=all" className="button">
         До курсів
       </Link>
     </div>

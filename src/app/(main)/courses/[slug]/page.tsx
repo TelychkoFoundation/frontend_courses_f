@@ -1,68 +1,35 @@
-import CourseHeader from "./header";
-import { getCurrentCourse } from "@/actions";
-import { QueryDrawerType, CourseKeyTypes } from "@/typings";
-import { Drawer } from "@/components";
-import { DrawerProvider } from "@/context";
-import CourseTopicsDrawerContent from "./drawerContent";
+"use client";
+
+import { QueryDrawerType, ILesson } from "@/typings";
+import { Drawer, LessonSkeleton } from "@/components";
+import { Lesson } from "./Lesson";
+import { useCourses, useLessons } from "@/hooks";
+import LessonsHeader from "./LessonsHeader";
+import CourseContentDrawer from "./CourseContentDrawer";
 import styles from "./page.module.css";
 
-export default async function CoursePage({
-  params,
-}: {
-  params: Promise<{ slug: CourseKeyTypes }>;
-}) {
-  const { slug } = await params;
-  const response = await getCurrentCourse(slug);
-
-  if (!response.success) {
-    return null;
-  }
-
-  const { title } = response.data;
+export default function CoursePage() {
+  const { allLessons } = useLessons();
+  const { currentCourse } = useCourses();
 
   return (
-    <DrawerProvider>
-      <CourseHeader title={title} />
-      <div className={styles.videos}>
-        {[
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 23, 34, 45, 56, 67, 86, 756,
-          4545, 3434, 23323,
-        ].map((k, index) => (
-          <div className={styles.videoCard} key={k}>
-            <div className={styles.videoContainer}>
-              <video controls className={styles.video}>
-                <source
-                  src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              {k !== 4 ? (
-                <div className={styles.overlay}>
-                  <div className={styles.lockIcon}>🔒</div>
-                  <button className={styles.buyButton}>46 грн.</button>
-                </div>
-              ) : null}
-            </div>
-            <div className={styles.videoInfo}>
-              <div className={styles.videoDetails}>
-                <h3>{index + 1}. Реакт хуки. useEffect</h3>
-                <p>Завантаження даних, підписки та очищення.</p>
-              </div>
-              <div className={styles.videoPrice}></div>
-              {/*<div className="contact-teacher">*/}
-              {/*    <button className="contact-button">Написати викладачу</button>*/}
-              {/*</div>*/}
-            </div>
-          </div>
-        ))}
-        <Drawer
-          title="Список тем"
-          drawerID={QueryDrawerType.CourseTopicsDrawer}
-        >
-          <CourseTopicsDrawerContent />
-        </Drawer>
-      </div>
-    </DrawerProvider>
+    <>
+      <LessonsHeader />
+      <main className={styles.lessonsContainer}>
+        {!allLessons
+          ? Array.from({ length: 12 }).map((_, idx) => (
+              <LessonSkeleton key={idx} />
+            ))
+          : allLessons.map((lesson: ILesson, index: number) => (
+              <Lesson key={index} index={index} lesson={lesson} />
+            ))}
+      </main>
+      <Drawer
+        title={currentCourse?.title}
+        drawerID={QueryDrawerType.CourseContentsDrawer}
+      >
+        <CourseContentDrawer />
+      </Drawer>
+    </>
   );
 }

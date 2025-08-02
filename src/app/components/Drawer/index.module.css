@@ -24,22 +24,41 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 14px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #d4d4d4;
+    border-radius: 12px;
     margin-bottom: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .header h2 {
-    text-decoration: underline;
-    text-underline-offset: 6px;
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+    color: #222;
 }
 
 .closeBtn {
-    font-size: 24px;
+    font-size: 22px;
     background: none;
     border: none;
     cursor: pointer;
-    line-height: 1;
-    color: var(--close-btn-color);
+    line-height: 0;
+    color: #555;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
+
+.closeBtn:hover {
+    color: var(--close-btn-hover-color);
+    transform: scale(1.1);
+}
+
 
 @media (min-width: 768px) {
     .backdrop {
@@ -57,10 +76,6 @@
         bottom: 0;
         height: 93.8%;
     }
-}
-
-.closeBtn:hover {
-    color: var(--close-btn-hover-color);
 }
 
 .loader {

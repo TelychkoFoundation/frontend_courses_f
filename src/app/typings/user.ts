@@ -30,8 +30,8 @@ export interface ILessonProgress {
 
 // Покупка уроков
 export interface IPurchasedLesson {
-  lesson_id: Types.ObjectId; // ID урока
-  course_id: Types.ObjectId; // ID курса
+  lesson_id: Types.ObjectId | string; // ID урока
+  course_id: Types.ObjectId | string; // ID курса
 }
 
 // Отзывы и рейтинги

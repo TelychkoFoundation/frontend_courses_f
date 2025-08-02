@@ -141,3 +141,67 @@
     width: 50%;
   }
 }
+
+/* ============================================
+   Основное оформление для мобильных устройств
+   ============================================ */
+
+/* Контейнер под вертикальный дизайн */
+@media (max-width: 768px) {
+  .stepperContainer {
+    flex-direction: column; /* Становимся вертикальными */
+    align-items: center; /* Центрирование */
+  }
+
+  .circle {
+    width: 50px; /* Увеличиваем круги */
+    height: 50px;
+    margin-bottom: 10px; /* Нижний отступ для кругов */
+  }
+
+  .line {
+    display: none; /* Линии между шагами скрываем */
+  }
+
+  .stepWrapper {
+    flex-direction: row; /* Шаги вертикальные */
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .content {
+    margin-top: 0;
+    text-align: left; /* Текст шагов выравнивается слева */
+    padding: 16px;
+    border-radius: 12px; /* Больше закругление */
+  }
+
+  .buttons {
+    flex-direction: column; /* Кнопки становятся вертикальными */
+    margin-top: 20px;
+    gap: 10px; /* Расстояние между кнопками */
+  }
+
+  .buttons button {
+    width: 100%; /* Кнопки растягиваем на всю ширину */
+  }
+}
+
+/* Карточки-шаги как Swipeable (по желанию) */
+.cardStep {
+  width: 100%; /* Растягиваем карточку */
+  text-align: start;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 10px;
+  background: var(--background, #f9f9f9);
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Расстояние между текстом */
+}
+
+.cardStep.active {
+  border: 2px solid var(--foreground, #333); /* Активный шаг */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); /* Слегка выделяем */
+}

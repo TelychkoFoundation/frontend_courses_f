@@ -32,7 +32,7 @@ export default function AdminHeader() {
         >
           Метрики
         </Link>
-        <Link href="/courses" className={styles.link}>
+        <Link href="/courses?filter=all" className={styles.link}>
           <CiLogout size={24} />
         </Link>
       </nav>

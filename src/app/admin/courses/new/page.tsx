@@ -1,57 +1,59 @@
+"use client";
+
 import Link from "next/link";
-import styles from "../course.module.css";
+import styles from "./index.module.css";
 import { createCourse } from "@/actions";
-import { SubmitButton } from "./SubmitButton";
 import { coursesTitles } from "@/constants";
 import { CourseKeyTypes, ICourseBasePayload } from "@/typings";
 import { redirect } from "next/navigation";
+import { useFormStatus } from "react-dom";
 
 export default function AdminCoursesNewPage() {
+  const { pending } = useFormStatus();
+
   const formAction = async (formData: FormData) => {
-    "use server";
-
-    const courseKey = formData.get("courseKey") as CourseKeyTypes;
-
-    const {
-      title = "",
-      description,
-      short_description,
-      difficulty,
-      categories,
-      prerequisites,
-      outcomes,
-    } = coursesTitles[courseKey as CourseKeyTypes];
-
-    const price = Number(formData.get("price")) || 0;
-    const is_free = formData.get("is_free") === "true";
-    const is_published = formData.get("is_published") === "true";
-
-    const data: ICourseBasePayload = {
-      courseKey,
-      title,
-      description,
-      short_description,
-      price,
-      is_free,
-      is_published,
-      difficulty,
-      categories,
-      prerequisites,
-      outcomes,
-      lessons: [],
-    };
-
-    const result = await createCourse(data);
-
-    if (result.success) {
-      redirect("/admin/courses");
-    }
+    // "use server";
+    //
+    // const courseKey = formData.get("courseKey") as CourseKeyTypes;
+    //
+    // const {
+    //   title = "",
+    //   description,
+    //   short_description,
+    //   difficulty,
+    //   categories,
+    //   prerequisites,
+    //   outcomes,
+    // } = coursesTitles[courseKey as CourseKeyTypes];
+    //
+    // const price = Number(formData.get("price")) || 0;
+    // const is_free = formData.get("is_free") === "true";
+    // const is_published = formData.get("is_published") === "true";
+    //
+    // const data: ICourseBasePayload = {
+    //   courseKey,
+    //   title,
+    //   description,
+    //   short_description,
+    //   price,
+    //   is_free,
+    //   is_published,
+    //   difficulty,
+    //   categories,
+    //   prerequisites,
+    //   outcomes,
+    //   lessons: [],
+    // };
+    //
+    // const result = await createCourse(data);
+    //
+    // if (result.success) {
+    //   redirect("/admin/courses");
+    // }
   };
 
   return (
     <form action={formAction} className={styles.form}>
-      <h2>Hовий курс</h2>
-
       <div className={styles.grid}>
         <label>
           Назва курсу
@@ -88,12 +90,9 @@ export default function AdminCoursesNewPage() {
         </label>
       </div>
 
-      <div className={styles.buttons}>
-        <Link href="/admin/courses" className={styles.backBtn}>
-          ← Назад
-        </Link>
-        <SubmitButton />
-      </div>
+      <button type="submit" disabled={pending} className={styles.submit}>
+        {pending ? "Створення..." : "Створити"}
+      </button>
     </form>
   );
 }

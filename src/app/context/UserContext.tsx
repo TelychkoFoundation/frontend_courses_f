@@ -21,7 +21,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const getUserData = async () => {
       const response = await getUser();
-      console.log(response, "getUserData");
       if (response?.success) {
         setUser(response.data);
       } else {

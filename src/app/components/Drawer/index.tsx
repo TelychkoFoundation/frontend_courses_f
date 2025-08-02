@@ -1,14 +1,14 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { useEscape, useDrawer } from "@/hooks";
+import { useEscape, useDrawer, useLessons } from "@/hooks";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { QueryParamsKeyType } from "@/typings";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import styles from "./index.module.css";
 
 interface IDrawerProps {
-  title: string;
+  title: string | undefined;
   drawerID: QueryParamsKeyType;
   children: ReactNode;
 }
@@ -20,6 +20,8 @@ export default function Drawer(props: IDrawerProps) {
     openDrawerWithQueryString,
   } = useDrawer();
   const searchParams = useSearchParams();
+  const params = useParams();
+  const { setCurrentLesson } = useLessons();
 
   useEffect(() => {
     const paramValue = searchParams.get(props.drawerID);
@@ -33,6 +35,10 @@ export default function Drawer(props: IDrawerProps) {
 
   const onClose = () => {
     closeDrawerWithQueryString(props.drawerID);
+
+    if (params.slug) {
+      setCurrentLesson(null);
+    }
   };
 
   useEscape(onClose);

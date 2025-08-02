@@ -1,3 +1,13 @@
+.noDataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  gap: 16px;
+  height: calc(100vh - 250px)
+}
+
 .coursesContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

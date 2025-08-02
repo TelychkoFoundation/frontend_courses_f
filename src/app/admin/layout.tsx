@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense } from "react";
-import AdminHeader from "./header";
 import { AdminProvider } from "@/context";
+import AdminHeader from "./header";
+import SubHeader from "./courses/actions";
 import styles from "./layout.module.css";
 
 export default function AdminCoursesLayout({
@@ -12,10 +12,11 @@ export default function AdminCoursesLayout({
 }) {
   return (
     <AdminProvider>
-      <Suspense>
-        <AdminHeader />
-        <div className={styles.container}>{children}</div>
-      </Suspense>
+      <AdminHeader />
+      <div className={styles.container}>
+        <SubHeader />
+        {children}
+      </div>
     </AdminProvider>
   );
 }

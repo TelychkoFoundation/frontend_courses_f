@@ -1,7 +1,12 @@
 import { ReactNode, Suspense } from "react";
 import { Header } from "@/components";
 import styles from "./layout.module.css";
-import { CoursesProvider, DrawerProvider, UserProvider } from "@/context";
+import {
+  CoursesProvider,
+  DrawerProvider,
+  UserProvider,
+  LessonsProvider,
+} from "@/context";
 
 export default async function CoursesLayout({
   children,
@@ -11,12 +16,14 @@ export default async function CoursesLayout({
   return (
     <Suspense>
       <UserProvider>
-        <CoursesProvider>
-          <DrawerProvider>
-            <Header />
-            <main className={styles.container}>{children}</main>
-          </DrawerProvider>
-        </CoursesProvider>
+        <DrawerProvider>
+          <CoursesProvider>
+            <LessonsProvider>
+              <Header />
+              <main className={styles.container}>{children}</main>
+            </LessonsProvider>
+          </CoursesProvider>
+        </DrawerProvider>
       </UserProvider>
     </Suspense>
   );

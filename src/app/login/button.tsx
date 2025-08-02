@@ -31,7 +31,7 @@ export default function AuthButton() {
         try {
           setIsLoading(true);
           await loginUser(userData);
-          router.push("/courses");
+          router.push("/courses?filter=all");
         } catch (error) {
           showToast((error as Error).message);
           console.error("Authorization error:", error);
@@ -70,7 +70,7 @@ export default function AuthButton() {
     try {
       setIsLoading(true);
       await loginUser(mock);
-      router.push("/courses");
+      router.push("/courses?filter=all");
     } catch (error) {
       console.error("Authorization error:", error);
     } finally {

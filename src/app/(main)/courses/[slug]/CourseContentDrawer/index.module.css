@@ -1,0 +1,87 @@
+.container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px;
+    font-family: var(--font-primary), sans-serif;
+    color: #111;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #000;
+    color: #000;
+    width: fit-content;
+}
+
+.lessonList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lessonItem {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+    margin-bottom: 8px;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    overflow: hidden;
+}
+
+.progressBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #c8e6c9; /* light green */
+    z-index: 0;
+    transition: width 0.3s ease;
+}
+
+.lessonContent {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    top: -24px;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.lessonItem:hover .tooltip {
+    opacity: 1;
+}
+
+
+.lessonNumber {
+    font-variant-numeric: tabular-nums;
+    /*min-width: 20px;*/
+    font-weight: 500;
+    color: #555;
+}
+
+.lessonTitle {
+    flex: 1;
+    font-size: 15px;
+    margin-left: 6px;
+}

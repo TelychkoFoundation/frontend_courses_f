@@ -4,13 +4,12 @@ const tableHeaderTitles: string[] = [
   "Номер",
   "Назва",
   "Ціна",
-  "Уроки",
-  "Категорія",
-  "Статус",
+  "Перегляди",
+  "Винагорода",
   "Створено",
 ];
 
-export default memo(function AdminCoursesTableHeader() {
+export default memo(function LessonsTableHeader() {
   return (
     <thead>
       <tr>

@@ -2,7 +2,7 @@ import { CourseKeyTypes } from "./course";
 
 export enum QueryDrawerType {
   CourseDetailsDrawer = "courseDetailsDrawer",
-  CourseTopicsDrawer = "courseContentsDrawer",
+  CourseContentsDrawer = "courseContentsDrawer",
 }
 
 export enum QueryType {

@@ -1,3 +1,10 @@
-1. Auth flow (so-so)
+1. Auth flow
 2. Query params
-3. CSS
+
+Admin
+5. Update functionality for course/lesson
+7. Video Payment
+9. JS prevent play video if not paid
+10. Drawer for lessons list
+11. Drawer for lesson details
+12. No lessons view

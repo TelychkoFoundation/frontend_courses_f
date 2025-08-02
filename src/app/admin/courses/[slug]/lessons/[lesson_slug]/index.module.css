@@ -1,0 +1,108 @@
+.nonDataMessage {
+    font-family: var(--font-primary);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-style: italic;
+}
+
+.form .danger {
+    background: #f30014;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    width: fit-content;
+}
+
+.form {
+    max-width: 600px; /* Центр формы */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Увеличиваем расстояние между элементами для большей симметрии */
+    padding: 32px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); /* Немного более заметный эффект */
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #333;
+    gap: 8px; /* Добавляем пространство между текстом и полем ввода */
+}
+
+.form input,
+.form textarea,
+.form select {
+    padding: 14px; /* Увеличиваем отступы внутри полей */
+    border-radius: 8px; /* Единообразные скругления */
+    border: 1px solid #ddd;
+    font-size: 18px; /* Увеличиваем размер текста для удобного чтения */
+    color: #333;
+    background: #f9f9f9;
+    transition: border-color 0.3s ease;
+    width: 100%; /* Все поля формы теперь занимают полную ширину */
+    box-sizing: border-box; /* Удостоверяем, что padding не влияет на ширину */
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+    border-color: #0070f3; /* Синий акцент при фокусировке */
+    outline: none;
+    box-shadow: 0 0 2px #0070f3; /* Немного подсвечиваем поле */
+}
+
+.form textarea {
+    resize: vertical; /* Пользователь может масштабировать только вертикально */
+    height: 150px; /* Увеличиваем начальную высоту */
+}
+
+.form button {
+    background: linear-gradient(145deg, #0070f3, #005fc2); /* Добавляем градиент для кнопки */
+    color: white;
+    padding: 14px 18px; /* Делаем кнопку чуть больше */
+    font-size: 18px; /* Увеличиваем размер текста кнопки для удобства */
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.form button:disabled {
+    background: #ddd; /* Бледный цвет для отключенной кнопки */
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.form button:hover:not(:disabled) {
+    background: linear-gradient(145deg, #0059c2, #004ca7); /* Более насыщенный градиент при наведении */
+    transform: scale(1.02); /* Немного увеличиваем кнопку для интерактивного эффекта */
+}
+
+.form p {
+    font-size: 16px;
+    margin: 0;
+    padding: 8px 0;
+}
+
+.error {
+    color: #f30014;
+    font-weight: bold;
+}
+
+.success {
+    color: #28a745;
+    font-weight: bold;
+}

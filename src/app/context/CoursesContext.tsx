@@ -1,7 +1,9 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
-import { ICourse } from "@/typings";
+import { createContext, useState, ReactNode, useEffect } from "react";
+import { CourseKeyTypes, ICourse } from "@/typings";
+import { useParams } from "next/navigation";
+import { getCurrentCourse } from "@/actions";
 
 interface CoursesContextType {
   allCourses: ICourse[] | null;
@@ -20,6 +22,26 @@ export const CoursesProvider = ({ children }: { children: ReactNode }) => {
   const [allCourses, setAllCourses] = useState<ICourse[] | null>(null);
   const [myCourses, setMyCourses] = useState<ICourse[] | null>(null);
   const [currentCourse, setCurrentCourse] = useState<ICourse | null>(null);
+
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.slug) {
+      const getCurrentCourseHandler = async () => {
+        const { success, data } = await getCurrentCourse(
+          params.slug as CourseKeyTypes,
+        );
+
+        if (!success) {
+          return;
+        }
+
+        setCurrentCourse(data);
+      };
+
+      getCurrentCourseHandler();
+    }
+  }, [params.slug]);
 
   return (
     <CoursesContext.Provider

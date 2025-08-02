@@ -2,6 +2,8 @@
 
 import { Course, User } from "@/models";
 import { IMyCourses } from "@/typings";
+import { verifySession } from "@/lib";
+import { Types } from "mongoose";
 
 export const getAllCourses = async () => {
   try {
@@ -12,21 +14,22 @@ export const getAllCourses = async () => {
   }
 };
 
-export const getMyCourses = async (userId: string | number) => {
-  try {
-    // Получаем данные о курсах пользователя через его массив my_courses
-    const my_courses: IMyCourses[] = await User.findOne({
-      id: userId,
-    }).populate("my_courses.course_id"); // Загружаем информацию о курсах
+export const getMyCourses = async () => {
+  const { userID } = await verifySession();
 
-    const courses = my_courses?.map(course => course.course_id);
+  try {
+    const user: { id: Types.ObjectId; my_courses: IMyCourses[] } =
+      await User.findOne({
+        id: userID,
+      })
+        .select("my_courses")
+        .populate("my_courses.course_id");
 
     return {
       success: true,
-      data: courses,
+      data: user.my_courses,
     };
   } catch (error) {
-    console.error("Ошибка получения моих курсов:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Неизвестная ошибка",

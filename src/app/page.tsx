@@ -6,7 +6,5 @@ export default async function RootPage() {
 
   if (!session?.userID) {
     redirect("/login");
-  } else {
-    redirect("/courses");
   }
 }

@@ -1,4 +1,4 @@
-import { IService } from "../typings/services";
+import { IService } from "@/typings";
 
 export const services: IService[] = [
   {
@@ -13,8 +13,8 @@ export const services: IService[] = [
       label: "Як проходить навчання →",
       href: "/how-it-works",
       authAlternative: {
-        loggedIn: { label: "До уроків", href: "/courses" },
-        guest: { label: "Увійдіть та почніть навчання", href: "/" },
+        loggedIn: { label: "До уроків", href: "/courses?filter=all" },
+        guest: { label: "Увійдіть та почніть навчання", href: "/login" },
       },
     },
   },
