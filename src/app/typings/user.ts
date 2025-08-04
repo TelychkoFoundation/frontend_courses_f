@@ -32,6 +32,14 @@ export interface ILessonProgress {
 export interface IPurchasedLesson {
   lesson_id: Types.ObjectId | string; // ID урока
   course_id: Types.ObjectId | string; // ID курса
+  purchased_at: Date;
+  invoice_id: string;
+}
+
+// Купівля курсу
+export interface IPurchasedCourse {
+  course_id: Types.ObjectId;
+  purchased_at: Date;
 }
 
 // Отзывы и рейтинги
@@ -68,7 +76,7 @@ export interface IMyCourses {
 export type IUserDatabaseData = ITelegramUserData &
   Document & {
     purchased_lessons?: IPurchasedLesson[]; // Купленные уроки
-    purchased_courses?: Types.ObjectId[]; // Купленные курсы
+    purchased_courses?: IPurchasedCourse[]; // Купленные курсы
     subscription: ISubscriptionData; // Подписка
 
     lesson_progress?: ILessonProgress[]; // Прогресс уроков

@@ -3,7 +3,6 @@ import { CourseKeyTypes } from "./course";
 
 export interface ILesson {
   _id: Types.ObjectId | string;
-  id: string;
   course_id: Types.ObjectId | string;
   order: number;
   title: string;

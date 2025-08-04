@@ -1,0 +1,30 @@
+.currentLessonPage {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.videoContainer {
+    flex: 1;
+    height: calc(100vh - 64px);
+    transition: width 0.3s ease;
+}
+
+.currentVideo {
+    width: 100%;
+    height: 100%;
+}
+
+.lessonDetails {
+    width: 450px;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px;
+    font-family: var(--font-primary), sans-serif;
+    color: #111;
+    overflow-y: auto;
+}

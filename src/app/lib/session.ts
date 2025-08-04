@@ -39,7 +39,7 @@ export async function decrypt(session: string | undefined = "") {
   }
 }
 
-export const verifySession = cache(async () => {
+export const verifySession = async () => {
   const cookie = (await cookies()).get(SESSION_KEY)?.value;
   const session = await decrypt(cookie);
 
@@ -48,7 +48,7 @@ export const verifySession = cache(async () => {
   }
 
   return { isAuth: true, userID: session.userID };
-});
+};
 
 export async function createSession(userID: number) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days

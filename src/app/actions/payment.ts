@@ -1,37 +1,71 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { verifySession } from "@/lib";
+import {
+  ICourse,
+  ICreateLinkPayload,
+  ICreateLinkPayloadResponseData,
+  ILesson,
+} from "@/typings";
 
-export async function createPayment(userId: number, lessonId: string) {
-  const monobankUrl = "https://api.monobank.ua/api/merchant/invoice/create";
-  const callbackUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/monobank/callback`;
-
-  const res = await fetch(monobankUrl, {
-    method: "POST",
-    headers: {
-      "X-Token": process.env.MONOBANK_TOKEN!,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      amount: 10000, // копійки (100.00 грн)
-      ccy: 980,
-      redirectUrl: callbackUrl,
-      webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
-      merchantPaymInfo: {
-        reference: `${userId}_${lessonId}`,
-        destination: `Оплата за урок #${lessonId}`,
+export async function createPaymentLink(payload: ICreateLinkPayload) {
+  const res: Response = await fetch(
+    "https://api.monobank.ua/api/merchant/invoice/create",
+    {
+      method: "POST",
+      headers: {
+        "X-Token": process.env.MONOBANK_TOKEN!,
+        "Content-Type": "application/json",
       },
-    }),
-  });
+      body: JSON.stringify(payload),
+    },
+  );
 
-  console.log(res, "RES");
-
-  const data = await res.json();
-
-  console.log(data, "DATA");
+  const data: ICreateLinkPayloadResponseData = await res.json();
 
   if (!res.ok) throw new Error("Не вдалося створити платіж");
+  return data.pageUrl;
+}
 
-  // Редірект на оплату
-  redirect(data.pageUrl);
+export async function createPaymentForLesson(
+  lesson: ILesson | any,
+  redirectUrl: string,
+) {
+  const { userID } = await verifySession();
+  // const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/monobank/callback`;
+  const payload: ICreateLinkPayload = {
+    amount: lesson.price as number,
+    ccy: 980,
+    redirectUrl,
+    webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
+    merchantPaymInfo: {
+      reference: `${userID}_${lesson.course_id}_${lesson._id}`,
+      destination: `Оплата за урок - ${lesson.title}`,
+    },
+  };
+
+  const paymentUrl: string = await createPaymentLink(payload);
+  redirect(paymentUrl);
+}
+
+export async function createPaymentForCourse(
+  course: ICourse | any,
+  redirectUrl: string,
+) {
+  const { userID } = await verifySession();
+  // const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/monobank/callback`;
+  const payload: ICreateLinkPayload = {
+    amount: course.price,
+    ccy: 980,
+    redirectUrl,
+    webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
+    merchantPaymInfo: {
+      reference: `${userID}_${course._id}_full`,
+      destination: `Оплата за курс - ${course.title}`,
+    },
+  };
+
+  const paymentUrl: string = await createPaymentLink(payload);
+  redirect(paymentUrl);
 }

@@ -6,7 +6,6 @@ import styles from "./index.module.css";
 import { useRouter } from "next/navigation";
 import { ICreateLessonData, IUploadLessonFilePayload } from "@/typings";
 import { updateLesson, uploadLessonFileToS3 } from "@/actions";
-import { Types } from "mongoose";
 
 export default function LessonPage() {
   const {
@@ -131,7 +130,7 @@ export default function LessonPage() {
         payload.transcript_url = data;
       }
 
-      const res = await updateLesson(currentLesson.id as string, payload);
+      const res = await updateLesson(currentLesson._id as string, payload);
       if (res.success) {
         showToast("Урок оновлено!", "success");
         router.back();

@@ -3,7 +3,6 @@
 import styles from "./index.module.css";
 import { useLessons } from "@/hooks";
 import { useState } from "react";
-import LessonDetailsDrawer from "../LessonDetailsDrawer";
 import { CategoryProgress } from "../CategoryProgress";
 import CourseProgress from "../CourseProgress";
 import LessonFeedback from "../LessonFeedback";
@@ -56,13 +55,8 @@ function groupLessons(lessons: any, sectionsInfo: any) {
 
 export default function CourseContentDrawer() {
   const { currentLesson, setCurrentLesson } = useLessons();
-  const [lessonCategory, setLessonCategory] = useState<string>("");
 
   console.log(currentLesson, "currentLesson");
-
-  if (currentLesson) {
-    return <LessonDetailsDrawer lessonCategory={lessonCategory} />;
-  }
 
   let globalIndex = 1;
   const duration = 657;
@@ -116,7 +110,6 @@ export default function CourseContentDrawer() {
                   // className={className}
                   onClick={() => {
                     setCurrentLesson(lesson);
-                    setLessonCategory(section.title);
                   }}
                 >
                   <div className={styles.lessonItem}>

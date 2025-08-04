@@ -151,13 +151,14 @@ const UserSchema: Schema = new Schema(
       {
         lesson_id: { type: Types.ObjectId, ref: "Lesson", required: true },
         course_id: { type: Types.ObjectId, ref: "Course", required: true },
+        purchased_at: { type: Date, default: Date.now },
+        invoice_id: { type: String, required: true },
       },
     ],
     purchased_courses: [
       {
-        type: Types.ObjectId,
-        ref: "Course", // Ссылка на курс
-        required: false,
+        course_id: { type: Types.ObjectId, ref: "Course", required: true },
+        purchased_at: { type: Date, default: Date.now },
       },
     ],
     subscription: {
