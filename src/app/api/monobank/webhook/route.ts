@@ -15,15 +15,21 @@ export async function POST(req: NextRequest) {
   console.log("Raw body from Monobank:", rawBody);
 
   const body: MonobankWebhookPayload = JSON.parse(rawBody);
-  // const body: MonobankWebhookPayload = await req.json();
+  const body123: MonobankWebhookPayload = await req.json();
+
+  console.log("body123", body123);
 
   const { invoiceId, status, reference } = body;
 
-  if (!reference) return new Response("Missing reference", { status: 400 });
+  if (!reference) {
+    console.log("reference", reference);
+    return new Response("Missing reference", { status: 400 });
+  }
 
   const [userID, courseID, lessonID] = reference.split("_");
 
   if (!Types.ObjectId.isValid(userID) || !Types.ObjectId.isValid(courseID)) {
+    console.log("ERROR");
     return new Response("Invalid IDs in reference", { status: 400 });
   }
 
