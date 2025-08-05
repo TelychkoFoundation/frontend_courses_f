@@ -22,7 +22,12 @@ export async function createPaymentLink(payload: ICreateLinkPayload) {
     },
   );
 
+  console.log("response", res);
+  console.log("payload", payload);
+
   const data: ICreateLinkPayloadResponseData = await res.json();
+
+  console.log("data", data);
 
   if (!res.ok) throw new Error("Не вдалося створити платіж");
   return data.pageUrl;
