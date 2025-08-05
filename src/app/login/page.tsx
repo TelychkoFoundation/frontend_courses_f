@@ -3,7 +3,6 @@ import Link from "next/link";
 import AuthButton from "./AuthButton";
 import { FiLinkedin, FiInstagram } from "react-icons/fi";
 import { RiTelegram2Line } from "react-icons/ri";
-// import MonoPaymentTest from "./MonoPaymentTest";
 
 export default async function LoginPage() {
   return (
@@ -15,7 +14,6 @@ export default async function LoginPage() {
           <li>Обирай урок та починай навчання</li>
           <li>Ментор буде поруч</li>
         </ol>
-        {/*<MonoPaymentTest />*/}
         <div className={styles.ctas}>
           <div className={styles.secondary}>
             <AuthButton />

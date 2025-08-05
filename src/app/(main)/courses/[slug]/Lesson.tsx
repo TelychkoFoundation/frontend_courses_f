@@ -34,7 +34,7 @@ export const Lesson = ({ lesson, index }: ILessonProps) => {
 
   return (
     <section className={styles.lesson} key={lesson._id as string}>
-      <VideoContainer videoKey={lesson.video_key} isPaid={isLessonPaid} />
+      <VideoContainer lesson={lesson} isPaid={isLessonPaid} />
       <VideoInfo
         index={index}
         lessonID={lesson._id as string}

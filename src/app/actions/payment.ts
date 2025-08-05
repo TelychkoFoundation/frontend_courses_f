@@ -29,11 +29,10 @@ export async function createPaymentLink(payload: ICreateLinkPayload) {
 }
 
 export async function createPaymentForLesson(
-  lesson: ILesson | any,
+  lesson: ILesson,
   redirectUrl: string,
 ) {
   const { userID } = await verifySession();
-  // const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/monobank/callback`;
   const payload: ICreateLinkPayload = {
     amount: lesson.price as number,
     ccy: 980,

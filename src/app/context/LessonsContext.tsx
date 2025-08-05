@@ -27,6 +27,9 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
   const { showToast } = useToast();
 
   useEffect(() => {
+    console.log(params.lesson_slug, "params.lesson_slug");
+    console.log(currentCourse, "currentCourse");
+
     if (!currentCourse) {
       return;
     }
