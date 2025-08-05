@@ -50,6 +50,8 @@ export async function POST(req: NextRequest) {
           course: courseID,
         });
 
+        console.log(courseLessons, "courseLessons");
+        console.log(user.purchased_lessons, "user.purchased_lessons");
         for (const lesson of courseLessons) {
           const alreadyPurchased: boolean = user.purchased_lessons?.some(
             ({ lesson_id }: IPurchasedLesson): boolean =>
