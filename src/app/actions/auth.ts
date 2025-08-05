@@ -1,28 +1,8 @@
 "use server";
-//
-// import { ITelegramUserData } from "@/typings";
-//
-// const baseURL: string = process.env.SITE_URL || "http://localhost:4000";
-//
-// export const loginUser = async (userData: ITelegramUserData) => {
-//   const response = await fetch(`${baseURL}/api/auth/login`, {
-//     method: "POST",
-//     body: JSON.stringify(userData),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-//
-//   if (!response.ok) {
-//     const text = await response.text();
-//     console.error("Login failed:", text);
-//     throw new Error(`Login failed: ${text}`);
-//   }
-// };
 
 import { ITelegramUserData } from "@/typings";
 import { cookies } from "next/headers";
-import { encrypt, SESSION_KEY } from "@/lib"; // твій JWT helper
+import { encrypt, SESSION_KEY } from "@/lib";
 import { User } from "@/models";
 import { createDBConnection } from "@/lib";
 
@@ -68,7 +48,6 @@ export const loginUser = async (userData: ITelegramUserData) => {
     },
   );
 
-  // Створюємо сесію прямо тут
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   const token = await encrypt({ userID: user.id, expiresAt });
 
