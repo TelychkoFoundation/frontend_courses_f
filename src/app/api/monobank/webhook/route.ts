@@ -25,9 +25,11 @@ export async function POST(req: NextRequest) {
 
   const [userID, courseID, lessonID] = reference.split("_");
 
+  console.log({ userID, courseID, lessonID }, "ref");
+
   if (status === "success") {
     try {
-      const user = await User.findOne({ _id: userID });
+      const user = await User.findOne({ _id: Number(userID) });
 
       console.log(user, "USER");
 
