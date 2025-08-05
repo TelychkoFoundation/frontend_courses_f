@@ -54,11 +54,10 @@ export async function createPaymentForLesson(
 }
 
 export async function createPaymentForCourse(
-  course: ICourse | any,
+  course: ICourse,
   redirectUrl: string,
 ) {
   const { userID } = await verifySession();
-  // const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/monobank/callback`;
   const payload: ICreateLinkPayload = {
     amount: course.price,
     ccy: 980,

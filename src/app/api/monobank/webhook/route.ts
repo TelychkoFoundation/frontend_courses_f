@@ -14,11 +14,9 @@ export const runtime = "nodejs";
 export async function POST(req: NextRequest) {
   await createDBConnection();
 
-  const rawBody = await req.text(); // замість req.json()
-  console.log("Raw body from Monobank:", rawBody);
+  const rawBody = await req.text();
 
   const body: MonobankWebhookPayload = JSON.parse(rawBody);
-  // const body: MonobankWebhookPayload = await req.json();
 
   const { invoiceId, status, reference } = body;
 
@@ -28,13 +26,9 @@ export async function POST(req: NextRequest) {
 
   const [userID, courseID, lessonID] = reference.split("_");
 
-  console.log({ userID, courseID, lessonID }, "ref");
-
   if (status === "success") {
     try {
       const user = await User.findOne({ id: Number(userID) });
-
-      console.log(user, "USER");
 
       if (!user) return new Response("User not found", { status: 404 });
 
