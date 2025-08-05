@@ -20,16 +20,10 @@ export async function POST(req: NextRequest) {
   const { invoiceId, status, reference } = body;
 
   if (!reference) {
-    console.log("reference", reference);
     return new Response("Missing reference", { status: 400 });
   }
 
   const [userID, courseID, lessonID] = reference.split("_");
-
-  if (!Types.ObjectId.isValid(userID) || !Types.ObjectId.isValid(courseID)) {
-    console.log("ERROR");
-    return new Response("Invalid IDs in reference", { status: 400 });
-  }
 
   if (status === "success") {
     try {
