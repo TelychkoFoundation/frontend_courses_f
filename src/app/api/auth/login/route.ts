@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { encrypt } from "@/lib";
+import { encrypt, createDBConnection } from "@/lib";
 import { User } from "@/models";
 
 export async function POST(req: Request) {
@@ -8,6 +8,8 @@ export async function POST(req: Request) {
     console.log(body, "BODY");
     const { id, first_name, last_name, username, photo_url, auth_date, hash } =
       body;
+
+    await createDBConnection();
 
     if (!id) return new NextResponse("Missing user ID", { status: 400 });
 

@@ -23,10 +23,10 @@ export async function encrypt(payload: ISessionPayload) {
 }
 
 export async function decrypt(session: string | undefined = "") {
-  // if (!session || session.split(".").length !== 3) {
-  //   console.error("Invalid or missing token:", session);
-  //   return null;
-  // }
+  if (!session || session.split(".").length !== 3) {
+    console.error("Invalid or missing token:", session);
+    return null;
+  }
 
   try {
     const { payload } = await jwtVerify(session, encodedKey, {

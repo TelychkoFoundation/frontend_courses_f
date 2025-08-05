@@ -7,13 +7,18 @@ export async function createDBConnection() {
     throw new Error("Please define the MONGODB_URI environment variable");
   }
 
+  let isConnected: boolean = false;
+
   if (mongoose.connection.readyState === 1) {
     console.log("Already connected to the database");
     return true;
   }
 
+  if (isConnected) return;
+
   try {
     await mongoose.connect(MONGODB_URI, { bufferCommands: false });
+    isConnected = true;
     console.log("Successfully connected to the database");
     return true;
   } catch (error) {
