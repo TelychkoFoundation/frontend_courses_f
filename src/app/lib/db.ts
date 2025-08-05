@@ -14,7 +14,7 @@ export async function createDBConnection() {
     return true;
   }
 
-  if (isConnected) return;
+  if (isConnected) return true;
 
   try {
     await mongoose.connect(MONGODB_URI, { bufferCommands: false });
