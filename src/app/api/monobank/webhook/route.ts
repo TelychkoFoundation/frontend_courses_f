@@ -15,9 +15,7 @@ export async function POST(req: NextRequest) {
   console.log("Raw body from Monobank:", rawBody);
 
   const body: MonobankWebhookPayload = JSON.parse(rawBody);
-  const body123: MonobankWebhookPayload = await req.json();
-
-  console.log("body123", body123);
+  // const body: MonobankWebhookPayload = await req.json();
 
   const { invoiceId, status, reference } = body;
 
