@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "./index.module.css";
-import { useLessons } from "@/hooks";
-import { useState } from "react";
+import { useRouter, useParams } from "next/navigation";
+import { MouseEvent } from "react";
 import { CategoryProgress } from "../CategoryProgress";
 import CourseProgress from "../CourseProgress";
 import LessonFeedback from "../LessonFeedback";
@@ -54,9 +54,12 @@ function groupLessons(lessons: any, sectionsInfo: any) {
 }
 
 export default function CourseContentDrawer() {
-  const { currentLesson, setCurrentLesson } = useLessons();
+  const router = useRouter();
+  const params = useParams();
 
-  console.log(currentLesson, "currentLesson");
+  const openLesson = (lessonID: string) => {
+    router.push(`/courses/${params.slug}/${lessonID}`);
+  };
 
   let globalIndex = 1;
   const duration = 657;
@@ -106,11 +109,9 @@ export default function CourseContentDrawer() {
 
               return (
                 <li
-                  key={lesson.id}
+                  key={lesson._id as string}
                   // className={className}
-                  onClick={() => {
-                    setCurrentLesson(lesson);
-                  }}
+                  onClick={() => openLesson(lesson._id)}
                 >
                   <div className={styles.lessonItem}>
                     <div

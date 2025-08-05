@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 import VideoContainer from "./VideoContainer";
 import VideoInfo from "./VideoInfo";
 import { ILesson, IPurchasedLesson } from "@/typings";
-import { useLessons, useUser } from "@/hooks";
+import { useUser } from "@/hooks";
 import { MouseEvent, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 
@@ -13,7 +13,6 @@ interface ILessonProps {
 
 export const Lesson = ({ lesson, index }: ILessonProps) => {
   const { user } = useUser();
-  const { setCurrentLesson } = useLessons();
   const router = useRouter();
   const params = useParams();
 
@@ -30,7 +29,6 @@ export const Lesson = ({ lesson, index }: ILessonProps) => {
 
   const openLesson = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    setCurrentLesson(lesson);
     router.push(`/courses/${params.slug}/${lesson._id}`);
   };
 

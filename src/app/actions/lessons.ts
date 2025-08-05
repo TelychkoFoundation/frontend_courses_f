@@ -3,7 +3,6 @@
 import { Lesson, Course, User } from "@/models";
 import { ICreateLessonData, ILesson } from "@/typings";
 import { deleteLessonFromS3 } from "./s3";
-import { Types } from "mongoose";
 
 export const createLesson = async (lessonData: ICreateLessonData) => {
   try {
@@ -30,9 +29,9 @@ export const createLesson = async (lessonData: ICreateLessonData) => {
   }
 };
 
-export const getLessonById = async (lessonId: string) => {
+export const getLessonById = async (id: string) => {
   try {
-    const lesson = await Lesson.findById(lessonId).lean();
+    const lesson = await Lesson.findById(id).lean();
 
     if (!lesson) {
       return { success: false, error: "Урок не знайдено" };

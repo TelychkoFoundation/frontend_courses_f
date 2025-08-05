@@ -2,8 +2,8 @@
 
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { ILesson } from "@/typings";
-import { useCourses } from "@/hooks";
-import { getLessonsForCourse } from "@/actions";
+import { useCourses, useToast } from "@/hooks";
+import { getLessonsForCourse, getLessonById } from "@/actions";
 import { useParams } from "next/navigation";
 
 interface LessonsContextType {
@@ -24,6 +24,7 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
 
   const params = useParams();
   const { currentCourse } = useCourses();
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (!currentCourse) {
@@ -34,18 +35,40 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
-    const getLessons = async () => {
-      const courseLessonsResponse = await getLessonsForCourse(currentCourse.id);
+    const fetchLessons = async () => {
+      const { success, data, error } = await getLessonsForCourse(
+        currentCourse.id,
+      );
 
-      if (!courseLessonsResponse.success) {
+      if (!success) {
+        showToast(error as string, "error");
         return;
       }
 
-      setAllLessons(courseLessonsResponse.data);
+      setAllLessons(data);
     };
 
-    getLessons();
+    fetchLessons();
   }, [currentCourse, params.slug]);
+
+  useEffect(() => {
+    if (params.lesson_slug) {
+      const fetchLesson = async () => {
+        const { success, data, error } = await getLessonById(
+          params.lesson_slug as string,
+        );
+
+        if (!success) {
+          showToast(error as string, "error");
+          return;
+        }
+
+        setCurrentLesson(data);
+      };
+
+      fetchLesson();
+    }
+  }, [params.lesson_slug]);
 
   const clearCurrentLesson = () => {
     setCurrentLesson(null);

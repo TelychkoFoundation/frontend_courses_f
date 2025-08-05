@@ -3,7 +3,7 @@ import "server-only";
 import { SignJWT, jwtVerify, JWTPayload } from "jose";
 import { cookies } from "next/headers";
 import { ISessionPayload } from "@/typings";
-import { cache } from "react";
+// import { cache } from "react";
 
 export const SESSION_KEY = "session";
 const secretKey = process.env.SESSION_SECRET;

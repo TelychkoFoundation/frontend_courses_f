@@ -12,6 +12,7 @@
     flex: 1;
     height: calc(100vh - 64px);
     transition: width 0.3s ease;
+    position: relative;
 }
 
 .currentVideo {
@@ -26,5 +27,33 @@
     padding: 16px;
     font-family: var(--font-primary), sans-serif;
     color: #111;
-    overflow-y: auto;
+    overflow: hidden;
+    transition:
+            max-width 0.3s ease,
+            padding 0.3s ease,
+            opacity 0.3s ease;
+    opacity: 1;
+}
+
+.hidden {
+    max-width: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.showDetailsButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: black;
+    border-radius: 8px;
+    display: flex;
+    padding: 4px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.visible {
+    transition: opacity 0.3s ease;
+    opacity: 1;
 }
