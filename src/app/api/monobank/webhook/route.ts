@@ -25,6 +25,8 @@ export async function POST(req: NextRequest) {
     try {
       const user = await User.findOne({ _id: userID });
 
+      console.log(user, "USER");
+
       if (!user) return new Response("User not found", { status: 404 });
 
       // --- Покупка ВСЬОГО курсу ---
@@ -75,6 +77,8 @@ export async function POST(req: NextRequest) {
           lesson_id.toString() === lessonID,
       );
 
+      console.log(alreadyPurchased, "alreadyPurchased");
+
       if (!alreadyPurchased) {
         user.purchased_lessons.push({
           lesson_id: new Types.ObjectId(lessonID),
@@ -88,6 +92,7 @@ export async function POST(req: NextRequest) {
           user.total_spent += lesson.price;
         }
 
+        console.log(user, "user");
         await user.save();
       }
 
