@@ -2,8 +2,7 @@
 
 import { ITelegramUserData } from "@/typings";
 
-const baseURL: string =
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:4000";
+const baseURL: string = process.env.SITE_URL || "http://localhost:4000";
 
 export const loginUser = async (userData: ITelegramUserData) => {
   const response = await fetch(`${baseURL}/api/auth/login`, {
@@ -16,6 +15,7 @@ export const loginUser = async (userData: ITelegramUserData) => {
 
   if (!response.ok) {
     const text = await response.text();
+    console.error("Login failed:", text);
     throw new Error(`Login failed: ${text}`);
   }
 };
