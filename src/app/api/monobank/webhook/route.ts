@@ -7,10 +7,13 @@ import {
 } from "@/typings";
 import { Types } from "mongoose";
 import { User, Lesson } from "@/models";
+import { createDBConnection } from "@/lib";
 
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
+  await createDBConnection();
+
   const rawBody = await req.text(); // замість req.json()
   console.log("Raw body from Monobank:", rawBody);
 
