@@ -65,6 +65,7 @@ export async function POST(req: Request) {
       expires: expiresAt,
     });
 
+    console.log(response, "response");
     return response;
   } catch (error) {
     console.error("Login error:", error);
