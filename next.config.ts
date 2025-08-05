@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: ["/((?!_next|favicon.ico|api).*)"],
   images: {
     remotePatterns: [new URL("https://t.me/i/userpic/**")],
   },
