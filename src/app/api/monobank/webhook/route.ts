@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
   if (status === "success") {
     try {
-      const user = await User.findOne({ _id: Number(userID) });
+      const user = await User.findOne({ id: Number(userID) });
 
       console.log(user, "USER");
 
