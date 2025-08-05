@@ -6,6 +6,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     console.log(body, "BODY");
+    console.log(process.env.NODE_ENV, "NODE_ENV");
     const { id, first_name, last_name, username, photo_url, auth_date, hash } =
       body;
 
