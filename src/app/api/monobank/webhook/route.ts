@@ -8,8 +8,14 @@ import {
 import { Types } from "mongoose";
 import { User, Lesson } from "@/models";
 
+export const runtime = "nodejs";
+
 export async function POST(req: NextRequest) {
-  const body: MonobankWebhookPayload = await req.json();
+  const rawBody = await req.text(); // замість req.json()
+  console.log("Raw body from Monobank:", rawBody);
+
+  const body: MonobankWebhookPayload = JSON.parse(rawBody);
+  // const body: MonobankWebhookPayload = await req.json();
 
   const { invoiceId, status, reference } = body;
 
