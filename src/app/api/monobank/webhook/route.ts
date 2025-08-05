@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
         }
 
         const courseLessons: ILesson[] = await Lesson.find({
-          course: courseID,
+          course_id: courseID,
         });
 
         console.log(courseLessons, "courseLessons");
