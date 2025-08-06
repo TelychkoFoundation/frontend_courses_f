@@ -50,8 +50,6 @@ export async function POST(req: NextRequest) {
           course_id: courseID,
         });
 
-        console.log(courseLessons, "courseLessons");
-        console.log(user.purchased_lessons, "user.purchased_lessons");
         for (const lesson of courseLessons) {
           const alreadyPurchased: boolean = user.purchased_lessons?.some(
             ({ lesson_id }: IPurchasedLesson): boolean =>
@@ -71,6 +69,18 @@ export async function POST(req: NextRequest) {
             }
           }
         }
+
+        // const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
+        //
+        // await User.updateOne(
+        //   { id },
+        //   {
+        //     $set: {
+        //       "mentorship.expiresAt": expiresAt,
+        //       "mentorship.questionsLeft": 30,
+        //     },
+        //   },
+        // );
 
         await user.save();
         return new Response("Course purchased successfully", { status: 200 });
@@ -96,6 +106,18 @@ export async function POST(req: NextRequest) {
         if (lesson?.price) {
           user.total_spent += lesson.price;
         }
+
+        // const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 1 day
+        //
+        // await User.updateOne(
+        //   { id: Number(userID) },
+        //   {
+        //     $set: {
+        //       "mentorship.expiresAt": expiresAt,
+        //       "mentorship.questionsLeft": 2,
+        //     },
+        //   },
+        // );
 
         console.log(user, "user");
         await user.save();

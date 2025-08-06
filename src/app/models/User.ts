@@ -236,6 +236,11 @@ const UserSchema: Schema = new Schema(
       default: 0, // Общая сумма потраченных средств
     },
 
+    mentorship: {
+      expiresAt: { type: Date, default: null },
+      questionsLeft: { type: Number, default: 0 },
+    },
+
     // Последний вход
     lastLogin: {
       type: Date,

@@ -37,6 +37,10 @@ export const loginUser = async (userData: ITelegramUserData) => {
         reviews: [],
         referrals: [],
         my_courses: [],
+        mentorship: {
+          expiresAt: null,
+          questionsLeft: 0,
+        },
       },
       $set: {
         lastLogin: now,

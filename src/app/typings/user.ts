@@ -72,6 +72,11 @@ export interface IMyCourses {
   status: "in_progress" | "completed"; // Был ли выдан бонус
 }
 
+export interface MentorshipData {
+  expiresAt: Date | null;
+  questionsLeft: number;
+}
+
 // Полная информация о пользователе в базе данных (с расширением Telegram данных)
 export type IUserDatabaseData = ITelegramUserData &
   Document & {
@@ -90,7 +95,7 @@ export type IUserDatabaseData = ITelegramUserData &
 
     total_spent: number; // Потраченная пользователем сумма
     lastLogin?: Date; // Последний вход пользователя
-
+    mentorship?: MentorshipData;
     createdAt?: Date; // Автоматически генерируемое поле при записи (из Mongoose)
     updatedAt?: Date; // Автоматически обновляемое поле при записи (из Mongoose)
   };

@@ -4,6 +4,7 @@ import { useState, MouseEvent } from "react";
 import { GiNinjaHead } from "react-icons/gi";
 import { FaRegFileLines } from "react-icons/fa6";
 import Title from "./Title";
+import { useCourses, useUser } from "@/hooks";
 
 interface IVideoInfoProps {
   title: string;
@@ -25,9 +26,12 @@ export default function VideoInfo({
   xp_reward,
   transcript_url,
   isPaid,
+  lessonID,
   onClick,
 }: IVideoInfoProps) {
   const [isVideoInfoHovered, setVideoInfoHovered] = useState<boolean>(false);
+  const { user } = useUser();
+  const { currentCourse } = useCourses();
 
   const openDocument = (event: MouseEvent<SVGElement>) => {
     event.stopPropagation();
@@ -35,6 +39,13 @@ export default function VideoInfo({
 
   const openAssist = (event: MouseEvent<SVGElement>) => {
     event.stopPropagation();
+    const isFullCourse = false;
+    const payload = `${user?.id}_${currentCourse?._id}_${lessonID}_${isFullCourse ? 1 : 0}`;
+
+    window.open(
+      `https://t.me/mentorship_frontend_courses_bot?start=${payload}`,
+      "_blank",
+    );
   };
 
   return (
