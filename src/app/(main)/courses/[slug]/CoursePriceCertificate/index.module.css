@@ -1,0 +1,128 @@
+.coursePriceCertificateContainer {
+    display: flex;
+    width: 300px;
+    padding: 24px 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--light-green-accent);
+    height: 121px;
+}
+
+.coursePriceCertificateContainer.coursePriceCertificateContainerOpen  {
+    height: 420px;
+    gap: 16px;
+}
+
+.coursePriceCertificateContainer.background {
+    gap: 12px;
+    background: var(--background);
+}
+
+.coursePriceCertificateMessage {
+    color: var(--foreground);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    text-transform: uppercase;
+}
+
+.coursePriceCertificateButtonInner {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.coursePriceCertificateCurrent {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    color: var(--background);
+    font-style: normal;
+}
+
+.coursePriceCertificateCurrent.open {
+    color: var(--foreground);
+}
+
+.coursePriceCertificateCurrentPrice {
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+}
+
+.coursePriceCertificateCurrency {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.coursePriceCertificateOldPrice {
+    color: var(--outline);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: line-through;
+}
+
+.coursePriceCertificateOldPrice.open {
+    color: var(--secondary);
+}
+
+.optionsList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    list-style: none;
+}
+
+.optionsList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--foreground);
+    text-align: center;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.certificatePreviewContent {
+    color: var(--secondary);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.24px;
+}
+
+.certificateContainer {
+    height: 160px;
+    flex-shrink: 0;
+    align-self: stretch;
+    aspect-ratio: 61/40;
+    border-radius: 4px;
+    border: 1px solid var(--outline);
+}
+
+.calendarButtonContent {
+    margin-right: 4px;
+}
+
+.calendarButtonContainer button {
+    padding: 8px 24px;
+}

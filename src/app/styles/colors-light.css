@@ -1,7 +1,5 @@
 :root {
     /* Main */
-    --background: #ffffff;
-    --foreground: #171717; /* text */
     --secondary-text-color: #666;
 
     /* Dropdown */
@@ -14,9 +12,6 @@
     /* Others */
     --logout-color: #e00;
     --divider-color: #eee;
-
-    /* Shadows */
-    --box-shadow-header: 0 2px 6px rgba(0, 0, 0, 0.06);
 
     --border-color: rgba(0, 0, 0, 0.3);
 
@@ -95,4 +90,38 @@
 
     /* Анимации */
     --pulse-scale: 1.05;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    --foreground: #181818;
+    --foreground-muted: #3C3C3C;
+    --secondary: #5D5D5D;
+    --outline: #DADADA;
+    --background: #FFFFFF;
+    --background-muted: #EFEFEE;
+    --background-hover: #DDDDDD;
+    --accent: #49CA8E;
+    --light-green-accent: #B6EAD2;
+    --light-orange: #FAE8D6;
+    --new: #D81A1A;
+    --basic: #47B4EB;
+    --advanced: #C452E0;
+    --professional: #DF4985;
+    --not-started: #E88C30;
+    --in-development: #DADADA;
+    --r-big: 24px;
+    --pill: 400px;
+    --new-transparency: 20px;
 }

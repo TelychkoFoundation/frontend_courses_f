@@ -2,23 +2,22 @@
 
 import { ReactElement } from "react";
 import styles from "./index.module.css";
-import { CoursesFilterType } from "@/typings";
 
 interface ITabsProps {
-  data: { id: CoursesFilterType; name: string }[];
-  onSelect: (tab: CoursesFilterType) => void;
-  param: string | null;
+  data: { id: string; name: string }[];
+  onSelectAction: (route: string) => void;
+  selected: string;
 }
 
-export default function Tabs({ data, onSelect, param }: ITabsProps) {
+export default function Tabs({ data, onSelectAction, selected }: ITabsProps) {
   return (
-    <div className={styles.tabsContainer}>
+    <div className={styles.tabs}>
       {data.map(
         ({ id, name }): ReactElement => (
           <div
             key={id}
-            className={`${styles.tab} ${id === param ? styles.active : ""}`}
-            onClick={() => onSelect(id)}
+            className={`${styles.tab} ${selected.startsWith(id) ? styles.active : ""}`}
+            onClick={() => onSelectAction(id)}
           >
             {name}
           </div>

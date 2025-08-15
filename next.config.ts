@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   matcher: ["/((?!_next|favicon.ico|api).*)"],
   images: {
     remotePatterns: [new URL("https://t.me/i/userpic/**")],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   experimental: {
     serverActions: {

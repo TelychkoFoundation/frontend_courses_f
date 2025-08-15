@@ -54,7 +54,7 @@ export interface ICourseBase extends ICourseBasePayload {
 }
 
 export interface ICourse extends ICourseBase {
-  _id: Types.ObjectId;
+  _id: Types.ObjectId | string;
 }
 
 export interface ICourseBasePayload {

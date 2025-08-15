@@ -1,64 +1,58 @@
 import Link from "next/link";
-import { verifySession } from "@/lib";
+import Image from "next/image";
 import { services } from "@/constants";
-import { VscFilePdf } from "react-icons/vsc";
+import { Button } from "@/components";
+import { GoalImage, KeyboardImage } from "@/images";
+import { IService } from "@/typings";
 import styles from "./page.module.css";
 
 export default async function ServicesPage() {
-  const { isAuth } = await verifySession();
+  const renderBackgroundImage = (id: string) => {
+    if (id === "project-help") {
+      return (
+        <Image
+          src={GoalImage}
+          width={300}
+          height={300}
+          alt="Goal image"
+          className={styles.backgroundImage}
+        />
+      );
+    }
+
+    if (id === "individual-lessons") {
+      return (
+        <Image
+          src={KeyboardImage}
+          width={600}
+          height={340}
+          alt="Keyboard image"
+          className={styles.backgroundImage}
+        />
+      );
+    }
+
+    return null;
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.headerRow}>
-        <div>
-          <h1 className={styles.heading}>Послуги</h1>
-          <p className={styles.subheading}>
-            Виберіть те, що відповідає вашому рівню, цілям та формату навчання.
-          </p>
-        </div>
-
-        <Link href="/courses?filter=all" className="button">
-          До курсів
-        </Link>
-      </div>
-
-      <div className={styles.grid}>
-        {services.map(service => (
-          <div key={service.id} className={styles.card}>
-            <h2>{service.title}</h2>
+    <div className={styles.services}>
+      {services.map((service: IService) => (
+        <div key={service.id} className={styles.service}>
+          {renderBackgroundImage(service.id)}
+          <div className={styles.serviceHeader}>
+            <h2 className={styles.title}>{service.title}</h2>
             <p className={styles.short}>{service.short}</p>
-            <p className={styles.description}>{service.description}</p>
-            {service.price && (
-              <div className={styles.price}>{service.price}</div>
-            )}
-            <div className={styles.cta}>
-              {service.cta.authAlternative ? (
-                <Link
-                  href={
-                    isAuth
-                      ? service.cta.authAlternative.loggedIn.href
-                      : service.cta.authAlternative.guest.href
-                  }
-                  className={styles.link}
-                >
-                  {isAuth
-                    ? service.cta.authAlternative.loggedIn.label
-                    : service.cta.authAlternative.guest.label}
-                </Link>
-              ) : (
-                <div className={styles.bottomLink}>
-                  <Link href={service.cta.href} className={styles.link}>
-                    {service.cta.label}
-                  </Link>
-                  {service.id === "skill-check" ? (
-                    <VscFilePdf size={24} className={styles.pdf} />
-                  ) : null}
-                </div>
-              )}
-            </div>
           </div>
-        ))}
-      </div>
+          <p className={styles.description}>{service.description}</p>
+          <div className={styles.footer}>
+            <p className={styles.price}>{service.price}</p>
+            <Link href={service.cta.href}>
+              <Button>{service.cta.label}</Button>
+            </Link>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -1,0 +1,148 @@
+.currentLessonOption {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--background);
+    overflow: hidden;
+    transition: flex 0.3s ease-in-out;
+    padding: 24px 40px;
+    cursor: pointer;
+}
+
+.currentLessonOption.active {
+    padding: 40px 40px 24px 40px;
+    flex: 1;
+}
+
+.currentLessonOption.disabled {
+    cursor: not-allowed;
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.descriptionTitle {
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px;
+}
+
+.descriptionTitleCollapsed {
+    color: var(--foreground);
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.descriptionContent {
+    color: var(--foreground);
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.feedback {
+    color: var(--foreground-muted);
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    margin-left: auto;
+}
+
+.downloadIcon, .practiceIcon {
+    fill: var(--foreground);
+    width: 20px;
+    height: 20px;
+}
+
+.documentContent, .practiceContent {
+    color: var(--foreground-muted);
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: -12px;
+    overflow: scroll;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.collapsedSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.collapsedTitle {
+    color: var(--foreground);
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.collapsedSection img {
+    color: var(--foreground) !important;
+}
+
+.mentorshipDescription {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--secondary);
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.alert {
+    color: var(--new);
+}
+
+.mentorshipContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    flex: 1 0 0;
+}
+
+.divider {
+    stroke: var(--in-development);
+}
+
+.lockIcon {
+    width: 16px;
+    height: 16px;
+}

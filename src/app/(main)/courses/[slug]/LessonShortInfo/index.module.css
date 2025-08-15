@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    height: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.views {
+    color: var(--secondary);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.progressBar {
+    margin-left: auto;
+    line-height: 0;
+}

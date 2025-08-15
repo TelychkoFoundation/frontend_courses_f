@@ -1,0 +1,44 @@
+.paginationSection {
+    display: flex;
+    width: 50%;
+    height: 113px;
+    padding: 24px 40px;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--background);
+    cursor: pointer;
+}
+
+.title {
+    color: var(--secondary);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    text-transform: uppercase;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    color: var(--foreground);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.inDev {
+    color: var(--secondary);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+}

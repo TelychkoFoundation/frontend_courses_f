@@ -1,44 +1,33 @@
-/* Контейнер для табов */
-.tabsContainer {
+.tabs {
     display: flex;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--divider-color, #ebecee); /* Разделительная линия внизу */
+    padding: 0 4px;
+    align-items: center;
 }
 
-/* Сами табы */
 .tab {
-    padding: 8px 16px;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--tab-text-color, #666); /* Текст вкладки */
-    /*text-transform: uppercase; !* Заглавные буквы *!*/
-    cursor: pointer;
-    position: relative; /* Для активной линии */
-    transition: color 0.3s ease;
-}
-
-/* Hover для вкладок */
-.tab:hover {
-    color: var(--tab-hover-text-color, #333); /* Текст при наведении */
-}
-
-/* Активный таб */
-.tab.active {
+    display: inline-flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     color: var(--foreground);
-    border-bottom: 1px solid var(--foreground);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
 }
 
-/* Линия для активного таба */
-.tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--tab-active-line-color, #000); /* Подчёркивание активного таба */
-    border-radius: 2px;
-    transition: all 0.3s ease;
+.tab.active {
+    border-bottom: 2px solid var(--foreground);
+}
+
+.tab.active.tab:hover {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+
+.tab:hover {
+    color: var(--accent);
 }

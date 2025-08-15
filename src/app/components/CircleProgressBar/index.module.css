@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: fadeInZoom 0.4s ease;
+    transition: transform 0.2s ease;
+    line-height: 0;
+}
+
+.wrapper:hover {
+    transform: scale(1.05);
+}
+
+.wrapper svg {
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.primaryCircle {
+    stroke: var(--background-muted);
+}
+
+.secondaryCircle {
+    stroke: var(--accent);
+    transition: stroke-dashoffset 0.3s ease-in-out;
+}
+
+.text {
+    color: var(--secondary);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.coloured {
+    color: var(--accent);
+}
+
+@keyframes fadeInZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

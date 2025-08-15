@@ -1,0 +1,18 @@
+export { default as LightModeIcon } from "./light-mode-icon.svg";
+export { default as DarkModeIcon } from "./dark-mode-icon.svg";
+export { default as NewCourseShadow } from "./new-course-shadow";
+export { default as GoalImage } from "./goal.png";
+export { default as KeyboardImage } from "./keyboard.png";
+export { default as NotFoundImage } from "./404.png";
+export { default as CheckIcon } from "./check";
+export { default as CalendarIcon } from "./calendar.svg";
+export { default as DownloadIcon } from "./download";
+export { default as PracticeIcon } from "./practice-icon";
+export { default as LockIcon } from "./lock.svg";
+export { default as DoneIcon } from "./done.svg";
+export { default as LockDarkIcon } from "./lock-dark.svg";
+export { default as CircleLockIcon } from "./circle-lock";
+export { default as CircleDoneIcon } from "./circle-done";
+export { default as DividerVertical } from "./divider-vertical";
+export { default as TelegramIcon } from "./telegram.svg";
+export * from "./course-icons";

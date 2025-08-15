@@ -1,17 +1,24 @@
 "use client";
 
-import { createContext, useState, ReactNode, useEffect } from "react";
-import { ILesson } from "@/typings";
-import { useCourses, useToast } from "@/hooks";
+import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
+import {
+  ICategoryLesson,
+  ICategoryStructure,
+  IPurchasedLesson,
+} from "@/typings";
+import { useCourses, useToast, useUser } from "@/hooks";
 import { getLessonsForCourse, getLessonById } from "@/actions";
 import { useParams } from "next/navigation";
+import { transformLessonByCategory, transformLessonsByCategory } from "@/utils";
+import { categories } from "@/constants";
 
 interface LessonsContextType {
-  allLessons: ILesson[] | null;
-  setAllLessons: (allLessons: ILesson[]) => void;
-  currentLesson: ILesson | null;
-  setCurrentLesson: (currentLesson: ILesson | null) => void;
+  allLessons: ICategoryStructure[] | null;
+  setAllLessons: (allLessons: ICategoryStructure[]) => void;
+  currentLesson: ICategoryLesson | null;
+  setCurrentLesson: (currentLesson: ICategoryLesson | null) => void;
   clearCurrentLesson: () => void;
+  isCurrentLessonPaid: boolean;
 }
 
 export const LessonsContext = createContext<LessonsContextType | undefined>(
@@ -19,17 +26,30 @@ export const LessonsContext = createContext<LessonsContextType | undefined>(
 );
 
 export const LessonsProvider = ({ children }: { children: ReactNode }) => {
-  const [allLessons, setAllLessons] = useState<ILesson[] | null>(null);
-  const [currentLesson, setCurrentLesson] = useState<ILesson | null>(null);
+  const [allLessons, setAllLessons] = useState<ICategoryStructure[] | null>(
+    null,
+  );
+  const [currentLesson, setCurrentLesson] = useState<ICategoryLesson | null>(
+    null,
+  );
 
   const params = useParams();
   const { currentCourse } = useCourses();
+  const { user } = useUser();
   const { showToast } = useToast();
 
-  useEffect(() => {
-    console.log(params.slug, "params.slug");
-    console.log(currentCourse, "currentCourse");
+  const isCurrentLessonPaid: boolean = useMemo(() => {
+    if (user && currentLesson) {
+      return !!user.purchased_lessons?.find(
+        (purchasedLesson: IPurchasedLesson): boolean =>
+          purchasedLesson.lesson_id === currentLesson.lesson._id,
+      );
+    }
 
+    return false;
+  }, [currentLesson, user]);
+
+  useEffect(() => {
     if (!currentCourse) {
       return;
     }
@@ -48,7 +68,12 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
         return;
       }
 
-      setAllLessons(data);
+      const lessons: ICategoryStructure[] = transformLessonsByCategory(
+        data,
+        categories,
+      );
+
+      setAllLessons(lessons);
     };
 
     fetchLessons();
@@ -66,7 +91,12 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
           return;
         }
 
-        setCurrentLesson(data);
+        const lesson: ICategoryLesson = transformLessonByCategory(
+          data,
+          categories,
+        );
+
+        setCurrentLesson(lesson);
       };
 
       fetchLesson();
@@ -85,6 +115,7 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
         currentLesson,
         setCurrentLesson,
         clearCurrentLesson,
+        isCurrentLessonPaid,
       }}
     >
       {children}

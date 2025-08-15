@@ -1,0 +1,85 @@
+.lesson {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    height: 287px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--background);
+    cursor: pointer;
+}
+
+.lesson:hover {
+    border: 1px solid var(--secondary);
+}
+
+.poster {
+    position: relative;
+    line-height: 0;
+    width: 100%;
+    height: 149px;
+}
+
+.darker::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000066;
+    z-index: 1;
+}
+
+.donePoster {
+    opacity: 0.5;
+}
+
+.lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.lock button {
+    padding: 8px 24px;
+}
+
+.payButton {
+    padding: 8px 20px !important;
+}
+
+.price {
+    color: var(--background);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    margin-left: 4px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.title {
+    color: var(--foreground);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 23px;
+}

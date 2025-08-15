@@ -12,6 +12,8 @@ interface CoursesContextType {
   setMyCourses: (myCourses: ICourse[]) => void;
   currentCourse: ICourse | null;
   setCurrentCourse: (currentCourse: ICourse) => void;
+  currentCourseDetailsVisibility: boolean;
+  setCurrentCourseDetailsVisibility: (visible: boolean) => void;
 }
 
 export const CoursesContext = createContext<CoursesContextType | undefined>(
@@ -22,6 +24,8 @@ export const CoursesProvider = ({ children }: { children: ReactNode }) => {
   const [allCourses, setAllCourses] = useState<ICourse[] | null>(null);
   const [myCourses, setMyCourses] = useState<ICourse[] | null>(null);
   const [currentCourse, setCurrentCourse] = useState<ICourse | null>(null);
+  const [currentCourseDetailsVisibility, setCurrentCourseDetailsVisibility] =
+    useState<boolean>(false);
 
   const params = useParams();
 
@@ -52,6 +56,8 @@ export const CoursesProvider = ({ children }: { children: ReactNode }) => {
         setMyCourses,
         currentCourse,
         setCurrentCourse,
+        currentCourseDetailsVisibility,
+        setCurrentCourseDetailsVisibility,
       }}
     >
       {children}

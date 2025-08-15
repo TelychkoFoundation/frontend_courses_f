@@ -1,9 +1,17 @@
 .avatarSkeleton {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    display: flex;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 400px;
+    border: 1px solid var(--outline);
     background: var(--skeleton-bg);
     animation: pulse 1.5s infinite ease-in-out;
+
 }
 
 @keyframes pulse {

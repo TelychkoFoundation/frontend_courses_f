@@ -9,7 +9,7 @@ import {
 import "../lib/envConfig.ts";
 import { s3 } from "@/lib";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { transliterate } from "../utils";
+import { transliterate } from "@/utils";
 import { IUploadLessonFilePayload } from "@/typings";
 
 export async function uploadLessonFileToS3(payload: IUploadLessonFilePayload) {

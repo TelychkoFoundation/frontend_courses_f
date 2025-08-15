@@ -2,10 +2,8 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #0a0a0a;
-        --foreground: #ededed;
         --secondary-text-color: #aaa;
 
-        --box-shadow-header: 0 2px 6px rgba(255, 255, 255, 0.1);
         --dropdown-bg: #1e1e1e;
         --dropdown-border: #444;
         --dropdown-shadow: 0 10px 24px rgba(0, 0, 0, 0.8);
@@ -22,24 +20,24 @@
         --card-hover-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 
         /* Primary Button */
-        --button-bg: #222325;                   /* Тёмный фон по умолчанию */
-        --button-border-color: #ededed;           /* Тёмная граница */
-        --button-text-color: #ededed;          /* Белый текст */
-        --button-hover-bg: #333335;            /* Более яркий тёмный фон при наведении */
-        --button-hover-text-color: #ffffff;    /* Белый текст при наведении */
-        --button-hover-border-color: #555;     /* Граница при наведении */
-        --button-disabled-bg: #1d1d1f;         /* Фон для отключённой кнопки */
-        --button-disabled-text-color: #555;    /* Тёмно-серый текст для отключённой кнопки */
+        --button-bg: #222325; /* Тёмный фон по умолчанию */
+        --button-border-color: #ededed; /* Тёмная граница */
+        --button-text-color: #ededed; /* Белый текст */
+        --button-hover-bg: #333335; /* Более яркий тёмный фон при наведении */
+        --button-hover-text-color: #ffffff; /* Белый текст при наведении */
+        --button-hover-border-color: #555; /* Граница при наведении */
+        --button-disabled-bg: #1d1d1f; /* Фон для отключённой кнопки */
+        --button-disabled-text-color: #555; /* Тёмно-серый текст для отключённой кнопки */
         --button-disabled-border-color: #333;
 
         /* Skeleton */
-        --skeleton-bg: #2a2a2a;             /* Фон для скелетона */
-        --skeleton-pulse-start: #333333;    /* Начальный цвет анимации */
-        --skeleton-pulse-middle: #444444;   /* Средний цвет анимации */
-        --skeleton-pulse-end: #333333;      /* Конечный цвет анимации */
-        --skeleton-icon-bg: #444444;        /* Фон для иконки */
-        --skeleton-title-bg: #555555;       /* Фон для заголовка */
-        --skeleton-subtitle-bg: #666666;    /* Фон для подзаголовка */
+        --skeleton-bg: #2a2a2a; /* Фон для скелетона */
+        --skeleton-pulse-start: #333333; /* Начальный цвет анимации */
+        --skeleton-pulse-middle: #444444; /* Средний цвет анимации */
+        --skeleton-pulse-end: #333333; /* Конечный цвет анимации */
+        --skeleton-icon-bg: #444444; /* Фон для иконки */
+        --skeleton-title-bg: #555555; /* Фон для заголовка */
+        --skeleton-subtitle-bg: #666666; /* Фон для подзаголовка */
         --skeleton-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
         /* Tabs */
@@ -93,18 +91,34 @@
         --pulse-scale: 1.1;
     }
 
+    /*--foreground: #E6E6E6;*/
+    /*--foreground-muted: #CFCFCF;*/
+    /*--secondary: #9A9A9A;*/
+    /*--outline: #444444;*/
+    /*--background: #181818;*/
+    /*--background-muted: #232323;*/
+    /*--background-hover: #444444;*/
+    /*--accent: #3AC584;*/
+    /*--light-green-accent: #009973;*/
+    /*--light-orange: #504235;*/
+    /*--new: #D81A1A;*/
+    /*--basic: #47B4EB;*/
+    /*--advanced: #C452E0;*/
+    /*--professional: #DF4985;*/
+    /*--not-started: #E88C30;*/
+    /*--in-development: #DADADA;*/
+    /*--r-big: 24px;*/
+    /*--pill: 400px;*/
+    /*--new-transparency: 40px;*/
+
     html {
         color-scheme: dark;
     }
 }
 
-/* Manual */
 .theme-dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
     --secondary-text-color: #aaa;
 
-    --box-shadow-header: 0 2px 6px rgba(255, 255, 255, 0.1);
     --dropdown-bg: #1e1e1e;
     --dropdown-border: #444;
     --dropdown-shadow: 0 10px 24px rgba(0, 0, 0, 0.8);
@@ -188,4 +202,24 @@
 
     /* Анимации */
     --pulse-scale: 1.1;
+
+    --foreground: #E6E6E6;
+    --foreground-muted: #CFCFCF;
+    --secondary: #9A9A9A;
+    --outline: #444444;
+    --background: #181818;
+    --background-muted: #232323;
+    --background-hover: #444444;
+    --accent: #3AC584;
+    --light-green-accent: #009973;
+    --light-orange: #504235;
+    --new: #D81A1A;
+    --basic: #47B4EB;
+    --advanced: #C452E0;
+    --professional: #DF4985;
+    --not-started: #E88C30;
+    --in-development: #DADADA;
+    --r-big: 24px;
+    --pill: 400px;
+    --new-transparency: 40px;
 }

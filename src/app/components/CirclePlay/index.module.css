@@ -1,0 +1,8 @@
+.background {
+    stroke: var(--background-muted);
+}
+
+.progress {
+    stroke: var(--accent);
+    transition: stroke-dashoffset 0.3s ease-in-out;
+}

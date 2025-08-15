@@ -2,43 +2,85 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 32px;
-    box-shadow: var(--box-shadow-header);
+    padding: 16px 96px;
     position: fixed;
     top: 0;
     width: 100vw;
     z-index: 1000;
-    height: 64px;
+    height: 80px;
     background-color: var(--background);
-    font-family: var(--font-primary), Arial, Helvetica, sans-serif;
 }
 
 .logo {
-    border-radius: 9999px;
-    object-fit: cover;
-    border: 2px solid var(--divider-color);
-    cursor: pointer;
-    user-select: none;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
 }
 
 .nav {
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: 28px;
 }
 
-.link {
-    text-decoration: none;
+.languages {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.language {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 23px;
+    text-align: center;
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.selectedLanguage {
+    width: 42px;
     color: var(--foreground);
-    font-weight: 500;
-    transition: color 0.2s ease;
-    user-select: none;
 }
 
-.link:hover, .underline {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+.avatar {
+    display: flex;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 400px;
+    border: 1px solid var(--outline);
 }
+
+.xpContainer {
+    display: flex;
+    padding: 6px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    border: 2px solid var(--not-started);
+    background: var(--light-orange);
+}
+
+.xpResult {
+    color: var(--foreground);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+
+
 
 @media (max-width: 480px) {
     .link {
@@ -76,11 +118,6 @@
 
 .divider {
     border-top: 1px solid var(--divider-color);
-}
-
-.theme {
-    line-height: 0;
-    cursor: pointer;
 }
 
 @keyframes fadeIn {

@@ -1,0 +1,97 @@
+.baseButton {
+    display: inline-flex;
+    height: 46px;
+    padding: 8px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: var(--background);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    border-radius: 32px;
+    width: 100%;
+}
+
+.primary {
+    background: var(--foreground);
+}
+
+.primary:hover {
+    background: var(--foreground-muted);
+}
+
+.secondary {
+    background: var(--background-muted);
+    color: var(--foreground);
+}
+
+.secondary:hover {
+    background: var(--background-hover);
+}
+
+.outline {
+    border: 1px solid var(--foreground);
+    color: var(--foreground);
+    background: var(--background);
+}
+
+.outline:hover {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    background: var(--background);
+}
+
+.telegram {
+    background-color: #0088cc;
+    color: white;
+}
+
+.telegram:hover {
+    background-color: #006699;
+}
+
+.number, .number:hover {
+    display: flex;
+    width: 48px;
+    height: 46px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 40px;
+    border: 1px solid var(--outline);
+    color: var(--foreground);
+    text-align: center;
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background: var(--background);
+    cursor: pointer;
+}
+
+.number:focus {
+    color: var(--background);
+    background: linear-gradient(180deg, var(--foreground-muted) 0%, var(--foreground) 100%);
+}
+
+.play {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.play:hover {
+    background: none;
+}
+
+.disabled {
+    cursor: not-allowed;
+}

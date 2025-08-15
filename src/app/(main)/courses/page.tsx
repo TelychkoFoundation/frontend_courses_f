@@ -1,15 +1,9 @@
-import Header from "./header";
-import List from "./list";
-import DrawerWrapper from "../drawerContent/wrapper";
+import CourseList from "./CourseList";
 
-export default async function Page({ searchParams }: { searchParams: any }) {
-  const { filter } = await searchParams;
-
+export default async function Page() {
   return (
-    <>
-      <Header />
-      <List filter={filter || ""} />
-      <DrawerWrapper />
-    </>
+    <div>
+      <CourseList />
+    </div>
   );
 }

@@ -1,35 +1,27 @@
 "use client";
 
-import { QueryDrawerType, ILesson } from "@/typings";
-import { Drawer, LessonSkeleton } from "@/components";
-import { Lesson } from "./Lesson";
-import { useCourses, useLessons } from "@/hooks";
-import LessonsHeader from "./LessonsHeader";
-import CourseContentDrawer from "./CourseContentDrawer";
+import CourseInfo from "./CourseInfo";
+import CoursePriceCertificate from "./CoursePriceCertificate";
+import Lessons from "./Lessons";
+import Contents from "./Contents";
+import { useLessons } from "@/hooks";
 import styles from "./page.module.css";
 
 export default function CoursePage() {
   const { allLessons } = useLessons();
-  const { currentCourse } = useCourses();
 
   return (
-    <>
-      <LessonsHeader />
-      <main className={styles.lessonsContainer}>
-        {!allLessons
-          ? Array.from({ length: 12 }).map((_, idx) => (
-              <LessonSkeleton key={idx} />
-            ))
-          : allLessons.map((lesson: ILesson, index: number) => (
-              <Lesson key={index} index={index} lesson={lesson} />
-            ))}
-      </main>
-      <Drawer
-        title={currentCourse?.title}
-        drawerID={QueryDrawerType.CourseContentsDrawer}
-      >
-        <CourseContentDrawer />
-      </Drawer>
-    </>
+    <div className={styles.courseLessonsContainer}>
+      <section className={styles.courseContainer}>
+        <CourseInfo />
+        <CoursePriceCertificate />
+      </section>
+      <section className={styles.lessonsContent}>
+        <Contents allLessons={allLessons || []} />
+        <div className={styles.lessonsWrapper}>
+          <Lessons allLessons={allLessons || []} />
+        </div>
+      </section>
+    </div>
   );
 }

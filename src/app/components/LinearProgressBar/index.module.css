@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.border {
+    stroke: var(--outline);
+}
+
+.progress {
+    fill: var(--accent);
+}
+
+.message {
+    color: var(--foreground);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.24px;
+}

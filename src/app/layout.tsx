@@ -1,18 +1,46 @@
 import type { Metadata } from "next";
-import { ToastProvider, ThemeProvider } from "@/context";
-import { ToastContainer } from "@/components";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { Inter } from "next/font/google";
+import { ToastProvider, ThemeProvider, UserProvider } from "@/context";
+import { ToastContainer, Header } from "@/components";
 import { ReactNode } from "react";
 import { createDBConnection } from "@/lib";
 import "./styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-primary",
-  subsets: ["latin"],
+const taktikaFont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Taktika/TaktikaSans-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Taktika/TaktikaSans-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Taktika/TaktikaSans-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Taktika/TaktikaSans-Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Taktika/TaktikaSans-Heavy.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-taktika",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-secondary",
+const interFont = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -31,10 +59,13 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${taktikaFont.variable} ${interFont.variable}`}>
         <ThemeProvider>
           <ToastProvider>
-            {isDatabaseConnected ? children : null}
+            <UserProvider>
+              <Header />
+              {isDatabaseConnected ? children : null}
+            </UserProvider>
             <ToastContainer />
           </ToastProvider>
         </ThemeProvider>

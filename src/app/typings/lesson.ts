@@ -48,3 +48,13 @@ export interface IUploadLessonFilePayload {
   course: CourseKeyTypes;
   title: string;
 }
+
+export interface ICategoryStructure {
+  category: string;
+  lessons: ILesson[];
+}
+
+export interface ICategoryLesson {
+  category: string;
+  lesson: ILesson;
+}

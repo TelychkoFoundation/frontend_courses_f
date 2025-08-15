@@ -1,0 +1,64 @@
+.badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 40px;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-family: var(--font-inter), sans-serif;
+}
+
+.s {
+    padding: 4px 12px;
+    font-size: 10px;
+    letter-spacing: 0.2px;
+}
+
+.l {
+    padding: 6px 12px;
+    font-size: 12px;
+    letter-spacing: 0.24px;
+}
+
+.in-dev {
+    background-color: var(--in-development);
+    color: #181818;
+}
+
+.basic {
+    background-color: var(--basic);
+    color: var(--background);
+}
+
+.advanced {
+    background-color: var(--advanced);
+    color: var(--background);
+}
+
+.professional {
+    background-color: var(--professional);
+    color: var(--background);
+}
+
+.new {
+    background-color: var(--new);
+    color: var(--background);
+}
+
+.not-started {
+    background-color: var(--not-started);
+    color: var(--background);
+}
+
+.tag {
+    color: var(--foreground-muted);
+    border: 1px solid var(--foreground-muted);
+}
+
+.done {
+    background-color: var(--accent);
+    color: var(--background);
+}

@@ -1,0 +1,125 @@
+.courseInfoSection {
+    display: flex;
+    width: 258px;
+    height: 62px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.courseInfoSectionTitle {
+    color: var(--foreground);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    text-transform: uppercase;
+}
+
+.courseInfoSectionButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.courseInfoSectionButton.open button {
+    width: 276px;
+}
+
+.courseInfoContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border: 1px solid var(--outline);
+    background: var(--background);
+    width: 100%;
+    border-radius: 24px;
+    padding: 24px 28px;
+}
+
+.courseInfo {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.courseInfoContainerOpen {
+    display: grid;
+    height: 420px;
+    padding: 24px 28px;
+    gap: 32px;
+    flex: 1 0 0;
+    grid-template-rows: 92px minmax(0, 1fr) 62px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--background);
+}
+
+.courseInfoSectionDescription {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.courseInfoSectionOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.courseInfoSectionOpen p, .courseInfoSectionTagsOpen p {
+    color: var(--foreground);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    width: 70%;
+}
+
+.courseInfoSectionOpen span {
+    color: var(--foreground);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.courseInfoSectionTagsOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.courseInfoSectionTagsOpen section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badgeText {
+    color: var(--foreground-muted);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 10px !important;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+}

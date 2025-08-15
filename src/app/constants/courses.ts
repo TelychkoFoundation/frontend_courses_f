@@ -2,7 +2,7 @@ import {
   CourseKeyTypes,
   ICourseAdminStatic,
   CourseDifficultyType,
-} from "../typings/course";
+} from "@/typings";
 
 export const coursesTitles: Record<CourseKeyTypes, ICourseAdminStatic> = {
   [CourseKeyTypes.HTML5Basics]: {
@@ -35,11 +35,11 @@ export const coursesTitles: Record<CourseKeyTypes, ICourseAdminStatic> = {
     difficulty: CourseDifficultyType.Advanced,
     categories: {
       base: ["web-dev", "frontend", "html"],
-      levelTopics: ["advanced", "markup-advanced"],
-      practical: ["semantic-structure", "seo", "landing-pages"],
-      professional: ["html-pro"],
-      audience: ["students", "junior-devs"],
-      tags: ["intensive", "tech-base"],
+      // levelTopics: ["advanced", "markup-advanced"],
+      // practical: ["semantic-structure", "seo", "landing-pages"],
+      // professional: ["html-pro"],
+      // audience: ["students", "junior-devs"],
+      // tags: ["intensive", "tech-base"],
     },
     prerequisites: "Базові знання HTML та бажано - перший досвід верстки.",
     outcomes:

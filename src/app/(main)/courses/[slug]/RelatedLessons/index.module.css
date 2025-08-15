@@ -1,0 +1,19 @@
+.title {
+    color: var(--foreground);
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    text-transform: uppercase;
+}
+
+.grid {
+    display: grid;
+    row-gap: 16px;
+    column-gap: 16px;
+    align-self: stretch;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    list-style-type: none;
+}

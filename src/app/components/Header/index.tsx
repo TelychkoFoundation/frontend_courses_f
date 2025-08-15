@@ -1,30 +1,24 @@
-import styles from "./index.module.css";
 import { Dropdown } from "@/components";
 import Link from "next/link";
-import Image from "next/image";
 import { FiUser } from "react-icons/fi";
-import Logout from "./logout";
-import { Avatar } from "./avatar";
-import { Theme } from "./theme";
-import { ServicesLink } from "./services";
+import Logout from "./Logout";
+import { Avatar } from "./Avatar";
+import { Theme } from "./Theme";
+import { Language } from "./Language";
+import { GamificationXP } from "./GamificationXP";
+import styles from "./index.module.css";
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Image
-        src="/vercel.svg"
-        alt="Mentor Avatar"
-        width={40}
-        height={40}
-        className={styles.logo}
-      />
-
+      <p className={styles.logo}>Лого</p>
       <nav className={styles.nav}>
+        <Language />
         <Theme />
-        <Link href="/admin/courses" className={styles.link}>
-          Адмін
-        </Link>
-        <ServicesLink />
+        <GamificationXP />
+        {/*<Link href="/admin/courses" className={styles.link}>*/}
+        {/*  Адмін*/}
+        {/*</Link>*/}
         <Dropdown targetElement={<Avatar />}>
           <Link href="/profile" className={styles.dropdownItem}>
             <FiUser size={16} />
