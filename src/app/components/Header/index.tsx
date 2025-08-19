@@ -1,4 +1,4 @@
-import { Dropdown, Button, ButtonType } from "@/components";
+import { Dropdown, Button, ButtonType, AvatarSkeleton } from "@/components";
 import Link from "next/link";
 import Logout from "./Logout";
 import { Avatar } from "./Avatar";
@@ -35,7 +35,11 @@ export default function Header() {
           <GamificationXP />
           <Dropdown
             targetElement={
-              <Avatar loading={loading} url={user?.photo_url as string} />
+              user ? (
+                <Avatar loading={loading} url={user.photo_url || ""} />
+              ) : (
+                <AvatarSkeleton />
+              )
             }
           >
             {dropdownLinks.map(({ id, name, icon }) => (

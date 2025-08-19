@@ -13,6 +13,7 @@ import { useAuth, useToast } from "@/hooks";
 import { checkIsProduction } from "@/utils";
 import { ITelegramUserData } from "@/typings";
 import styles from "./index.module.css";
+import user from "../models/User";
 
 const mockUser = {
   id: 388906921,
@@ -43,6 +44,7 @@ const TelegramLogin = ({ children, callbackRoute }: ITelegramLoginProps) => {
         window.onTelegramAuth = async (userData: ITelegramUserData) => {
           try {
             setLoading(true);
+            console.log(userData, "USERDATA");
             login(userData, callbackRoute); // Реальний логін
           } catch (error) {
             showToast((error as Error).message);
@@ -81,6 +83,13 @@ const TelegramLogin = ({ children, callbackRoute }: ITelegramLoginProps) => {
         script.remove();
       }
     };
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash) {
+      // Якщо є `#` в URL, очищаємо його
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }, []);
 
   const handleMockLogin = () => {

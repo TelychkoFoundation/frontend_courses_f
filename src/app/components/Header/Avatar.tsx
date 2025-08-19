@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { AvatarSkeleton } from "@/components";
 import styles from "./index.module.css";
 
 interface IAvatarProps {
@@ -7,11 +6,7 @@ interface IAvatarProps {
   url: string;
 }
 
-export const Avatar = ({ loading, url }: IAvatarProps) => {
-  if (loading) {
-    return <AvatarSkeleton />;
-  }
-
+export const Avatar = ({ url }: IAvatarProps) => {
   return (
     <Image
       src={url as string}
