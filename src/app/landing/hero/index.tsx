@@ -2,8 +2,8 @@
 
 import { Badge, BadgeType, Button, ButtonType } from "@/components";
 import { HeroBackground } from "@/images";
-import styles from "./index.module.css";
 import TelegramLogin from "../TelegramLogin";
+import styles from "./index.module.css";
 
 export default function Hero() {
   return (
@@ -26,13 +26,7 @@ export default function Hero() {
           </div>
 
           <TelegramLogin callbackRoute="/courses">
-            <Button
-              className={styles.startButton}
-              // onClick={() => login("/courses")}
-              // loading={loading}
-            >
-              Почати навчання
-            </Button>
+            <Button className={styles.startButton}>Почати навчання</Button>
           </TelegramLogin>
         </div>
         <div className={styles.videoContainer}>

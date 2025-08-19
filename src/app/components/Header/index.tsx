@@ -26,7 +26,7 @@ const dropdownLinks = [
 ];
 
 export default function Header() {
-  const { isAuthenticated, loading, login, user } = useAuth();
+  const { isAuthenticated, loading, user } = useAuth();
 
   const renderAuthSection = () => {
     if (isAuthenticated) {
@@ -56,12 +56,7 @@ export default function Header() {
     }
 
     return (
-      <Button
-        type={ButtonType.TELEGRAM}
-        // id={id}
-        loading={loading}
-        // onClick={() => login("/courses")}
-      >
+      <Button type={ButtonType.TELEGRAM}>
         <TelegramIcon className={styles.telegram} />
         Увійти з Telegram
       </Button>

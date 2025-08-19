@@ -5,3 +5,4 @@ export { default as isNewCourse } from "./isNewCourse";
 export { default as transformDate } from "./transformDate";
 export { default as transliterate } from "./transliterate";
 export { default as createQueryString } from "./createQueryString";
+export { default as checkIsProduction } from "./checkIsProduction";
