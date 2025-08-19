@@ -18,6 +18,8 @@ export default function TelegramAuthPage() {
       // ...інші параметри
     };
 
+    console.log(authData, "AUTHDATA");
+
     if (authData.id && authData.hash) {
       // Відправте ці дані на ваш API-роут для верифікації
       fetch("/api/auth/verify-telegram", {
@@ -27,10 +29,9 @@ export default function TelegramAuthPage() {
       })
         .then(res => res.json())
         .then(data => {
+          console.log(data, "DATA");
           if (data.success) {
-            // Якщо верифікація успішна, зберігаємо токен і перенаправляємо
-            localStorage.setItem("userToken", data.token);
-            router.push("/dashboard");
+            router.push("/courses");
           } else {
             // Обробка помилки
             console.error("Failed to verify Telegram data.");

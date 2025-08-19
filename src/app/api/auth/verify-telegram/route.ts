@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
   const secretKey = crypto
     .createHash("sha256")
-    .update('8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk')
+    .update("8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk")
     .digest();
 
   const calculatedHash = crypto
@@ -23,10 +23,11 @@ export async function POST(req: Request) {
     .update(dataCheckString)
     .digest("hex");
 
+  console.log(calculatedHash, hash, "HASH");
   if (calculatedHash === hash) {
     return NextResponse.json({ success: true });
   } else {
-=    return NextResponse.json(
+    return NextResponse.json(
       { success: false, error: "Invalid hash" },
       { status: 403 },
     );
