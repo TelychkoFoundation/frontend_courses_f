@@ -1,32 +1,80 @@
-import { Dropdown } from "@/components";
+import { Dropdown, Button, ButtonType } from "@/components";
 import Link from "next/link";
-import { FiUser } from "react-icons/fi";
 import Logout from "./Logout";
 import { Avatar } from "./Avatar";
 import { Theme } from "./Theme";
 import { Language } from "./Language";
 import { GamificationXP } from "./GamificationXP";
+import Logo from "./Logo";
+import {
+  HelpIcon,
+  SettingsIcon,
+  ShoppingCartIcon,
+  StatisticsIcon,
+  TelegramIcon,
+  UserIcon,
+} from "@/images";
+import { useAuth } from "@/hooks";
 import styles from "./index.module.css";
 
+const dropdownLinks = [
+  { id: 1, name: "Мій профіль", icon: <UserIcon /> },
+  { id: 2, name: "Історія покупок", icon: <ShoppingCartIcon /> },
+  { id: 3, name: "Моя статистика", icon: <StatisticsIcon /> },
+  { id: 4, name: "Налаштування акаунту", icon: <SettingsIcon /> },
+  { id: 5, name: "Технічна підтримка", icon: <HelpIcon /> },
+];
+
 export default function Header() {
+  const { isAuthenticated, loading, login, user } = useAuth();
+
+  const renderAuthSection = () => {
+    if (isAuthenticated) {
+      return (
+        <>
+          <GamificationXP />
+          <Dropdown
+            targetElement={
+              <Avatar loading={loading} url={user?.photo_url as string} />
+            }
+          >
+            {dropdownLinks.map(({ id, name, icon }) => (
+              <li key={id}>
+                <Link
+                  href={`/profile?section=${id}`}
+                  className={styles.dropdownItem}
+                >
+                  {icon}
+                  <span className={styles.dropdownItemName}>{name}</span>
+                </Link>
+              </li>
+            ))}
+            <Logout />
+          </Dropdown>
+        </>
+      );
+    }
+
+    return (
+      <Button
+        type={ButtonType.TELEGRAM}
+        // id={id}
+        loading={loading}
+        // onClick={() => login("/courses")}
+      >
+        <TelegramIcon className={styles.telegram} />
+        Увійти з Telegram
+      </Button>
+    );
+  };
+
   return (
     <header className={styles.header}>
-      <p className={styles.logo}>Лого</p>
+      <Logo />
       <nav className={styles.nav}>
         <Language />
         <Theme />
-        <GamificationXP />
-        {/*<Link href="/admin/courses" className={styles.link}>*/}
-        {/*  Адмін*/}
-        {/*</Link>*/}
-        <Dropdown targetElement={<Avatar />}>
-          <Link href="/profile" className={styles.dropdownItem}>
-            <FiUser size={16} />
-            <span>Профіль</span>
-          </Link>
-          <div className={styles.divider} />
-          <Logout />
-        </Dropdown>
+        {renderAuthSection()}
       </nav>
     </header>
   );

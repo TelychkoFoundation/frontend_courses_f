@@ -1,22 +1,16 @@
 "use client";
 
-import { FiLogOut } from "react-icons/fi";
-import { logoutUser } from "@/actions";
-import { useRouter } from "next/navigation";
+import { LogoutIcon } from "@/images";
 import styles from "./index.module.css";
+import { useAuth } from "@/hooks";
 
 export default function Logout() {
-  const router = useRouter();
-
-  const handleLogout = async () => {
-    await logoutUser();
-    router.push("/login");
-  };
+  const { logout } = useAuth();
 
   return (
-    <button onClick={handleLogout} className={styles.dropdownItem}>
-      <FiLogOut size={16} color="#e00" />
-      <span className={styles.logout}>Вийти</span>
-    </button>
+    <li onClick={logout} className={styles.dropdownItemLogout}>
+      <LogoutIcon />
+      <span className={styles.dropdownItemNameLogout}>Вийти</span>
+    </li>
   );
 }

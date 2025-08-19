@@ -11,13 +11,6 @@
     background-color: var(--background);
 }
 
-.logo {
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 22px;
-}
-
 .nav {
     display: flex;
     align-items: center;
@@ -79,45 +72,43 @@
     line-height: 22px;
 }
 
-
-
-
-@media (max-width: 480px) {
-    .link {
-        font-size: 14px;
-    }
-
-    .avatar {
-        width: 32px;
-        height: 32px;
-    }
-}
-
-.dropdownItem {
+.dropdownItem, .dropdownItemLogout {
     display: flex;
+    padding: 12px;
     align-items: center;
-    gap: 0.6rem;
-    padding: 12px 14px;
-    color: var(--dropdown-item-color);
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    font-size: 14px;
+    gap: 12px;
+    align-self: stretch;
     cursor: pointer;
     transition: background 0.2s ease;
+    border-radius: 16px;
+    border: none;
+    width: 100%;
 }
 
-.dropdownItem:hover {
-    background-color: var(--dropdown-item-hover);
+.dropdownItemName, .dropdownItemNameLogout {
+    color: var(--secondary);
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
 }
 
-.logout {
-    color: var(--logout-color);
+.dropdownItemLogout, .dropdownItemLogout:hover, .dropdownItemNameLogout {
+    color: var(--new);
 }
 
-.divider {
-    border-top: 1px solid var(--divider-color);
+.icon {
+    stroke: var(--secondary);
+}
+
+.dropdownItem:hover, .dropdownItem:hover .icon, .dropdownItem:hover .dropdownItemName {
+    stroke: var(--foreground-muted);
+    color: var(--foreground-muted);
+}
+
+.iconLogout {
+    stroke: var(--new);
 }
 
 @keyframes fadeIn {
@@ -129,4 +120,34 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.titlesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.iconRect {
+    fill: var(--foreground);
+}
+
+.iconRectWithStroke {
+    fill: var(--foreground);
+    stroke: var(--background);;
+}
+
+.iconPath {
+    fill: var(--background);
+}
+
+.telegram {
+    fill: var(--background);
 }

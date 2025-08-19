@@ -1,18 +1,27 @@
 "use server";
 
-import { deleteSession } from "@/lib";
+import { createDBConnection, deleteSession } from "@/lib";
 import { User } from "@/models";
 import { verifySession } from "@/lib";
-import { redirect } from "next/navigation";
 import { IPurchasedCourse, IUserDatabaseData } from "@/typings";
 
-export async function getUser() {
+export async function checkAuth() {
+  const isDatabaseConnected = await createDBConnection();
+
+  if (!isDatabaseConnected) {
+    return { success: false, error: "Database have not connected" };
+  }
+
   const { isAuth, userID } = await verifySession();
 
   if (!isAuth) {
-    redirect("/login");
+    return { success: false, error: "Invalid session" };
   }
 
+  return { success: true, data: { isAuth, userID } };
+}
+
+export async function getUser(userID: string) {
   try {
     const currentUser = await User.findOne({ id: Number(userID) });
     if (!currentUser) {

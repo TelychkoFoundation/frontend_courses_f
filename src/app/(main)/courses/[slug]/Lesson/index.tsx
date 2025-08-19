@@ -5,7 +5,7 @@ import { IPurchasedLesson, ILesson } from "@/typings";
 import { LockIcon } from "@/images";
 import { useParams, useRouter } from "next/navigation";
 import LessonShortInfo from "../LessonShortInfo";
-import { useUser } from "@/hooks";
+import { useAuth } from "@/hooks";
 import styles from "./index.module.css";
 import { createPaymentForLesson } from "@/actions";
 
@@ -30,7 +30,7 @@ export default function Lesson({ lesson }: ILessonProps) {
     startTransition(() => createPaymentForLesson(lesson, window.location.href));
   };
 
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const isCurrentLessonPaid: boolean = useMemo(() => {
     if (user) {

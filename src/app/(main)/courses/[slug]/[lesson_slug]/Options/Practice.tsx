@@ -7,8 +7,6 @@ interface IPracticeProps {
   isActive: boolean;
 }
 
-const isPaid = false;
-
 export default function Practice({ isActive }: IPracticeProps) {
   const { isCurrentLessonPaid } = useLessons();
 
@@ -16,7 +14,7 @@ export default function Practice({ isActive }: IPracticeProps) {
     <>
       <section className={styles.collapsedSection}>
         <p className={styles.collapsedTitle}>Практичне завдання</p>
-        {isPaid ? (
+        {isCurrentLessonPaid ? (
           <PracticeIcon className={styles.practiceIcon} />
         ) : (
           <Image src={LockDarkIcon} alt="Lock icon" width={20} height={20} />

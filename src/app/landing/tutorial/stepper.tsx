@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { tutorialSteps } from "@/constants";
 import { ITutorialStep } from "@/typings";
 import { ReactElement } from "react";

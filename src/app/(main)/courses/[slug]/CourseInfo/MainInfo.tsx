@@ -2,12 +2,12 @@ import { transformDate } from "@/utils";
 import { useMemo, memo } from "react";
 import { CourseDifficultyType, IMyCourses } from "@/typings";
 import { Badge, BadgeSize, BadgeType, LinearProgressBar } from "@/components";
-import { useCourses, useUser } from "@/hooks";
+import { useCourses, useAuth } from "@/hooks";
 import styles from "./index.module.css";
 
 export default memo(function MainInfo() {
   const { currentCourse } = useCourses();
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const hasStarted: boolean = useMemo(() => {
     if (!user) {

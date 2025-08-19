@@ -1,0 +1,26 @@
+.footer {
+    display: flex;
+    padding: 12px 20%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    background: var(--foreground);
+}
+
+.inner {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inner p {
+    color: var(--background-muted);
+    text-align: center;
+    font-family: var(--font-inter), "sans-serif";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

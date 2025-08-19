@@ -1,20 +1,20 @@
-"use client";
-
 import Image from "next/image";
-import { useUser } from "@/hooks";
 import { AvatarSkeleton } from "@/components";
 import styles from "./index.module.css";
 
-export const Avatar = () => {
-  const { user } = useUser();
+interface IAvatarProps {
+  loading: boolean;
+  url: string;
+}
 
-  if (!user || !user.photo_url) {
+export const Avatar = ({ loading, url }: IAvatarProps) => {
+  if (loading) {
     return <AvatarSkeleton />;
   }
 
   return (
     <Image
-      src={user.photo_url}
+      src={url as string}
       alt="Logged in user avatar"
       width={48}
       height={48}

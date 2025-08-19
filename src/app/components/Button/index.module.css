@@ -49,12 +49,27 @@
 }
 
 .telegram {
-    background-color: #0088cc;
-    color: white;
+    display: flex;
+    height: 46px;
+    padding: 8px 32px 8px 28px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 32px;
+    background: #2DA2DC;
+    color: var(--background);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .telegram:hover {
-    background-color: #006699;
+    background: linear-gradient(0deg, rgba(7, 35, 145, 0.20) 0%, rgba(7, 35, 145, 0.20) 100%), #2DA2DC;
 }
 
 .number, .number:hover {
@@ -94,4 +109,12 @@
 
 .disabled {
     cursor: not-allowed;
+}
+
+.loading {
+    fill: var(--background);
+}
+
+.playLoading {
+    fill: var(--accent);
 }

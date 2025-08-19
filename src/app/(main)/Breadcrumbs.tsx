@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { FaHome } from "react-icons/fa";
 import { useCourses, useLessons } from "@/hooks";
 import styles from "./layout.module.css";
 
@@ -14,7 +13,7 @@ export default function Breadcrumbs() {
   return (
     <div className={styles.breadcrumbsContainer}>
       <div className={styles.breadcrumbs}>
-        <FaHome size={14} />
+        {/*<FaHome size={14} />*/}
         <span>/</span>
         <Link href="/courses" className={styles.coursesSegment}>
           Курси

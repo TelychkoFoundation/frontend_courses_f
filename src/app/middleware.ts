@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { decrypt, SESSION_KEY } from "@/lib";
 
 export async function middleware(req: NextRequest) {
-  const publicRoutes = ["/login", "/tutorial"];
+  const publicRoutes = ["/"];
   const { pathname } = req.nextUrl;
 
   if (publicRoutes.includes(pathname)) {
@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
   const session = sessionToken ? await decrypt(sessionToken) : null;
 
   if (!session?.userID) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();

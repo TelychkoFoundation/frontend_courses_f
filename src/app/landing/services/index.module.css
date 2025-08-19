@@ -1,0 +1,136 @@
+.container {
+    display: flex;
+    padding: 64px 200px;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    align-self: stretch;
+    position: relative;
+}
+
+.ellipse {
+    position: absolute;
+    bottom: 64px;
+    border-radius: 1039px;
+    background: var(--outline);
+    filter: blur(75px);
+    width: 1039px;
+    height: 588px;
+}
+
+.titleContainer {
+    display: flex;
+    width: 1040px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.title {
+    text-align: center;
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 1;
+}
+
+.description {
+    color: var(--foreground);
+    text-align: center;
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+}
+
+.service {
+    display: flex;
+    padding: 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 0 0;
+    align-self: stretch;
+    height: 294px;
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--background);
+    position: relative;
+    overflow: hidden;
+}
+
+.service:hover {
+    border: 1px solid var(--secondary);
+}
+
+.service:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.service:nth-child(4) {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.serviceHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.serviceTitle {
+    color: var(--foreground);
+    font-family: var(--font-taktika), sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 29px;
+}
+
+.serviceShort {
+    color: var(--secondary);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.serviceDescription {
+    color: var(--foreground);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 500px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.price {
+    color: var(--accent);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

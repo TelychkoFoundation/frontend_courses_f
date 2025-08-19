@@ -36,23 +36,26 @@ export default async function ServicesPage() {
   };
 
   return (
-    <div className={styles.services}>
-      {services.map((service: IService) => (
-        <div key={service.id} className={styles.service}>
-          {renderBackgroundImage(service.id)}
-          <div className={styles.serviceHeader}>
-            <h2 className={styles.title}>{service.title}</h2>
-            <p className={styles.short}>{service.short}</p>
+    <div className={styles.container}>
+      <div className={styles.ellipse} />
+      <div className={styles.services}>
+        {services.map((service: IService) => (
+          <div key={service.id} className={styles.service}>
+            {renderBackgroundImage(service.id)}
+            <div className={styles.serviceHeader}>
+              <h2 className={styles.title}>{service.title}</h2>
+              <p className={styles.short}>{service.short}</p>
+            </div>
+            <p className={styles.description}>{service.description}</p>
+            <div className={styles.footer}>
+              <p className={styles.price}>{service.price}</p>
+              <Link href={service.cta.href}>
+                <Button>{service.cta.label}</Button>
+              </Link>
+            </div>
           </div>
-          <p className={styles.description}>{service.description}</p>
-          <div className={styles.footer}>
-            <p className={styles.price}>{service.price}</p>
-            <Link href={service.cta.href}>
-              <Button>{service.cta.label}</Button>
-            </Link>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import styles from "../index.module.css";
 import Link from "next/link";
-import { IoMdAdd } from "react-icons/io";
 import { CourseKeyTypes } from "@/typings";
 
 export default function CourseLinks({ slug }: { slug: CourseKeyTypes }) {
@@ -10,7 +9,7 @@ export default function CourseLinks({ slug }: { slug: CourseKeyTypes }) {
         ← До списку курсів
       </Link>
       <Link href="/admin/courses/new" className={styles.primary}>
-        <IoMdAdd /> Додати курс
+        Додати курс
       </Link>
       <Link href={`/admin/courses/${slug}/lessons`} className={styles.primary}>
         Список уроків

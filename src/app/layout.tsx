@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
-import { ToastProvider, ThemeProvider, UserProvider } from "@/context";
-import { ToastContainer, Header } from "@/components";
+import { ToastProvider, ThemeProvider, AuthProvider } from "@/context";
+import { ToastContainer } from "@/components";
 import { ReactNode } from "react";
-import { createDBConnection } from "@/lib";
 import "./styles/globals.css";
 
 const taktikaFont = localFont({
@@ -54,18 +53,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  let isDatabaseConnected: boolean = false;
-  isDatabaseConnected = await createDBConnection();
-
   return (
     <html lang="en">
       <body className={`${taktikaFont.variable} ${interFont.variable}`}>
         <ThemeProvider>
           <ToastProvider>
-            <UserProvider>
-              <Header />
-              {isDatabaseConnected ? children : null}
-            </UserProvider>
+            <AuthProvider>{children}</AuthProvider>
             <ToastContainer />
           </ToastProvider>
         </ThemeProvider>

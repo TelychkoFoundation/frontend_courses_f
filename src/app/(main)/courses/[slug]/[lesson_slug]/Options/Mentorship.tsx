@@ -1,7 +1,7 @@
 import Image from "next/image";
 import {
-  LockDarkIcon,
-  DividerVertical,
+  // LockDarkIcon,
+  // DividerVertical,
   TelegramIcon,
   LockIcon,
 } from "@/images";
@@ -87,7 +87,7 @@ export default function Mentorship() {
         {!isCurrentLessonPaid ? (
           <Image src={LockIcon} alt="Tg Circle" className={styles.lockIcon} />
         ) : (
-          <Image src={TelegramIcon} alt="Telegram Icon" />
+          <TelegramIcon />
         )}
       </TgCircle>
     );

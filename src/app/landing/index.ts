@@ -1,0 +1,10 @@
+export { default as Hero } from "./hero";
+export { default as Tutorial } from "./tutorial";
+export { default as Cta } from "./cta";
+export { default as Services } from "./services";
+export { default as Contacts } from "./contacts";
+export { default as Courses } from "./courses";
+export { default as Feedback } from "./feedback";
+export { default as Prices } from "./prices";
+export { default as About } from "./about";
+export { default as Footer } from "./footer";

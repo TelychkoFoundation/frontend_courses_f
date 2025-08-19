@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ITelegramUserData } from "@/typings";
+import { useEffect, ReactNode, useState } from "react";
+import { useAuth, useToast } from "@/hooks";
 import { useRouter } from "next/navigation";
-import { loginUser } from "@/actions";
-import { useToast } from "@/hooks";
-import styles from "./page.module.css";
+import { ITelegramUserData } from "@/typings";
 
-const mock = {
+const mockUser = {
   id: 388906921,
   first_name: "Vitalii",
   last_name: "Telychko",
@@ -18,20 +16,26 @@ const mock = {
   hash: "e4b4798625189e3cafe96e564599fe1818fd4746b0208314dd692912203f72ec",
 };
 
-export default function AuthButton() {
+interface ITelegramLoginProps {
+  children: ReactNode;
+  callbackRoute: string;
+}
+
+const TelegramLogin = ({ children, callbackRoute }: ITelegramLoginProps) => {
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { showToast } = useToast();
 
   const router = useRouter();
+  const { login } = useAuth();
 
   useEffect(() => {
     if (!window.onTelegramAuth) {
       window.onTelegramAuth = async (userData: ITelegramUserData) => {
         try {
           setIsLoading(true);
-          await loginUser(userData);
-          router.push("/courses?filter=all");
+          login(userData, callbackRoute);
+          router.push("/courses");
         } catch (error) {
           showToast((error as Error).message);
           console.error("Authorization error:", error);
@@ -69,8 +73,8 @@ export default function AuthButton() {
   const boo = async () => {
     try {
       setIsLoading(true);
-      await loginUser(mock);
-      router.push("/courses?filter=all");
+      login(mockUser, callbackRoute);
+      router.push("/courses");
     } catch (error) {
       console.error("Authorization error:", error);
     } finally {
@@ -82,9 +86,7 @@ export default function AuthButton() {
     <div>
       <button onClick={boo}>mock</button>
       {isLoading && <div className="loading-indicator">Завантаження...</div>}
-      {!scriptLoaded && !isLoading && (
-        <div className={`${styles.skeleton} ${styles.skeletonButton}`} />
-      )}
+      {!scriptLoaded && !isLoading && <div />}
       {!isLoading ? (
         <div
           id="telegram-login-btn"
@@ -93,4 +95,6 @@ export default function AuthButton() {
       ) : null}
     </div>
   );
-}
+};
+
+export default TelegramLogin;

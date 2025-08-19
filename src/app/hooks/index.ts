@@ -1,7 +1,7 @@
 export { useQuery } from "./useQuery";
 export { useAdmin } from "./useAdmin";
 export { useToast } from "./useToast";
-export { useUser } from "./useUser";
+export { useAuth } from "./useAuth";
 export { useEscape } from "./useEscape";
 export { useOutsideClick } from "./useOutsideClick";
 export { useCourses } from "./useCourses";

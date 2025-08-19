@@ -6,7 +6,7 @@ import {
   ICategoryStructure,
   IPurchasedLesson,
 } from "@/typings";
-import { useCourses, useToast, useUser } from "@/hooks";
+import { useCourses, useToast, useAuth } from "@/hooks";
 import { getLessonsForCourse, getLessonById } from "@/actions";
 import { useParams } from "next/navigation";
 import { transformLessonByCategory, transformLessonsByCategory } from "@/utils";
@@ -35,7 +35,7 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
 
   const params = useParams();
   const { currentCourse } = useCourses();
-  const { user } = useUser();
+  const { user } = useAuth();
   const { showToast } = useToast();
 
   const isCurrentLessonPaid: boolean = useMemo(() => {

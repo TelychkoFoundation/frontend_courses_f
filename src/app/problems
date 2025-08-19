@@ -8,3 +8,12 @@ Admin
 10. Drawer for lessons list
 11. Drawer for lesson details
 12. No lessons view - done
+
+
+
+
+1. Пряме поширення (Forward Pass): Дані проходять через мережу від вхідного шару до вихідного, щоб отримати прогноз.
+2. Зворотне поширення (Backpropagation): Помилка "повертається" назад, щоб скоригувати ваги в кожному нейроні.
+- Розрахунок помилки (Loss Calculation): Прогноз моделі порівнюється з правильною відповіддю.
+- Поширення помилки назад (Backward Propagation)
+- Оновлення ваг (Weight Update)
