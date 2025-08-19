@@ -94,6 +94,16 @@ const TelegramLogin = ({ children, callbackRoute }: ITelegramLoginProps) => {
 
   const handleTelegramLogin = () => {
     console.log("Telegram login button clicked...");
+    const telegramBotId = "8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk"; // Вкажіть ID вашого Telegram бота
+    const origin = window.location.origin;
+    const redirectUri = `${origin}/auth/telegram`; // Маршрут для отримання Telegram-даних
+
+    const loginUrl = `https://oauth.telegram.org/auth?bot_id=${telegramBotId}&origin=${encodeURIComponent(
+      origin,
+    )}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+
+    // Перенаправляємо користувача вручну
+    window.location.href = loginUrl;
   };
 
   return (
