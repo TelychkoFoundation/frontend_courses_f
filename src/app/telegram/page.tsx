@@ -2,13 +2,13 @@
 "use client"; // Це важливо!
 
 import { useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function TelegramAuthPage() {
-  const searchParams = useSearchParams();
   const router = useRouter();
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
     const authData = {
       id: searchParams.get("id"),
       first_name: searchParams.get("first_name"),
@@ -46,7 +46,7 @@ export default function TelegramAuthPage() {
       // Якщо дані відсутні, перенаправляємо на сторінку логіну
       router.push("/");
     }
-  }, [searchParams, router]);
+  }, [window.location.search, router]);
 
   return (
     <div>
