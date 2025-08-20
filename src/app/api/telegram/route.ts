@@ -5,7 +5,7 @@ import TelegramBot from "node-telegram-bot-api";
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const bot = new TelegramBot("8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk", {
-  polling: false,
+  polling: true,
 });
 
 // URL для нашого фронтенду, який оброблятиме авторизацію

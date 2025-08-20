@@ -26,10 +26,14 @@ const dropdownLinks = [
 ];
 
 export default function Header() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, loading } = useAuth();
   const deviceType: DeviceType = useDeviceType();
 
   const renderAuthSection = () => {
+    if (loading) {
+      return <AvatarSkeleton />;
+    }
+
     if (isAuthenticated) {
       return (
         <>

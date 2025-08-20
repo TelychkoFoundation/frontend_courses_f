@@ -2,13 +2,13 @@
 
 import { Badge, BadgeType, Button, ButtonType } from "@/components";
 import { HeroBackground } from "@/images";
-// import Link from "next/link";
+import Link from "next/link";
 // import TelegramLogin from "../TelegramLogin";
 import styles from "./index.module.css";
 
 export default function Hero() {
   return (
-    <section className={styles.container} id="home" key="home">
+    <section className={styles.container}>
       <HeroBackground
         className={styles.heroBackground}
         stroke={styles.heroStroke}
@@ -27,12 +27,12 @@ export default function Hero() {
           </div>
 
           {/*<TelegramLogin callbackRoute="/courses">*/}
-          {/*<Link*/}
-          {/*  href="https://t.me/telychko_frontend_courses_bot?start=login"*/}
-          {/*  target={"_blank"}*/}
-          {/*>*/}
-          <Button className={styles.startButton}>Почати навчання</Button>
-          {/*</Link>*/}
+          <Link
+            href="https://t.me/telychko_frontend_courses_bot?start=login"
+            target={"_blank"}
+          >
+            <Button className={styles.startButton}>Почати навчання</Button>
+          </Link>
           {/*</TelegramLogin>*/}
         </div>
         <div className={styles.videoContainer}>
