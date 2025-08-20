@@ -2,10 +2,11 @@
 
 import { Course, User } from "@/models";
 import { IMyCourses } from "@/typings";
-import { verifySession } from "@/lib";
+import { createDBConnection, verifySession } from "@/lib";
 import { Types } from "mongoose";
 
 export const getAllCourses = async () => {
+  await createDBConnection();
   try {
     const courses = await Course.find().sort({ createdAt: "asc" });
     return { success: true, data: JSON.parse(JSON.stringify(courses)) };

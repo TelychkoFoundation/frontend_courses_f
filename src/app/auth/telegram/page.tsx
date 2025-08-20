@@ -41,16 +41,16 @@ export default function TelegramAuthPage() {
             login(authData);
           } else {
             showToast("Не вдалося перевірити дані Telegram", "error");
-            // router.push("/");
+            router.push("/");
           }
         })
         .catch(error => {
           showToast(`Помилка верифікації: ${error}`, "error");
-          // router.push("/");
+          router.push("/");
         });
     } else {
       showToast("Недостатньо даних для авторизації", "error");
-      // router.push("/");
+      router.push("/");
     }
   }, [window.location.search, router]);
 

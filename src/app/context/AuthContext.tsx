@@ -4,7 +4,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import { ITelegramUserData, IUserDatabaseData } from "@/typings";
 import { checkAuth, getUser, loginUser, logoutUser } from "@/actions";
 import { useToast } from "@/hooks";
-import { redirect, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { Header } from "@/components";
 
 interface AuthContextType {
@@ -25,37 +25,41 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<IUserDatabaseData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const pathname = usePathname();
 
   const { showToast } = useToast();
   const router = useRouter();
 
-  const fetchUserStatus = async () => {
-    const { success, data, error } = await checkAuth();
-
-    // if (!success && error) {
-    //   setLoading(false);
-    //   setIsAuthenticated(false);
-    //   redirect("/");
-    // }
-
-    setIsAuthenticated(true);
-
-    try {
-      const response = await getUser(data?.userID as string);
-      if (response?.success) {
-        setUser(response.data);
-      }
-    } catch (error) {
-      console.error("Failed to fetch user status:", error);
-      showToast("Error while fetching user status:", "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchUserStatus = async () => {
+      if (pathname === "/auth/telegram") {
+        return;
+      }
+
+      const { success, data, error } = await checkAuth();
+
+      if (!success && error) {
+        setLoading(false);
+        setIsAuthenticated(false);
+        redirect("/");
+      }
+
+      setIsAuthenticated(true);
+
+      try {
+        const response = await getUser(data?.userID as string);
+        if (response?.success) {
+          setUser(response.data);
+        }
+      } catch {
+        showToast("Error while fetching user status:", "error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchUserStatus();
-  }, []);
+  }, [isAuthenticated]);
 
   const login = async (userData: ITelegramUserData) => {
     try {

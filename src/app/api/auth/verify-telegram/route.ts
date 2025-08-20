@@ -6,14 +6,11 @@ export async function POST(req: Request) {
 
   const { hash, ...data } = authData;
 
-  // Сортуємо дані та формуємо рядок для перевірки
   const dataCheckString = Object.keys(data)
     .filter(key => key !== "hash")
     .sort()
     .map(key => `${key}=${data[key]}`)
     .join("\n");
-
-  console.log(dataCheckString, "dataCheckString");
 
   const secretKey = crypto
     .createHash("sha256")
@@ -25,7 +22,6 @@ export async function POST(req: Request) {
     .update(dataCheckString)
     .digest("hex");
 
-  console.log(calculatedHash, hash, "HASH");
   if (calculatedHash === hash) {
     return NextResponse.json({ success: true });
   } else {
