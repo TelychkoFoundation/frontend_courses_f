@@ -117,3 +117,10 @@
     align-items: center;
     gap: 2px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 16px;
+        gap: 32px;
+    }
+}

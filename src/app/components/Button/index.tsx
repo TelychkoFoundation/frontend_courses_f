@@ -7,6 +7,7 @@ export enum ButtonType {
   SECONDARY = "secondary",
   OUTLINE = "outline",
   TELEGRAM = "telegram",
+  TELEGRAM_MOBILE = "telegram_mobile",
   NUMBER = "number",
   PLAY = "play",
 }
@@ -30,6 +31,14 @@ export const Button: FC<ButtonProps> = ({
   children,
   id,
 }) => {
+  if (type === ButtonType.TELEGRAM_MOBILE) {
+    return (
+      <button id={id} className={styles.telegramMobile} onClick={onClick}>
+        {loading ? <ButtonLoadingIcon className={styles.loading} /> : children}
+      </button>
+    );
+  }
+
   if (type === ButtonType.TELEGRAM) {
     return (
       <button id={id} className={styles.telegram} onClick={onClick}>
@@ -37,6 +46,7 @@ export const Button: FC<ButtonProps> = ({
       </button>
     );
   }
+
   if (type === ButtonType.NUMBER) {
     return (
       <button

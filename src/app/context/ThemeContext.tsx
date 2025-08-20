@@ -17,25 +17,22 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<ThemeType | null>(null);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem("theme") as ThemeType;
     if (savedTheme) {
-      setTheme(savedTheme === "dark" ? "dark" : "light");
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      setTheme(prefersDark ? "dark" : "light");
+      setTheme(savedTheme);
     }
   }, []);
 
   useEffect(() => {
-    if (theme !== null) {
+    if (theme) {
       const root = document.documentElement;
 
       if (theme === "dark") {
         root.classList.add("theme-dark");
+        root.classList.remove("theme-light");
         localStorage.setItem("theme", "dark");
       } else {
+        root.classList.add("theme-light");
         root.classList.remove("theme-dark");
         localStorage.setItem("theme", "light");
       }
@@ -45,7 +42,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const toggleTheme = () => {
     const newTheme: ThemeType = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
   };
 
   return (

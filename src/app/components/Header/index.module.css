@@ -151,3 +151,17 @@
 .telegram {
     fill: var(--background);
 }
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 16px;
+    }
+
+    .nav {
+        gap: 8px;
+    }
+
+    .xpContainer {
+        padding: 4px 16px;
+    }
+}

@@ -68,7 +68,22 @@
     cursor: pointer;
 }
 
-.telegram:hover {
+.telegramMobile {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    aspect-ratio: 1/1;
+    border-radius: 32px;
+    background: #2DA2DC;
+    border: none;
+    outline: none;
+}
+
+.telegram:hover, .telegramMobile:hover {
     background: linear-gradient(0deg, rgba(7, 35, 145, 0.20) 0%, rgba(7, 35, 145, 0.20) 100%), #2DA2DC;
 }
 

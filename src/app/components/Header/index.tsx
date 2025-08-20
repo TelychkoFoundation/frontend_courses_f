@@ -14,7 +14,7 @@ import {
   TelegramIcon,
   UserIcon,
 } from "@/images";
-import { useAuth } from "@/hooks";
+import { useAuth, useDeviceType, DeviceTypes, DeviceType } from "@/hooks";
 import styles from "./index.module.css";
 
 const dropdownLinks = [
@@ -26,7 +26,8 @@ const dropdownLinks = [
 ];
 
 export default function Header() {
-  const { isAuthenticated, loading, user } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const deviceType: DeviceType = useDeviceType();
 
   const renderAuthSection = () => {
     if (isAuthenticated) {
@@ -36,7 +37,7 @@ export default function Header() {
           <Dropdown
             targetElement={
               user ? (
-                <Avatar loading={loading} url={user.photo_url || ""} />
+                <Avatar url={user.photo_url || ""} deviceType={deviceType} />
               ) : (
                 <AvatarSkeleton />
               )
@@ -59,6 +60,14 @@ export default function Header() {
       );
     }
 
+    if (deviceType === DeviceTypes.mobile) {
+      return (
+        <Button type={ButtonType.TELEGRAM_MOBILE}>
+          <TelegramIcon className={styles.telegram} />
+        </Button>
+      );
+    }
+
     return (
       <Button type={ButtonType.TELEGRAM}>
         <TelegramIcon className={styles.telegram} />
@@ -69,7 +78,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <Logo />
+      <Logo deviceType={deviceType} isAuthenticated={isAuthenticated} />
       <nav className={styles.nav}>
         <Language />
         <Theme />

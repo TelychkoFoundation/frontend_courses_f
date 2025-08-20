@@ -2,7 +2,7 @@
 
 import { Badge, BadgeType, Button, ButtonType } from "@/components";
 import { HeroBackground } from "@/images";
-import Link from "next/link";
+// import Link from "next/link";
 import TelegramLogin from "../TelegramLogin";
 import styles from "./index.module.css";
 
@@ -26,14 +26,14 @@ export default function Hero() {
             </p>
           </div>
 
-          {/*<TelegramLogin callbackRoute="/courses">*/}
-          <Link
-            href="https://t.me/telychko_frontend_courses_bot?start=login"
-            target={"_blank"}
-          >
+          <TelegramLogin callbackRoute="/courses">
+            {/*<Link*/}
+            {/*  href="https://t.me/telychko_frontend_courses_bot?start=login"*/}
+            {/*  target={"_blank"}*/}
+            {/*>*/}
             <Button className={styles.startButton}>Почати навчання</Button>
-          </Link>
-          {/*</TelegramLogin>*/}
+            {/*</Link>*/}
+          </TelegramLogin>
         </div>
         <div className={styles.videoContainer}>
           <div className={styles.ellipse1}>

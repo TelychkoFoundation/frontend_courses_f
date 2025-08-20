@@ -12,3 +12,10 @@
 .button {
     width: fit-content;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 16px;
+        height: 256px;
+    }
+}
