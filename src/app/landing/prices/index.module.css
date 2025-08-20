@@ -103,3 +103,32 @@
     font-size: 16px;
     font-weight: 700;
 }
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 16px 0 16px;
+        gap: 32px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .prices {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 100%
+    }
+
+    .priceCard, .priceCard:nth-child(3) {
+        width: 100%;
+    }
+
+    .priceCard h6 {
+        font-size: 22px;
+    }
+}

@@ -146,4 +146,12 @@
         width: 100%;
         height: 322px;
     }
+
+    .ellipse1 {
+        display: none;
+    }
+
+    .ellipse2 {
+        display: none;
+    }
 }

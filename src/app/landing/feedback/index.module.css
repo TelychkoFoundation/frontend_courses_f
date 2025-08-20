@@ -120,7 +120,81 @@
 
 @media (max-width: 768px) {
     .container {
-        padding: 80px 16px;
+        padding: 80px 16px 0 16px;
         gap: 32px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .feedbacks {
+        display: flex;
+        align-items: flex-start;
+        height: auto;
+        /*width: auto;*/
+    }
+
+    .feedback {
+        height: 292px;
+        width: 120%;
+        overflow: initial;
+    }
+
+    .feedbackTitle {
+        font-size: 22px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .buttons button {
+        display: flex;
+        width: 120px;
+        height: 46px;
+        padding: 8px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        border-radius: 32px;
+        cursor: pointer;
+        background-color: var(--foreground);
+        color: var(--background);
+        transition: background 0.2s ease, color 0.2s ease;
+        font-family: var(--font-taktika), 'sans-serif';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px
+    }
+
+    .buttons button:hover {
+        background-color: var(--foreground-muted);
+        color: var(--background);
+    }
+
+    .buttons button:disabled {
+        background-color: var(--background-muted);
+        color: var(--foreground);
+        cursor: not-allowed;
+    }
+
+    .buttons button div {
+        line-height: 0;
+    }
+
+    .disabledChevron {
+        fill: var(--foreground);
+    }
+
+    .chevron {
+        fill: var(--background);
+    }
+
+    .ellipse {
+        display: none;
     }
 }

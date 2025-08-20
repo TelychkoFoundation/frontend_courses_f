@@ -118,3 +118,19 @@
     flex-shrink: 0;
     align-self: stretch;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 16px 0 16px;
+        gap: 32px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .carousel {
+        gap: 16px;
+        padding: 0;
+    }
+}

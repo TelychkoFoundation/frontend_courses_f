@@ -44,3 +44,27 @@
 .socialLogo {
     fill: var(--foreground);
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 16px 40px 16px;
+        gap: 32px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .socials {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+    }
+
+    .social p {
+        font-size: 16px;
+    }
+}

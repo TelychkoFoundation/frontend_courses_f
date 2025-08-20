@@ -24,3 +24,13 @@
     font-weight: 400;
     line-height: normal;
 }
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 12px 16px;
+    }
+
+    .inner p {
+        font-size: 12px;
+    }
+}

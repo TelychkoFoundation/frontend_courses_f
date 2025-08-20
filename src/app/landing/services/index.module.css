@@ -173,4 +173,12 @@
     .serviceTitle {
         font-size: 22px;
     }
+
+    .ellipse {
+        width: 398px;
+        border-radius: 1349px;
+        filter: blur(50px);
+        height: 1200px;
+        bottom: -5%;
+    }
 }
