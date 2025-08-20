@@ -13,10 +13,12 @@ const LOGIN_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/telegram`;
 export async function POST(req: Request) {
   const { message } = await req.json();
 
+  await bot
+    .sendMessage(message.chat.id, "Обробляю ваш запит...")
+    .catch(console.error);
+
   if (message && (message.text === "/start" || message.text === "/login")) {
     const chatId = message.chat.id;
-
-    await bot.sendMessage(chatId, "Обробляю ваш запит...").catch(console.error);
 
     const opts = {
       reply_markup: {
