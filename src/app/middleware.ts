@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { decrypt, SESSION_KEY } from "@/lib";
 
 export async function middleware(req: NextRequest) {
-  const publicRoutes = ["/"];
+  const publicRoutes = ["/", "/auth/telegram"];
   const { pathname } = req.nextUrl;
 
   if (publicRoutes.includes(pathname)) {

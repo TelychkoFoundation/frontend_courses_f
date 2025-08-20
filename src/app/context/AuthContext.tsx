@@ -32,11 +32,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const fetchUserStatus = async () => {
     const { success, data, error } = await checkAuth();
 
-    if (!success && error) {
-      setLoading(false);
-      setIsAuthenticated(false);
-      redirect("/");
-    }
+    // if (!success && error) {
+    //   setLoading(false);
+    //   setIsAuthenticated(false);
+    //   redirect("/");
+    // }
 
     setIsAuthenticated(true);
 

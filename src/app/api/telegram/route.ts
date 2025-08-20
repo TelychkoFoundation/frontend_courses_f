@@ -4,17 +4,17 @@ import { NextResponse } from "next/server";
 import TelegramBot from "node-telegram-bot-api";
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
-const bot = new TelegramBot("8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk", {
+const bot = new TelegramBot(BOT_TOKEN, {
   polling: false,
 });
 
 // URL для нашого фронтенду, який оброблятиме авторизацію
-const LOGIN_URL = `https://frontend-courses-f-77uc.vercel.app/auth/telegram`;
+const LOGIN_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/telegram`;
 
 export async function POST(req: Request) {
   const { message } = await req.json();
 
-  if ((message && message.text === "/login") || message.text === "/start") {
+  if (message && message.text === "/start") {
     const chatId = message.chat.id;
     const opts = {
       reply_markup: {

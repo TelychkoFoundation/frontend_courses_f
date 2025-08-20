@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
   const secretKey = crypto
     .createHash("sha256")
-    .update("8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk")
+    .update(process.env.BOT_TOKEN as string)
     .digest();
 
   const calculatedHash = crypto

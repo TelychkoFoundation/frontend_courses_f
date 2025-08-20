@@ -31,20 +31,20 @@ export default function TelegramAuthPage() {
         .then(data => {
           console.log(data, "DATA");
           if (data.success) {
-            router.push("/courses");
+            // router.push("/courses");
           } else {
             // Обробка помилки
             console.error("Failed to verify Telegram data.");
-            router.push("/");
+            // router.push("/");
           }
         })
         .catch(error => {
           console.error("Error during verification:", error);
-          router.push("/");
+          // router.push("/");
         });
     } else {
       // Якщо дані відсутні, перенаправляємо на сторінку логіну
-      router.push("/");
+      // router.push("/");
     }
   }, [window.location.search, router]);
 
