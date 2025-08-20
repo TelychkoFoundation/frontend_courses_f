@@ -22,6 +22,7 @@ export default function TelegramAuthPage() {
       last_name: searchParams.get("last_name"),
       username: searchParams.get("username"),
       auth_date: searchParams.get("auth_date"),
+      photo_url: searchParams.get("photo_url"),
       hash: searchParams.get("hash"),
     };
 
