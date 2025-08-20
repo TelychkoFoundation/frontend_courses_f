@@ -15,6 +15,9 @@ export async function POST(req: Request) {
 
   if (message && (message.text === "/start" || message.text === "/login")) {
     const chatId = message.chat.id;
+
+    await bot.sendMessage(chatId, "Обробляю ваш запит...").catch(console.error);
+
     const opts = {
       reply_markup: {
         inline_keyboard: [

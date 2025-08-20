@@ -36,7 +36,6 @@ export default function TelegramAuthPage() {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data, "DATA");
           if (data.success) {
             login(authData);
           } else {
