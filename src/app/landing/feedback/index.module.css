@@ -131,67 +131,26 @@
     .feedbacks {
         display: flex;
         align-items: flex-start;
-        height: auto;
-        /*width: auto;*/
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding: 0;
+        height: 292px;
+    }
+
+    .feedbacks::-webkit-scrollbar {
+        display: none;
     }
 
     .feedback {
-        height: 292px;
-        width: 120%;
+        height: 100%;
         overflow: initial;
     }
 
     .feedbackTitle {
         font-size: 22px;
-    }
-
-    .buttons {
-        display: flex;
-        gap: 8px;
-        margin-left: auto;
-    }
-
-    .buttons button {
-        display: flex;
-        width: 120px;
-        height: 46px;
-        padding: 8px 32px;
-        justify-content: center;
-        align-items: center;
-        gap: 7px;
-        border-radius: 32px;
-        cursor: pointer;
-        background-color: var(--foreground);
-        color: var(--background);
-        transition: background 0.2s ease, color 0.2s ease;
-        font-family: var(--font-taktika), 'sans-serif';
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 22px
-    }
-
-    .buttons button:hover {
-        background-color: var(--foreground-muted);
-        color: var(--background);
-    }
-
-    .buttons button:disabled {
-        background-color: var(--background-muted);
-        color: var(--foreground);
-        cursor: not-allowed;
-    }
-
-    .buttons button div {
-        line-height: 0;
-    }
-
-    .disabledChevron {
-        fill: var(--foreground);
-    }
-
-    .chevron {
-        fill: var(--background);
     }
 
     .ellipse {

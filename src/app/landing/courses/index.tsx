@@ -23,10 +23,6 @@ export default function Courses() {
     fetchCourses();
   }, []);
 
-  if (!courses.length) {
-    return null;
-  }
-
   const renderShadow = (updatedAt: Date): ReactElement | null => {
     if (isNewCourse(updatedAt)) {
       return <NewCourseShadow className={styles.newCourseShadow} />;

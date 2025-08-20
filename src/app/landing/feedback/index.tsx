@@ -1,21 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import { feedbacks } from "@/constants";
 import { IFeedback } from "@/typings";
+import { DeviceTypes, DeviceType, useDeviceType } from "@/hooks";
 import Link from "next/link";
-import { DeviceType, DeviceTypes, useDeviceType } from "@/hooks";
-import { Badge, BadgeType, Button } from "@/components";
-import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from "@/images";
+import { Badge, BadgeType } from "@/components";
+import { StarIcon } from "@/images";
 import styles from "./index.module.css";
 
 export default function Feedback() {
-  const [id, setId] = useState<string>("1");
   const deviceType: DeviceType = useDeviceType();
-
-  const activeFeedback: IFeedback | undefined = useMemo(() => {
-    return feedbacks.find((feedback: IFeedback): boolean => feedback.id === id);
-  }, [id]);
 
   return (
     <section className={styles.container}>
@@ -45,41 +39,18 @@ export default function Feedback() {
               ))}
             </div>
             <p className={styles.feedbackDescription}>{feedback.message}</p>
-            <div className={styles.courses}>
-              {feedback.courses.map((course: string) => (
-                <Badge key={course} type={BadgeType.Tag}>
-                  {course}
-                </Badge>
-              ))}
-            </div>
+            {deviceType !== DeviceTypes.mobile ? (
+              <div className={styles.courses}>
+                {feedback.courses.map((course: string) => (
+                  <Badge key={course} type={BadgeType.Tag}>
+                    {course}
+                  </Badge>
+                ))}
+              </div>
+            ) : null}
           </div>
         ))}
       </section>
-      <div className={styles.buttons}>
-        <Button
-        // onClick={() => setStepAction(step - 1)} disabled={step === 1}
-        >
-          <div>
-            <ChevronLeftIcon
-              className={id === "1" ? styles.disabledChevron : styles.chevron}
-            />
-          </div>
-        </Button>
-        <Button
-        // onClick={() => setStepAction(step + 1)}
-        // disabled={step === tutorialSteps.length}
-        >
-          <div>
-            <ChevronRightIcon
-              className={
-                Number(id) === feedbacks.length
-                  ? styles.disabledChevron
-                  : styles.chevron
-              }
-            />
-          </div>
-        </Button>
-      </div>
     </section>
   );
 }

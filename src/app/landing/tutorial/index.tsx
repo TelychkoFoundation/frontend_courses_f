@@ -23,7 +23,7 @@ export default function Tutorial() {
   }, [step]);
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="tutorial" key="tutorial">
       <div className={styles.titleSection}>
         <h1 className={styles.title}>{tutorialMainHeaders.title}</h1>
         <p className={styles.subtitle}>{tutorialMainHeaders.subTitle}</p>

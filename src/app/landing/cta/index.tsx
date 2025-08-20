@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 
 export default function CtaContent() {
   return (
-    <section className={styles.container}>
+    <section className={styles.container} id="cta" key="cta">
       <p>
         Lorem ipsum dolor sit amet consectetur. Aliquam tincidunt purus et eu
         viverra cursus lectus. Cursus ullamcorper enim sagittis ut.
