@@ -5,7 +5,7 @@ import TelegramBot from "node-telegram-bot-api";
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const bot = new TelegramBot("8003632730:AAE_TQv08t4SgwcVR4VFhJotn6RXE8WZ0Gk", {
-  polling: true,
+  polling: false,
 });
 
 // URL для нашого фронтенду, який оброблятиме авторизацію
@@ -14,7 +14,7 @@ const LOGIN_URL = `https://frontend-courses-f-77uc.vercel.app/auth/telegram`;
 export async function POST(req: Request) {
   const { message } = await req.json();
 
-  if (message && message.text === "/login") {
+  if ((message && message.text === "/login") || message.text === "/start") {
     const chatId = message.chat.id;
     const opts = {
       reply_markup: {
