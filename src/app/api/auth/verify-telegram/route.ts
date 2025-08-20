@@ -13,6 +13,8 @@ export async function POST(req: Request) {
     .map(key => `${key}=${data[key]}`)
     .join("\n");
 
+  console.log(dataCheckString, "dataCheckString");
+
   const secretKey = crypto
     .createHash("sha256")
     .update(process.env.BOT_TOKEN as string)

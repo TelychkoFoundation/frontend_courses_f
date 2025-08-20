@@ -5,7 +5,7 @@ import { Avatar } from "./Avatar";
 import { Theme } from "./Theme";
 import { Language } from "./Language";
 import { GamificationXP } from "./GamificationXP";
-import Logo from "./Logo";
+import { Logo } from "@/components";
 import {
   HelpIcon,
   SettingsIcon,
@@ -15,6 +15,7 @@ import {
   UserIcon,
 } from "@/images";
 import { useAuth, useDeviceType, DeviceTypes, DeviceType } from "@/hooks";
+import { AUTH_BOT_LINK } from "@/constants";
 import styles from "./index.module.css";
 
 const dropdownLinks = [
@@ -64,19 +65,27 @@ export default function Header() {
       );
     }
 
-    if (deviceType === DeviceTypes.mobile) {
+    const renderTelegramButton = () => {
+      if (deviceType === DeviceTypes.mobile) {
+        return (
+          <Button type={ButtonType.TELEGRAM_MOBILE}>
+            <TelegramIcon className={styles.telegram} />
+          </Button>
+        );
+      }
+
       return (
-        <Button type={ButtonType.TELEGRAM_MOBILE}>
+        <Button type={ButtonType.TELEGRAM}>
           <TelegramIcon className={styles.telegram} />
+          Увійти з Telegram
         </Button>
       );
-    }
+    };
 
     return (
-      <Button type={ButtonType.TELEGRAM}>
-        <TelegramIcon className={styles.telegram} />
-        Увійти з Telegram
-      </Button>
+      <Link href={AUTH_BOT_LINK} target="_blank">
+        {renderTelegramButton()}
+      </Link>
     );
   };
 

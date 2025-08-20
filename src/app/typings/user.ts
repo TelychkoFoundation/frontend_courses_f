@@ -1,17 +1,15 @@
 import { Types, Document } from "mongoose";
 
-// Telegram данные о пользователе
 export interface ITelegramUserData {
-  id: number;
-  first_name: string;
-  last_name?: string;
-  username?: string;
-  photo_url?: string;
-  auth_date: number;
-  hash: string;
+  id: string | null;
+  first_name: string | null;
+  last_name?: string | null;
+  username?: string | null;
+  photo_url?: string | null;
+  auth_date: string | null;
+  hash: string | null;
 }
 
-// Подписка пользователя
 export interface ISubscriptionData {
   active: boolean;
   started_at?: Date;

@@ -13,7 +13,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   loading: boolean;
-  login: (userData: ITelegramUserData, route: string) => void;
+  login: (userData: ITelegramUserData) => void;
   logout: () => void;
 }
 
@@ -57,14 +57,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchUserStatus();
   }, []);
 
-  const login = async (userData: ITelegramUserData, route: string) => {
-    console.log(route, userData, "AUTH");
+  const login = async (userData: ITelegramUserData) => {
     try {
       setLoading(true);
       await loginUser(userData);
-      router.push(route);
+      router.push("/courses");
       setIsAuthenticated(true);
     } catch (error) {
+      router.push("/");
       showToast((error as Error).message, "error");
     } finally {
       setLoading(false);

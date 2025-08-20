@@ -8,7 +8,6 @@ const bot = new TelegramBot(BOT_TOKEN, {
   polling: false,
 });
 
-// URL для нашого фронтенду, який оброблятиме авторизацію
 const LOGIN_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/telegram`;
 
 export async function POST(req: Request) {
@@ -21,7 +20,7 @@ export async function POST(req: Request) {
         inline_keyboard: [
           [
             {
-              text: "Увійти через Next.js",
+              text: "Увійти",
               login_url: {
                 url: LOGIN_URL,
               },
@@ -31,7 +30,11 @@ export async function POST(req: Request) {
       },
     };
 
-    await bot.sendMessage(chatId, "Натисніть кнопку, щоб увійти:", opts);
+    await bot.sendMessage(
+      chatId,
+      "В цьому боті Ви отримаєте підтримку під час навчання. А поки треба авторизуватись",
+      opts,
+    );
   }
 
   return NextResponse.json({ status: "ok" });

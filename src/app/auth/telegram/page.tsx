@@ -1,27 +1,33 @@
-// app/auth/telegram/page.tsx
-"use client"; // Це важливо!
+"use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDeviceType, DeviceType, useAuth, useToast } from "@/hooks";
+import { Logo } from "@/components";
+import { ButtonLoadingIcon } from "@/images";
+import { ITelegramUserData } from "@/typings";
+import styles from "./page.module.css";
 
 export default function TelegramAuthPage() {
   const router = useRouter();
+  const deviceType: DeviceType = useDeviceType();
+  const { login } = useAuth();
+  const { showToast } = useToast();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const authData = {
+    const authData: ITelegramUserData = {
       id: searchParams.get("id"),
       first_name: searchParams.get("first_name"),
+      last_name: searchParams.get("last_name"),
       username: searchParams.get("username"),
       auth_date: searchParams.get("auth_date"),
       hash: searchParams.get("hash"),
-      // ...інші параметри
     };
 
     console.log(authData, "AUTHDATA");
 
     if (authData.id && authData.hash) {
-      // Відправте ці дані на ваш API-роут для верифікації
       fetch("/api/auth/verify-telegram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,27 +37,30 @@ export default function TelegramAuthPage() {
         .then(data => {
           console.log(data, "DATA");
           if (data.success) {
-            // router.push("/courses");
+            login(authData);
           } else {
-            // Обробка помилки
-            console.error("Failed to verify Telegram data.");
+            showToast("Не вдалося перевірити дані Telegram", "error");
             // router.push("/");
           }
         })
         .catch(error => {
-          console.error("Error during verification:", error);
+          showToast(`Помилка верифікації: ${error}`, "error");
           // router.push("/");
         });
     } else {
-      // Якщо дані відсутні, перенаправляємо на сторінку логіну
+      showToast("Недостатньо даних для авторизації", "error");
       // router.push("/");
     }
   }, [window.location.search, router]);
 
   return (
-    <div>
-      <h1>Processing Telegram Login...</h1>
-      <p>Please wait a moment.</p>
+    <div className={styles.container}>
+      <Logo deviceType={deviceType} isAuthenticated={false} />
+      <div className={styles.title}>
+        <h1>Обробка входу...</h1>
+        <p>Будь ласка, зачекайте трохи</p>
+        <ButtonLoadingIcon className={styles.loader} />
+      </div>
     </div>
   );
 }

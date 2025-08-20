@@ -122,32 +122,6 @@
     }
 }
 
-.logoContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-}
-
-.titlesContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.iconRect {
-    fill: var(--foreground);
-}
-
-.iconRectWithStroke {
-    fill: var(--foreground);
-    stroke: var(--background);;
-}
-
-.iconPath {
-    fill: var(--background);
-}
-
 .telegram {
     fill: var(--background);
 }

@@ -1,4 +1,6 @@
 import { Button, ButtonType } from "@/components";
+import Link from "next/link";
+import { AUTH_BOT_LINK } from "@/constants";
 import styles from "./index.module.css";
 
 export default function Prices() {
@@ -22,7 +24,9 @@ export default function Prices() {
             <span>46</span>
             <span>грн/урок</span>
           </div>
-          <Button type={ButtonType.SECONDARY}>Обрати урок</Button>
+          <Link href={AUTH_BOT_LINK} target="_blank">
+            <Button type={ButtonType.SECONDARY}>Обрати урок</Button>
+          </Link>
         </div>
         <div className={styles.priceCard}>
           <div className={styles.priceCardTitleSection}>
@@ -40,7 +44,9 @@ export default function Prices() {
             <span>299</span>
             <span>грн/курс</span>
           </div>
-          <Button type={ButtonType.SECONDARY}>Обрати курс</Button>
+          <Link href={AUTH_BOT_LINK} target="_blank">
+            <Button type={ButtonType.SECONDARY}>Обрати курс</Button>
+          </Link>
         </div>
         <div className={styles.priceCard}>
           <div className={styles.priceCardTitleSection}>

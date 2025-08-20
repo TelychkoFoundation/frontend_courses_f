@@ -10,5 +10,6 @@ export { default as CircleProgressBar } from "./CircleProgressBar";
 export { default as LessonStatusBar } from "./LessonStatusBar";
 export { default as CirclePlay } from "./CirclePlay";
 export { default as TgCircle } from "./TgCircle";
+export { default as Logo } from "./Logo";
 export * from "./Badge";
 export * from "./Button";

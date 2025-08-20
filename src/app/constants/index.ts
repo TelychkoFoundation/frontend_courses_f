@@ -3,3 +3,4 @@ export * from "./courses";
 export * from "./services";
 export * from "./tutorial";
 export * from "./feedbacks";
+export * from "./auth";
