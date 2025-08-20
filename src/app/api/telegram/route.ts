@@ -14,7 +14,7 @@ const LOGIN_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/telegram`;
 export async function POST(req: Request) {
   const { message } = await req.json();
 
-  if (message && message.text === "/start") {
+  if (message && (message.text === "/start" || message.text === "/login")) {
     const chatId = message.chat.id;
     const opts = {
       reply_markup: {
