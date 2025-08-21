@@ -4,7 +4,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import { ITelegramUserData, IUserDatabaseData } from "@/typings";
 import { checkAuth, getUser, loginUser, logoutUser } from "@/actions";
 import { useToast } from "@/hooks";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Header } from "@/components";
 
 interface AuthContextType {
@@ -25,17 +25,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<IUserDatabaseData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const pathname = usePathname();
 
   const { showToast } = useToast();
   const router = useRouter();
 
   useEffect(() => {
     const fetchUserStatus = async () => {
-      if (pathname === "/auth/telegram") {
-        return;
-      }
-
       const { success, data, error } = await checkAuth();
 
       if (!success && error) {
