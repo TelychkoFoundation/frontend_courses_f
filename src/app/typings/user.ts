@@ -10,6 +10,13 @@ export interface ITelegramUserData {
   hash: string | null;
 }
 
+export interface IGoogleUserData {
+  googleId: string;
+  googleEmail: string;
+  googleName: string;
+  googleImage: string;
+}
+
 export interface ISubscriptionData {
   active: boolean;
   started_at?: Date;
