@@ -4,17 +4,10 @@ import { LogoutIcon } from "@/images";
 import { signOut } from "next-auth/react";
 import styles from "./index.module.css";
 
-export default function Logout({
-  setIsAuthenticatedAction,
-}: {
-  setIsAuthenticatedAction: (isAuthenticated: boolean) => void;
-}) {
+export default function Logout() {
   return (
     <li
-      onClick={async () => {
-        setIsAuthenticatedAction(false);
-        await signOut({ redirectTo: "/" });
-      }}
+      onClick={() => signOut({ redirectTo: "/" })}
       className={styles.dropdownItemLogout}
     >
       <LogoutIcon />

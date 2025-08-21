@@ -27,7 +27,7 @@ const dropdownLinks = [
 ];
 
 export default function Header() {
-  const { user, loading, setIsAuthenticated, isAuthenticated } = useAuth();
+  const { user, loading, isAuthenticated } = useAuth();
   const deviceType: DeviceType = useDeviceType();
 
   const renderAuthSection = () => {
@@ -59,7 +59,7 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-            <Logout setIsAuthenticatedAction={setIsAuthenticated} />
+            <Logout />
           </Dropdown>
         </>
       );
