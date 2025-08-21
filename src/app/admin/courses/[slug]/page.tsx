@@ -16,7 +16,7 @@ export default function AdminCourseViewPage() {
 
   useEffect(() => {
     fetchCourse();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-[...nextauth]-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

@@ -22,7 +22,7 @@ export default function LessonsPage() {
     } else {
       fetchCourse();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-[...nextauth]-line react-hooks/exhaustive-deps
   }, [currentCourse]);
 
   if (loading) {

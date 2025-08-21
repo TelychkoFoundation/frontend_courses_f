@@ -16,7 +16,7 @@ export default function CreateLesson() {
     if (!currentCourse) {
       fetchCourse();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-[...nextauth]-line react-hooks/exhaustive-deps
   }, [currentCourse]);
 
   const [formValues, setFormValues] = useState({

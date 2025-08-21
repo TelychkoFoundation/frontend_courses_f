@@ -41,7 +41,7 @@ export default function LessonPage() {
     if (!currentCourse) {
       fetchCourse();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-[...nextauth]-line react-hooks/exhaustive-deps
   }, [currentCourse]);
 
   useEffect(() => {

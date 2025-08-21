@@ -13,7 +13,7 @@ import {
   About,
   Footer,
 } from "./landing";
-// import { useRouter } from "next/navigation";
+// import { useRouter } from "[...nextauth]/navigation";
 import styles from "../app/landing/index.module.css";
 
 // const sections = [{ id: "home" }, { id: "tutorial" }, { id: "cta" }];

@@ -27,12 +27,14 @@ export default function Hero() {
             </p>
           </div>
           {/*<Link href={AUTH_BOT_LINK} target="_blank">*/}
-          <Button
-            className={styles.startButton}
-            onClick={() => signIn("google")}
-          >
-            Почати навчання
-          </Button>
+          <div>
+            <Button
+              className={styles.startButton}
+              onClick={() => signIn("google")}
+            >
+              Почати навчання
+            </Button>
+          </div>
           {/*</Link>*/}
         </div>
         <div className={styles.videoContainer}>

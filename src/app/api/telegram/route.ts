@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-[...nextauth]-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import TelegramBot from "node-telegram-bot-api";
 
