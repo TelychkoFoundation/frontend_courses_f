@@ -63,4 +63,10 @@ export const authOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+// 🚀 Виправлений код: експортуємо функції напряму
+export async function GET(req: Request, res: Response) {
+  return handler(req, res);
+}
+export async function POST(req: Request, res: Response) {
+  return handler(req, res);
+}
