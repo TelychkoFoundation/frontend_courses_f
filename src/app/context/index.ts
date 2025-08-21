@@ -4,3 +4,4 @@ export { AdminProvider, AdminContext } from "./AdminContext";
 export { CoursesProvider, CoursesContext } from "./CoursesContext";
 export { ThemeProvider, ThemeContext } from "./ThemeContext";
 export { LessonsProvider, LessonsContext } from "./LessonsContext";
+export type { ThemeType } from "./ThemeContext";
