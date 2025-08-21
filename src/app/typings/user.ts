@@ -1,20 +1,12 @@
 import { Types, Document } from "mongoose";
 
-export interface ITelegramUserData {
-  id: string | null;
-  first_name: string | null;
-  last_name?: string | null;
-  username?: string | null;
-  photo_url?: string | null;
-  auth_date: string | null;
-  hash: string | null;
-}
-
 export interface IGoogleUserData {
-  googleId: string;
-  googleEmail: string;
-  googleName: string;
-  googleImage: string;
+  provider: string;
+  id: string | null | undefined;
+  email: string | null | undefined;
+  name: string | null | undefined;
+  image: string | null | undefined;
+  emailVerified: boolean | null | undefined;
 }
 
 export interface ISubscriptionData {
@@ -83,7 +75,7 @@ export interface MentorshipData {
 }
 
 // Полная информация о пользователе в базе данных (с расширением Telegram данных)
-export type IUserDatabaseData = ITelegramUserData &
+export type IUserDatabaseData = IGoogleUserData &
   Document & {
     purchased_lessons?: IPurchasedLesson[]; // Купленные уроки
     purchased_courses?: IPurchasedCourse[]; // Купленные курсы

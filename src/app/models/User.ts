@@ -113,37 +113,33 @@ const ReferralSchema: Schema = new Schema({
 // Основная модель пользователя
 const UserSchema: Schema = new Schema(
   {
+    provider: {
+      type: String,
+      required: true,
+      default: "google",
+    },
     id: {
-      type: Number,
-      required: [true, "Telegram ID is required"],
+      type: String,
+      required: true,
       unique: true,
-      index: true,
     },
-    first_name: {
+    email: {
       type: String,
-      required: [true, "First name is required"],
-    },
-    last_name: {
-      type: String,
-      required: false,
-    },
-    username: {
-      type: String,
-      required: false,
+      required: true,
       unique: true,
-      sparse: true,
+      lowercase: true,
+      trim: true,
     },
-    photo_url: {
+    name: {
       type: String,
-      required: false,
+      required: true,
     },
-    auth_date: {
-      type: Number,
-      required: [true, "Auth date is required"],
-    },
-    hash: {
+    image: {
       type: String,
-      required: [true, "Hash is required"],
+    },
+    emailVerified: {
+      type: Boolean,
+      required: true,
     },
 
     // Покупки

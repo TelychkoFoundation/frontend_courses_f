@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 import { ToastProvider, ThemeProvider, AuthProvider } from "@/context";
 import { ToastContainer } from "@/components";
 import { ReactNode } from "react";
@@ -58,7 +59,9 @@ export default async function RootLayout({
       <body className={`${taktikaFont.variable} ${interFont.variable}`}>
         <ThemeProvider>
           <ToastProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <SessionProvider>
+              <AuthProvider>{children}</AuthProvider>
+            </SessionProvider>
             <ToastContainer />
           </ToastProvider>
         </ThemeProvider>

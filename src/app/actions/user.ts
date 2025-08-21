@@ -1,29 +1,22 @@
 "use server";
 
-import { createDBConnection, deleteSession } from "@/lib";
+import { createDBConnection } from "@/lib";
 import { User } from "@/models";
-import { verifySession } from "@/lib";
 import { IPurchasedCourse, IUserDatabaseData } from "@/typings";
 
-export async function checkAuth() {
+export async function checkDBConnection() {
   const isDatabaseConnected = await createDBConnection();
 
   if (!isDatabaseConnected) {
     return { success: false, error: "Database have not connected" };
   }
 
-  const { isAuth, userID } = await verifySession();
-
-  if (!isAuth) {
-    return { success: false, error: "Invalid session" };
-  }
-
-  return { success: true, data: { isAuth, userID } };
+  return { success: true };
 }
 
-export async function getUser(userID: string) {
+export async function getUser(id: string) {
   try {
-    const currentUser = await User.findOne({ id: Number(userID) });
+    const currentUser = await User.findOne({ id });
     if (!currentUser) {
       return {
         success: false,
@@ -32,22 +25,6 @@ export async function getUser(userID: string) {
     }
 
     return { success: true, data: JSON.parse(JSON.stringify(currentUser)) };
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return { success: false, error: error.message };
-    }
-  }
-}
-
-export async function logoutUser() {
-  await deleteSession();
-}
-
-export async function deleteUser() {
-  const { userID } = await verifySession();
-  try {
-    await User.findOneAndDelete({ id: userID });
-    await deleteSession();
   } catch (error: unknown) {
     if (error instanceof Error) {
       return { success: false, error: error.message };

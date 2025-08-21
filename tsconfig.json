@@ -29,7 +29,8 @@
       "@/models": ["models/index.ts"],
       "@/actions": ["actions/index.ts"],
       "@/images": ["images/index.ts"],
-      "@/utils": ["utils/index.ts"]
+      "@/utils": ["utils/index.ts"],
+      "@/auth": ["auth.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "global.d.ts"],

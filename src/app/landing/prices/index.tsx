@@ -1,6 +1,5 @@
 import { Button, ButtonType } from "@/components";
-import Link from "next/link";
-import { AUTH_BOT_LINK } from "@/constants";
+import { signIn } from "next-auth/react";
 import styles from "./index.module.css";
 
 export default function Prices() {
@@ -24,9 +23,12 @@ export default function Prices() {
             <span>46</span>
             <span>грн/урок</span>
           </div>
-          <Link href={AUTH_BOT_LINK} target="_blank">
-            <Button type={ButtonType.SECONDARY}>Обрати урок</Button>
-          </Link>
+          <Button
+            type={ButtonType.SECONDARY}
+            onClick={() => signIn("google", { redirectTo: "/courses" })}
+          >
+            Обрати урок
+          </Button>
         </div>
         <div className={styles.priceCard}>
           <div className={styles.priceCardTitleSection}>
@@ -44,9 +46,12 @@ export default function Prices() {
             <span>299</span>
             <span>грн/курс</span>
           </div>
-          <Link href={AUTH_BOT_LINK} target="_blank">
-            <Button type={ButtonType.SECONDARY}>Обрати курс</Button>
-          </Link>
+          <Button
+            type={ButtonType.SECONDARY}
+            onClick={() => signIn("google", { redirectTo: "/courses" })}
+          >
+            Обрати курс
+          </Button>
         </div>
         <div className={styles.priceCard}>
           <div className={styles.priceCardTitleSection}>

@@ -27,7 +27,7 @@ const dropdownLinks = [
 ];
 
 export default function Header() {
-  const { isAuthenticated, user, loading } = useAuth();
+  const { user, loading, setIsAuthenticated, isAuthenticated } = useAuth();
   const deviceType: DeviceType = useDeviceType();
 
   const renderAuthSection = () => {
@@ -42,7 +42,7 @@ export default function Header() {
           <Dropdown
             targetElement={
               user ? (
-                <Avatar url={user.photo_url || ""} deviceType={deviceType} />
+                <Avatar url={user.image || ""} deviceType={deviceType} />
               ) : (
                 <AvatarSkeleton />
               )
@@ -59,7 +59,7 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-            <Logout />
+            <Logout setIsAuthenticatedAction={setIsAuthenticated} />
           </Dropdown>
         </>
       );

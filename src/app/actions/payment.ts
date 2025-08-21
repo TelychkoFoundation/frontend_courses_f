@@ -1,7 +1,6 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { verifySession } from "@/lib";
 import {
   ICourse,
   ICreateLinkPayload,
@@ -37,14 +36,13 @@ export async function createPaymentForLesson(
   lesson: ILesson,
   redirectUrl: string,
 ) {
-  const { userID } = await verifySession();
   const payload: ICreateLinkPayload = {
     amount: lesson.price as number,
     ccy: 980,
     redirectUrl,
     webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
     merchantPaymInfo: {
-      reference: `${userID}_${lesson.course_id}_${lesson._id}`,
+      reference: `${"userID"}_${lesson.course_id}_${lesson._id}`,
       destination: `Оплата за урок - ${lesson.title}`,
     },
   };
@@ -57,14 +55,13 @@ export async function createPaymentForCourse(
   course: ICourse,
   redirectUrl: string,
 ) {
-  const { userID } = await verifySession();
   const payload: ICreateLinkPayload = {
     amount: course.price,
     ccy: 980,
     redirectUrl,
     webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
     merchantPaymInfo: {
-      reference: `${userID}_${course._id}_full`,
+      reference: `${"userID"}_${course._id}_full`,
       destination: `Оплата за курс - ${course.title}`,
     },
   };

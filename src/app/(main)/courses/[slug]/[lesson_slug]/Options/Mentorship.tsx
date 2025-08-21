@@ -5,6 +5,7 @@ import {
   TelegramIcon,
   LockIcon,
 } from "@/images";
+// import { AUTH_BOT_LINK } from "@/constants";
 import { TgCircle } from "@/components";
 import { useLessons } from "@/hooks";
 import styles from "./index.module.css";
@@ -30,10 +31,7 @@ export default function Mentorship() {
     //
     // const payload = `${currentCourse._id}_${lessonID}_${success ? 1 : 0}`;
     //
-    // window.open(
-    //   `https://t.me/mentorship_frontend_courses_bot?start=${payload}`,
-    //   "_blank",
-    // );
+    // window.open(`${AUTH_BOT_LINK}?start=${payload}`, "_blank");
   };
 
   const renderMentorDescription = () => {

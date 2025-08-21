@@ -1,51 +1,51 @@
-// import NextAuth from "next-auth";
-// import GoogleProvider from "next-auth/providers/google";
-//
-// export const authOptions = NextAuth({
-//   providers: [
-//     GoogleProvider({
-//       clientId: process.env.GOOGLE_CLIENT_ID as string,
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-//     }),
-//   ],
-//   callbacks: {
-//     async signIn({ profile }: any): Promise<any> {
-//       console.log(profile, "PROFILE");
-//       // await connect(); // Підключення до бази даних
-//
-//       try {
-//         // Шукаємо користувача за Google ID або email
-//         // let user = await User.findOne({
-//         //   $or: [{ googleId: profile.sub }, { googleEmail: profile.email }],
-//         // });
-//         //
-//         // if (!user) {
-//         //   // Якщо користувач не знайдений, створюємо нового
-//         //   await User.create({
-//         //     provider: "google",
-//         //     googleId: profile.sub,
-//         //     googleEmail: profile.email,
-//         //     googleName: profile.name,
-//         //     googleImage: profile.picture,
-//         //   });
-//         // } else {
-//         //   // Якщо користувач знайдений, оновлюємо його дані
-//         //   await User.updateOne(
-//         //     { _id: user._id },
-//         //     {
-//         //       googleId: profile.sub,
-//         //       googleEmail: profile.email,
-//         //       googleName: profile.name,
-//         //       googleImage: profile.picture,
-//         //     },
-//         //   );
-//         // }
-//
-//         return true; // Дозволяємо вхід
-//       } catch (error) {
-//         console.error("Error signing in with Google:", error);
-//         return false;
-//       }
-//     },
-//   },
-// });
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import { saveUser } from "@/actions";
+import { IGoogleUserData } from "@/typings";
+
+export const { handlers } = NextAuth({
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, profile }: any) {
+      if (profile) {
+        token.id = profile.sub;
+      }
+      return token;
+    },
+
+    async session({ session, token }: any) {
+      if (token && session.user) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
+
+    async signIn({ profile }): Promise<boolean> {
+      if (!profile) {
+        return false;
+      }
+
+      const userData: IGoogleUserData = {
+        provider: "google",
+        email: profile.email,
+        id: profile.sub,
+        name: profile.name,
+        image: profile.picture,
+        emailVerified: profile.email_verified,
+      };
+
+      try {
+        await saveUser(userData);
+        return true;
+      } catch (error) {
+        console.error("Error signing in with Google:", error);
+        return false;
+      }
+    },
+  },
+});

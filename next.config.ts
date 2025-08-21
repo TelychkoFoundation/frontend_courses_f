@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   },
   matcher: ["/((?!_next|favicon.ico|api).*)"],
   images: {
-    remotePatterns: [new URL("https://t.me/i/userpic/**")],
+    remotePatterns: [new URL("https://lh3.googleusercontent.com/**")],
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

@@ -2,8 +2,6 @@
 
 import { Badge, BadgeType, Button, ButtonType } from "@/components";
 import { HeroBackground } from "@/images";
-import Link from "next/link";
-import { AUTH_BOT_LINK } from "@/constants";
 import { signIn } from "next-auth/react";
 import styles from "./index.module.css";
 
@@ -26,16 +24,14 @@ export default function Hero() {
               роботи у фронтенд розробці
             </p>
           </div>
-          {/*<Link href={AUTH_BOT_LINK} target="_blank">*/}
           <div>
             <Button
               className={styles.startButton}
-              onClick={() => signIn("google")}
+              onClick={() => signIn("google", { redirectTo: "/courses" })}
             >
               Почати навчання
             </Button>
           </div>
-          {/*</Link>*/}
         </div>
         <div className={styles.videoContainer}>
           <div className={styles.ellipse1}>
