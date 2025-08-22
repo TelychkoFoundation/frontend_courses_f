@@ -1,10 +1,4 @@
-import {
-  Dropdown,
-  Button,
-  ButtonType,
-  AvatarSkeleton,
-  AuthButton,
-} from "@/components";
+import { Dropdown, AvatarSkeleton, AuthButton } from "@/components";
 import Link from "next/link";
 import Logout from "./Logout";
 import { Avatar } from "./Avatar";
@@ -17,11 +11,9 @@ import {
   SettingsIcon,
   ShoppingCartIcon,
   StatisticsIcon,
-  TelegramIcon,
   UserIcon,
 } from "@/images";
-import { useAuth, useDeviceType, DeviceTypes, DeviceType } from "@/hooks";
-import { AUTH_BOT_LINK } from "@/constants";
+import { useAuth, useDeviceType, DeviceType } from "@/hooks";
 import styles from "./index.module.css";
 
 const dropdownLinks = [
@@ -71,35 +63,12 @@ export default function Header() {
       );
     }
 
-    const renderTelegramButton = () => {
-      // if (deviceType === DeviceTypes.mobile) {
-      //   return (
-      //     <Button type={ButtonType.TELEGRAM_MOBILE}>
-      //       <TelegramIcon className={styles.telegram} />
-      //     </Button>
-      //   );
-      // }
-      //
-      // return (
-      //   <Button type={ButtonType.TELEGRAM}>
-      //     <TelegramIcon className={styles.telegram} />
-      //     Увійти з Telegram
-      //   </Button>
-      // );
-
-      return <AuthButton />;
-    };
-
-    return (
-      // <Link href={AUTH_BOT_LINK} target="_blank">
-      renderTelegramButton()
-      // </Link>
-    );
+    return <AuthButton deviceType={deviceType} />;
   };
 
   return (
     <header className={styles.header}>
-      <Logo deviceType={deviceType} isAuthenticated={isAuthenticated} />
+      <Logo />
       <nav className={styles.nav}>
         <Language />
         <Theme />

@@ -29,4 +29,5 @@ export { default as ChevronLeftIcon } from "./chevron-left";
 export { default as ChevronRightIcon } from "./chevron-right";
 export { default as StarIcon } from "./star";
 export { default as ButtonLoadingIcon } from "./button-loading";
+export { default as HomeIcon } from "./home";
 export * from "./course-icons";

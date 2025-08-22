@@ -19,3 +19,10 @@
 .googleButton:hover {
     border: 1px solid var(--foreground-muted);
 }
+
+.googleButtonMobile {
+    scale: 1.5;
+    line-height: 0;
+    cursor: pointer;
+    margin-bottom: 1px;
+}

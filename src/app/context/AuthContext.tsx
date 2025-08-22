@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           if (response?.success) {
             setUser(response.data);
             setIsAuthenticated(true);
-            router.push("/courses");
           } else {
             showToast(response?.error as string, "error");
             setUser(null);

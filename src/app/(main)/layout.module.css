@@ -26,6 +26,10 @@
     line-height: normal;
 }
 
+.homeIcon {
+    fill: var(--foreground);
+}
+
 .coursesSegment {
     line-height: 0;
 }

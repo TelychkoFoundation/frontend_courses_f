@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useCourses, useLessons } from "@/hooks";
+import { HomeIcon } from "@/images";
 import styles from "./layout.module.css";
 
 export default function Breadcrumbs() {
@@ -13,7 +14,7 @@ export default function Breadcrumbs() {
   return (
     <div className={styles.breadcrumbsContainer}>
       <div className={styles.breadcrumbs}>
-        {/*<FaHome size={14} />*/}
+        <HomeIcon className={styles.homeIcon} />
         <span>/</span>
         <Link href="/courses" className={styles.coursesSegment}>
           Курси
