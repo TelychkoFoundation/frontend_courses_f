@@ -8,6 +8,7 @@ import LessonShortInfo from "../LessonShortInfo";
 import { useAuth } from "@/hooks";
 import styles from "./index.module.css";
 import { createPaymentForLesson } from "@/actions";
+import { useSession } from "next-auth/react";
 
 const inDev = false;
 const isDone = false;
@@ -20,6 +21,7 @@ export default function Lesson({ lesson }: ILessonProps) {
   const params = useParams();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const { data } = useSession();
 
   const payForLesson = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -27,7 +29,17 @@ export default function Lesson({ lesson }: ILessonProps) {
       return;
     }
 
-    startTransition(() => createPaymentForLesson(lesson, window.location.href));
+    if (!data) {
+      return;
+    }
+
+    startTransition(() =>
+      createPaymentForLesson(
+        data?.user?.id as string,
+        lesson,
+        window.location.href,
+      ),
+    );
   };
 
   const { user } = useAuth();

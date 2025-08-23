@@ -5,6 +5,7 @@ import { useCourses } from "@/hooks";
 import { useTransition } from "react";
 import { createPaymentForCourse } from "@/actions";
 import styles from "./index.module.css";
+import { useSession } from "next-auth/react";
 
 interface ICourseNotPaidProps {
   currentCourseDetailsVisibility: boolean;
@@ -14,7 +15,7 @@ export default function CourseNotPaid({
   currentCourseDetailsVisibility,
 }: ICourseNotPaidProps) {
   const { currentCourse } = useCourses();
-
+  const { data } = useSession();
   const [isPending, startTransition] = useTransition();
 
   const payForCourse = async () => {
@@ -22,8 +23,16 @@ export default function CourseNotPaid({
       return;
     }
 
+    if (!data) {
+      return;
+    }
+
     startTransition(() =>
-      createPaymentForCourse(currentCourse, window.location.href),
+      createPaymentForCourse(
+        data?.user?.id as string,
+        currentCourse,
+        window.location.href,
+      ),
     );
   };
 

@@ -4,16 +4,13 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import { IUserDatabaseData } from "@/typings";
 import { checkDBConnection, getUser } from "@/actions";
 import { useToast } from "@/hooks";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Header } from "@/components";
 import { useSession } from "next-auth/react";
 
 interface AuthContextType {
   user: IUserDatabaseData | null;
-  setUser: (user: IUserDatabaseData | null) => void;
   loading: boolean;
-  isAuthenticated: boolean;
-  setIsAuthenticated: (isAuthenticated: boolean) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -23,70 +20,64 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUserDatabaseData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [dbConnected, setDbConnected] = useState<boolean>(false);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const { showToast } = useToast();
+  const { status, data: session } = useSession();
   const router = useRouter();
-  const { status, data } = useSession();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const checkDBConnectionHandler = async () => {
-      const { success, error } = await checkDBConnection();
-
-      if (!success) {
-        showToast(error as string, "error");
-        setDbConnected(false);
+    const handleAuth = async () => {
+      if (status === "loading") {
+        setLoading(true);
         return;
       }
 
-      setDbConnected(true);
+      if (status === "unauthenticated") {
+        setUser(null);
+        setLoading(false);
+        router.push("/");
+        return;
+      }
+
+      const { success: dbSuccess, error: dbError } = await checkDBConnection();
+
+      if (!dbSuccess) {
+        showToast(dbError as string, "error");
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await getUser(session?.user?.id as string);
+
+        if (response?.success) {
+          setUser(response.data);
+
+          if (pathname === "/") {
+            router.push("/courses");
+          }
+        } else {
+          showToast(response?.error as string, "error");
+          setUser(null);
+        }
+      } catch (e) {
+        showToast("Error while fetching user data.", "error");
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    checkDBConnectionHandler();
-  }, []);
-
-  useEffect(() => {
-    if (!dbConnected) {
-      return;
-    }
-
-    if (status === "authenticated") {
-      const fetchUser = async () => {
-        try {
-          const response = await getUser(data?.user?.id as string);
-          if (response?.success) {
-            setUser(response.data);
-            setIsAuthenticated(true);
-          } else {
-            showToast(response?.error as string, "error");
-            setUser(null);
-          }
-        } catch {
-          showToast("Error while fetching user status:", "error");
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchUser();
-    }
-
-    if (status === "unauthenticated") {
-      setIsAuthenticated(false);
-      setLoading(false);
-      router.push("/");
-    }
-  }, [status, dbConnected]);
+    handleAuth();
+  }, [status, session, pathname, router, showToast]);
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        setUser,
         loading,
-        isAuthenticated,
-        setIsAuthenticated,
       }}
     >
       <Header />

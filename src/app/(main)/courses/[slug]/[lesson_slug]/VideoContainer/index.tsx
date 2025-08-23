@@ -8,10 +8,11 @@ import Image from "next/image";
 import { useLessons } from "@/hooks";
 import Video from "./Video";
 import styles from "./index.module.css";
+import { useSession } from "next-auth/react";
 
 export default function VideoContainer() {
   const { isCurrentLessonPaid, currentLesson } = useLessons();
-
+  const { data } = useSession();
   const [isPending, startTransition] = useTransition();
 
   const payForLesson = async () => {
@@ -19,8 +20,16 @@ export default function VideoContainer() {
       return;
     }
 
+    if (!data) {
+      return;
+    }
+
     startTransition(() =>
-      createPaymentForLesson(currentLesson.lesson, window.location.href),
+      createPaymentForLesson(
+        data.user?.id as string,
+        currentLesson.lesson,
+        window.location.href,
+      ),
     );
   };
 

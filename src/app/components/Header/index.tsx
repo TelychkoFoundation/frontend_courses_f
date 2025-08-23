@@ -13,6 +13,7 @@ import {
   StatisticsIcon,
   UserIcon,
 } from "@/images";
+import { useSession } from "next-auth/react";
 import { useAuth, useDeviceType, DeviceType } from "@/hooks";
 import styles from "./index.module.css";
 
@@ -25,45 +26,46 @@ const dropdownLinks = [
 ];
 
 export default function Header() {
-  const { user, loading, isAuthenticated } = useAuth();
+  const { user } = useAuth();
+  const { status } = useSession();
   const deviceType: DeviceType = useDeviceType();
 
   const renderAuthSection = () => {
-    if (loading) {
+    if (status === "loading") {
       return <AvatarSkeleton />;
     }
 
-    if (isAuthenticated) {
-      return (
-        <>
-          <GamificationXP />
-          <Dropdown
-            targetElement={
-              user ? (
-                <Avatar url={user.image || ""} deviceType={deviceType} />
-              ) : (
-                <AvatarSkeleton />
-              )
-            }
-          >
-            {dropdownLinks.map(({ id, name, icon }) => (
-              <li key={id}>
-                <Link
-                  href={`/profile?section=${id}`}
-                  className={styles.dropdownItem}
-                >
-                  {icon}
-                  <span className={styles.dropdownItemName}>{name}</span>
-                </Link>
-              </li>
-            ))}
-            <Logout />
-          </Dropdown>
-        </>
-      );
+    if (status === "unauthenticated") {
+      return <AuthButton deviceType={deviceType} />;
     }
 
-    return <AuthButton deviceType={deviceType} />;
+    return (
+      <>
+        <GamificationXP />
+        <Dropdown
+          targetElement={
+            user ? (
+              <Avatar url={user.image || ""} deviceType={deviceType} />
+            ) : (
+              <AvatarSkeleton />
+            )
+          }
+        >
+          {dropdownLinks.map(({ id, name, icon }) => (
+            <li key={id}>
+              <Link
+                href={`/profile?section=${id}`}
+                className={styles.dropdownItem}
+              >
+                {icon}
+                <span className={styles.dropdownItemName}>{name}</span>
+              </Link>
+            </li>
+          ))}
+          <Logout />
+        </Dropdown>
+      </>
+    );
   };
 
   return (
