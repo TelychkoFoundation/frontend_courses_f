@@ -49,6 +49,8 @@
 
 @media (max-width: 768px) {
     .container {
-        padding: 48px 24px;
+        padding: 16px 16px 40px 16px;
+        gap: 28px;
+        margin-top: 80px;
     }
 }

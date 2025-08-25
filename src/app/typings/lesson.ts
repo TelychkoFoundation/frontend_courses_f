@@ -20,6 +20,7 @@ export interface ILesson {
   reviews?: ILessonReview[];
   createdAt?: Date;
   updatedAt?: Date;
+  video_duration: number;
 }
 
 export interface ILessonReview {

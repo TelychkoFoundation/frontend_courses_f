@@ -1,9 +1,4 @@
-import {
-  CircleDoneIcon,
-  CircleLockIcon,
-  LockDarkIcon,
-  DoneIcon,
-} from "@/images";
+import { CircleDoneIcon, CircleLockIcon, DoneIcon, LockIcon } from "@/images";
 import Image from "next/image";
 import { CirclePlay } from "../index";
 import styles from "./index.module.css";
@@ -16,13 +11,12 @@ export default function LessonStatusBar() {
     return <CirclePlay progress={74} />;
   }
 
-  if (inDevOrNotPaid) {
+  if (!inDevOrNotPaid) {
     return (
       <>
         <CircleLockIcon className={styles.lockContainer} />
-        <Image
-          src={LockDarkIcon}
-          alt="Lock dark icon"
+        <LockIcon
+          positionClassname={styles.lockPosition}
           className={styles.lock}
         />
       </>
@@ -32,7 +26,7 @@ export default function LessonStatusBar() {
   return (
     <>
       <CircleDoneIcon className={styles.doneContainer} />
-      <Image src={DoneIcon} alt="Done icon" className={styles.lock} />
+      <Image src={DoneIcon} alt="Done icon" className={styles.lockPosition} />
     </>
   );
 }

@@ -143,6 +143,9 @@
 }
 
 .lockIcon {
-    width: 16px;
-    height: 16px;
+    fill: var(--secondary);
+}
+
+.lockIconTg {
+    fill: var(--background);
 }

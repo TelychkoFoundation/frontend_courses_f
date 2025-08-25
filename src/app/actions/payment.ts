@@ -33,7 +33,7 @@ export async function createPaymentLink(payload: ICreateLinkPayload) {
 }
 
 export async function createPaymentForLesson(
-  userID: string,
+  id: string,
   lesson: ILesson,
   redirectUrl: string,
 ) {
@@ -43,7 +43,7 @@ export async function createPaymentForLesson(
     redirectUrl,
     webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
     merchantPaymInfo: {
-      reference: `${userID}_${lesson.course_id}_${lesson._id}`,
+      reference: `${id}_${lesson.course_id}_${lesson._id}`,
       destination: `Оплата за урок - ${lesson.title}`,
     },
   };
@@ -53,7 +53,7 @@ export async function createPaymentForLesson(
 }
 
 export async function createPaymentForCourse(
-  userID: string,
+  id: string,
   course: ICourse,
   redirectUrl: string,
 ) {
@@ -63,7 +63,7 @@ export async function createPaymentForCourse(
     redirectUrl,
     webhookUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/monobank/webhook`,
     merchantPaymInfo: {
-      reference: `${userID}_${course._id}_full`,
+      reference: `${id}_${course._id}_full`,
       destination: `Оплата за курс - ${course.title}`,
     },
   };

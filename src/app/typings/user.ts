@@ -96,3 +96,10 @@ export type IUserDatabaseData = IGoogleUserData &
     createdAt?: Date; // Автоматически генерируемое поле при записи (из Mongoose)
     updatedAt?: Date; // Автоматически обновляемое поле при записи (из Mongoose)
   };
+
+export interface IUpdateProgressPayload {
+  lessonId: string;
+  courseId: string;
+  watchedDuration: number;
+  completed: boolean;
+}

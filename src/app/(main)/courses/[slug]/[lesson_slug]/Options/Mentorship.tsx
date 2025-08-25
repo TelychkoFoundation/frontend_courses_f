@@ -1,11 +1,4 @@
-import Image from "next/image";
-import {
-  // LockDarkIcon,
-  // DividerVertical,
-  TelegramIcon,
-  LockIcon,
-} from "@/images";
-// import { AUTH_BOT_LINK } from "@/constants";
+import { TelegramIcon, LockIcon } from "@/images";
 import { TgCircle } from "@/components";
 import { useLessons } from "@/hooks";
 import styles from "./index.module.css";
@@ -83,7 +76,7 @@ export default function Mentorship() {
     return (
       <TgCircle>
         {!isCurrentLessonPaid ? (
-          <Image src={LockIcon} alt="Tg Circle" className={styles.lockIcon} />
+          <LockIcon className={styles.lockIconTg} />
         ) : (
           <TelegramIcon />
         )}

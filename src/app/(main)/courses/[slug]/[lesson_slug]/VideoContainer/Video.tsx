@@ -1,31 +1,37 @@
 import { useEffect, useRef, useState } from "react";
-import { useLessons } from "@/hooks";
-import { getVideoSignedUrl } from "@/actions";
+import { useLessons, useAuth } from "@/hooks";
+import { IUpdateProgressPayload } from "@/typings";
+import { getVideoSignedUrl, updateUserProgress } from "@/actions";
 import styles from "./index.module.css";
 
 export default function Video() {
   const { currentLesson } = useLessons();
+  const { user } = useAuth();
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const [url, setUrl] = useState<string>("");
-  const [watchedSeconds, setWatchedSeconds] = useState<number>(0);
-  const [totalDuration, setTotalDuration] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const updateProgress = async (progress: any) => {
-    console.log(progress, "Progress");
-    console.log(totalDuration, "Total Duration");
-    console.log(watchedSeconds, "Watched Seconds");
-    // try {
-    //   await fetch("/api/updateLessonProgress", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(progress),
-    //   });
-    // } catch (error) {
-    //   console.error("Failed to update progress:", error);
-    // }
-  };
+  useEffect(() => {
+    if (videoRef.current && currentLesson?.lesson.video_key) {
+      const getVideoUrl = async () => {
+        setLoading(true);
+        const { success, url } = await getVideoSignedUrl(
+          currentLesson?.lesson.video_key as string,
+        );
+        if (success) {
+          setUrl(url || "");
+        } else {
+          // Обробка помилки завантаження відео
+          console.error("Failed to get video URL");
+        }
+        setLoading(false);
+      };
+      getVideoUrl();
+    }
+  }, [currentLesson?.lesson.video_key]);
 
   useEffect(() => {
     if (videoRef.current && currentLesson?.lesson.video_key) {
@@ -48,78 +54,101 @@ export default function Video() {
     }
   }, [currentLesson?.lesson.video_key]);
 
+  // Логіка відстеження прогресу
   useEffect(() => {
     const videoElement = videoRef.current;
+    if (!videoElement || !user || !currentLesson) return;
 
-    if (!videoElement) return;
+    const lessonId = currentLesson.lesson._id;
+    const courseId = currentLesson.lesson.course_id;
 
-    // Відстежуємо події
+    // Встановлюємо прогрес відео з бази даних при завантаженні
+    const initialProgress = user.lesson_progress?.find(
+      progress => progress.lesson_id === lessonId,
+    );
+
+    if (initialProgress) {
+      videoElement.currentTime = initialProgress.duration as number;
+    }
+
+    // Відправка прогресу на сервер кожні 10 секунд
+    const sendProgress = () => {
+      const payload: IUpdateProgressPayload = {
+        lessonId: lessonId as string,
+        courseId: courseId as string,
+        watchedDuration: Math.floor(videoElement.currentTime),
+        completed: false, // На цьому етапі відео ще не завершено
+      };
+      // Викликаємо сервер-функцію
+      updateUserProgress(user.id, payload);
+    };
+
+    // Слухачі подій
     const handlePlay = () => {
-      console.log("Video started");
+      console.log("Відео почало відтворення");
+      // Відправка прогресу кожні 10 секунд
+      if (progressIntervalRef.current)
+        clearInterval(progressIntervalRef.current);
+      progressIntervalRef.current = setInterval(sendProgress, 10000); // Відправляти кожні 10 секунд
     };
 
     const handlePause = () => {
-      console.log("Video paused");
-      updateProgress({
-        lesson_id: currentLesson?.lesson._id,
-        course_id: currentLesson?.lesson.course_id,
-        watched_at: new Date(),
-        duration: watchedSeconds,
-        completed: false, // Спочатку фіксуємо паузу
-      });
-    };
-
-    const handleTimeUpdate = () => {
-      setWatchedSeconds(Math.floor(videoElement.currentTime));
+      console.log("Відео на паузі");
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
+      }
+      sendProgress(); // Відправити прогрес негайно при паузі
     };
 
     const handleEnded = () => {
-      console.log("Video completed watching");
-      updateProgress({
-        lesson_id: currentLesson?.lesson._id,
-        course_id: currentLesson?.lesson.course_id,
-        watched_at: new Date(),
-        duration: totalDuration,
-        completed: true, // Відео завершене
-      });
+      console.log("Перегляд відео завершено");
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
+      }
+      // Відправка остаточного прогресу та статусу completed
+      const finalPayload: IUpdateProgressPayload = {
+        lessonId: lessonId as string,
+        courseId: courseId as string,
+        watchedDuration: Math.floor(videoElement.duration),
+        completed: true,
+      };
+      updateUserProgress(user.id, finalPayload);
     };
 
-    const handleLoadedMetadata = () => {
-      setTotalDuration(Math.floor(videoElement.duration)); // Загальна тривалість відео
-    };
-
-    // Додаємо слухачів подій
     videoElement.addEventListener("play", handlePlay);
     videoElement.addEventListener("pause", handlePause);
-    videoElement.addEventListener("timeupdate", handleTimeUpdate);
     videoElement.addEventListener("ended", handleEnded);
-    videoElement.addEventListener("loadedmetadata", handleLoadedMetadata);
 
-    // Очищення слухачів подій при демонтажі компонента
     return () => {
       videoElement.removeEventListener("play", handlePlay);
       videoElement.removeEventListener("pause", handlePause);
-      videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       videoElement.removeEventListener("ended", handleEnded);
-      videoElement.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+      }
     };
-  }, [
-    currentLesson?.lesson._id,
-    currentLesson?.lesson.course_id,
-    watchedSeconds,
-    totalDuration,
-  ]);
+  }, [currentLesson, user]);
 
   return (
-    <video
-      ref={videoRef}
-      controls
-      disablePictureInPicture
-      onContextMenu={e => e.preventDefault()}
-      className={styles.video}
-      preload="metadata"
-    >
-      {url ? <source src={url} type="video/mp4" /> : null}
-    </video>
+    <div className={styles.videoWrapper}>
+      {loading ? (
+        <p>Завантаження відео...</p>
+      ) : url ? (
+        <video
+          key={url} // Ключ змінюється, щоб примусити перемалювати відео
+          ref={videoRef}
+          controls
+          disablePictureInPicture
+          onContextMenu={e => e.preventDefault()}
+          className={styles.video}
+          preload="metadata"
+          src={url}
+        />
+      ) : (
+        <p>Не вдалося завантажити відео.</p>
+      )}
+    </div>
   );
 }

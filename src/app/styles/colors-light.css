@@ -1,14 +1,12 @@
 :root {
-
-    /* Skeleton */
-    --skeleton-bg: #f0f0f0;             /* Фон для скелетона */
-    --skeleton-pulse-start: #eeeeee;    /* Начальный цвет анимации */
-    --skeleton-pulse-middle: #dddddd;   /* Средний цвет анимации */
-    --skeleton-pulse-end: #eeeeee;      /* Конечный цвет анимации */
-    --skeleton-icon-bg: #e0e0e0;        /* Фон для иконки */
-    --skeleton-title-bg: #e0e0e0;       /* Фон для заголовка */
-    --skeleton-subtitle-bg: #dcdcdc;    /* Фон для подзаголовка */
-    --skeleton-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Тень */
+    --skeleton-bg: #f0f0f0;
+    --skeleton-pulse-start: #eeeeee;
+    --skeleton-pulse-middle: #dddddd;
+    --skeleton-pulse-end: #eeeeee;
+    --skeleton-icon-bg: #e0e0e0;
+    --skeleton-title-bg: #e0e0e0;
+    --skeleton-subtitle-bg: #dcdcdc;
+    --skeleton-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 
     --foreground: #181818;
     --foreground-muted: #3C3C3C;

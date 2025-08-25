@@ -1,9 +1,13 @@
 import styles from "./index.module.css";
 
-export const GamificationXP = () => {
+interface IGamificationXPProps {
+  xp: number | undefined;
+}
+
+export const GamificationXP = ({ xp = 0 }: IGamificationXPProps) => {
   return (
     <div className={styles.xpContainer}>
-      <p className={styles.xpResult}>350 XP</p>
+      <p className={styles.xpResult}>{xp} XP</p>
     </div>
   );
 };

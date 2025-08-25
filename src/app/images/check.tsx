@@ -1,4 +1,4 @@
-export default function CheckIcon() {
+export default function CheckIcon({ className }: { className: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,7 +9,7 @@ export default function CheckIcon() {
     >
       <path
         d="M9 16.5C6.125 16.5 3.5 15 2.0625 12.5C0.625 10.0312 0.625 7 2.0625 4.5C3.5 2.03125 6.125 0.5 9 0.5C11.8438 0.5 14.4688 2.03125 15.9062 4.5C17.3438 7 17.3438 10.0312 15.9062 12.5C14.4688 15 11.8438 16.5 9 16.5ZM8.53125 11.0312L13.0312 6.53125L11.9688 5.46875L8 9.4375L6.03125 7.46875L4.96875 8.53125L7.46875 11.0312L8 11.5625L8.53125 11.0312Z"
-        fill="#181818"
+        className={className}
       />
     </svg>
   );

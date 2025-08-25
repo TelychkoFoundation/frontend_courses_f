@@ -42,3 +42,7 @@
     font-weight: 400;
     line-height: normal;
 }
+
+.lockIcon, .exitIcon {
+    fill: var(--foreground);
+}

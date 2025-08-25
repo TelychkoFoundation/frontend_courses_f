@@ -107,3 +107,31 @@
   font-weight: 700;
   line-height: normal;
 }
+
+@media (max-width: 768px) {
+  .services {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service {
+    min-height: 375px;
+  }
+
+  .service:nth-child(2), .service:nth-child(3) {
+    min-height: 297px;
+  }
+
+  .backgroundImage {
+    transform: scale(0.5);
+    transform-origin: bottom right;
+  }
+
+  .ellipse {
+    display: none;
+  }
+
+  .service:nth-child(1) p, .service:nth-child(4) p {
+    flex: none;
+  }
+}

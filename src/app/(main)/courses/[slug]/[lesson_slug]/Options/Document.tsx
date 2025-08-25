@@ -1,7 +1,6 @@
-import { LockDarkIcon, DownloadIcon } from "@/images";
-import Image from "next/image";
-import styles from "./index.module.css";
+import { DownloadIcon, LockIcon, LockIconSize } from "@/images";
 import { useLessons } from "@/hooks";
+import styles from "./index.module.css";
 
 interface IDocumentProps {
   isActive: boolean;
@@ -17,7 +16,7 @@ export default function Document({ isActive }: IDocumentProps) {
         {isCurrentLessonPaid ? (
           <DownloadIcon className={styles.downloadIcon} />
         ) : (
-          <Image src={LockDarkIcon} alt="Lock icon" width={20} height={20} />
+          <LockIcon size={LockIconSize.Large} className={styles.lockIcon} />
         )}
       </section>
       {isActive ? (

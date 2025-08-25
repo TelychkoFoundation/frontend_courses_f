@@ -2,6 +2,17 @@
 
 import { IGoogleUserData } from "@/typings";
 import { User } from "@/models";
+import { createDBConnection } from "@/lib";
+
+export async function checkDBConnection() {
+  const isDatabaseConnected = await createDBConnection();
+
+  if (!isDatabaseConnected) {
+    return { success: false, error: "Database have not connected" };
+  }
+
+  return { success: true };
+}
 
 export const saveUser = async (userData: IGoogleUserData) => {
   const now = new Date();

@@ -1,5 +1,4 @@
-import { PracticeIcon, LockDarkIcon } from "@/images";
-import Image from "next/image";
+import { PracticeIcon, LockIcon, LockIconSize } from "@/images";
 import { useLessons } from "@/hooks";
 import styles from "./index.module.css";
 
@@ -17,7 +16,7 @@ export default function Practice({ isActive }: IPracticeProps) {
         {isCurrentLessonPaid ? (
           <PracticeIcon className={styles.practiceIcon} />
         ) : (
-          <Image src={LockDarkIcon} alt="Lock icon" width={20} height={20} />
+          <LockIcon size={LockIconSize.Large} className={styles.lockIcon} />
         )}
       </section>
       {isActive ? (

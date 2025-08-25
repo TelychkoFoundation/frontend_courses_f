@@ -1,14 +1,13 @@
 import { MouseEvent, useMemo, useTransition } from "react";
 import { Button, ButtonType } from "@/components";
-import Image from "next/image";
-import { IPurchasedLesson, ILesson } from "@/typings";
-import { LockIcon } from "@/images";
+import { ILesson, IPurchasedLesson } from "@/typings";
+import { LockIcon, LockIconSize } from "@/images";
 import { useParams, useRouter } from "next/navigation";
 import LessonShortInfo from "../LessonShortInfo";
 import { useAuth } from "@/hooks";
-import styles from "./index.module.css";
 import { createPaymentForLesson } from "@/actions";
 import { useSession } from "next-auth/react";
+import styles from "./index.module.css";
 
 const inDev = false;
 const isDone = false;
@@ -58,14 +57,18 @@ export default function Lesson({ lesson }: ILessonProps) {
   const renderLock = () => {
     if (!isCurrentLessonPaid) {
       return (
-        <div className={styles.lock}>
+        <div className={styles.lockPosition}>
           <Button
             type={ButtonType.PRIMARY}
             className={styles.payButton}
             loading={isPending}
             onClick={payForLesson}
           >
-            <Image src={LockIcon} alt="Lock Icon" />
+            <LockIcon
+              positionClassname={styles.lock}
+              className={styles.lockIcon}
+              size={LockIconSize.Large}
+            />
             <span className={styles.price}>46 грн</span>
           </Button>
         </div>
@@ -73,7 +76,7 @@ export default function Lesson({ lesson }: ILessonProps) {
     }
 
     if (inDev) {
-      return <Image src={LockIcon} alt="Lock Icon" className={styles.lock} />;
+      return <LockIcon className={styles.lock} />;
     }
   };
 

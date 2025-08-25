@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import {
   ILesson,
   IPurchasedLesson,
@@ -10,25 +10,26 @@ import { User, Lesson } from "@/models";
 import { createDBConnection } from "@/lib";
 
 export const runtime = "nodejs";
+await createDBConnection();
 
 export async function POST(req: NextRequest) {
-  await createDBConnection();
-
   const rawBody = await req.text();
 
   const body: MonobankWebhookPayload = JSON.parse(rawBody);
 
   const { invoiceId, status, reference } = body;
 
+  console.log(invoiceId, status, reference, "bbbbbb");
+
   if (!reference) {
     return new Response("Missing reference", { status: 400 });
   }
 
-  const [userID, courseID, lessonID] = reference.split("_");
+  const [id, courseID, lessonID] = reference.split("_");
 
   if (status === "success") {
     try {
-      const user = await User.findOne({ id: Number(userID) });
+      const user = await User.findOne({ id });
 
       if (!user) return new Response("User not found", { status: 404 });
 

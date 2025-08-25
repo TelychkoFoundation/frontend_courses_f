@@ -1,11 +1,11 @@
 .theme-dark {
-    --skeleton-bg: #2a2a2a;             /* Фон для скелетона */
-    --skeleton-pulse-start: #333333;    /* Начальный цвет анимации */
-    --skeleton-pulse-middle: #444444;   /* Средний цвет анимации */
-    --skeleton-pulse-end: #333333;      /* Конечный цвет анимации */
-    --skeleton-icon-bg: #444444;        /* Фон для иконки */
-    --skeleton-title-bg: #555555;       /* Фон для заголовка */
-    --skeleton-subtitle-bg: #666666;    /* Фон для подзаголовка */
+    --skeleton-bg: #2a2a2a;
+    --skeleton-pulse-start: #333333;
+    --skeleton-pulse-middle: #444444;
+    --skeleton-pulse-end: #333333;
+    --skeleton-icon-bg: #444444;
+    --skeleton-title-bg: #555555;
+    --skeleton-subtitle-bg: #666666;
     --skeleton-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
     --foreground: #E6E6E6;

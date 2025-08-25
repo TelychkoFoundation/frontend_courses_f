@@ -126,3 +126,7 @@
 .calendarButtonContainer button {
     padding: 8px 24px;
 }
+
+.checkIcon {
+    fill: var(--foreground);
+}

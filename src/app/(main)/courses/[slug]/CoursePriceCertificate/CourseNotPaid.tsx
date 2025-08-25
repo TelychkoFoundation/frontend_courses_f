@@ -4,8 +4,8 @@ import { CheckIcon } from "@/images";
 import { useCourses } from "@/hooks";
 import { useTransition } from "react";
 import { createPaymentForCourse } from "@/actions";
-import styles from "./index.module.css";
 import { useSession } from "next-auth/react";
+import styles from "./index.module.css";
 
 interface ICourseNotPaidProps {
   currentCourseDetailsVisibility: boolean;
@@ -71,7 +71,7 @@ export default function CourseNotPaid({
       <ul className={styles.optionsList}>
         {test.map((v: string, i: number) => (
           <li key={i}>
-            <CheckIcon />
+            <CheckIcon className={styles.checkIcon} />
             {v}
           </li>
         ))}

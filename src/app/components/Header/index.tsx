@@ -41,7 +41,7 @@ export default function Header() {
 
     return (
       <>
-        <GamificationXP />
+        <GamificationXP xp={user?.xp} />
         <Dropdown
           targetElement={
             user ? (
@@ -69,7 +69,7 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${styles.opacity}`}>
       <Logo />
       <nav className={styles.nav}>
         <Language />
