@@ -130,3 +130,9 @@
 .checkIcon {
     fill: var(--foreground);
 }
+
+@media (max-width: 768px) {
+    .coursePriceCertificateContainer {
+        width: 100%;
+    }
+}

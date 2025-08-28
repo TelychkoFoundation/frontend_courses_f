@@ -24,3 +24,10 @@
     gap: 32px;
     flex: 1 0 0;
 }
+
+@media (max-width: 768px) {
+    .courseContainer {
+        display: flex;
+        flex-direction: column;
+    }
+}

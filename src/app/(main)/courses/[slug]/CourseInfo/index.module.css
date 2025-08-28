@@ -123,3 +123,16 @@
     letter-spacing: 0.2px;
     text-transform: uppercase;
 }
+
+@media (max-width: 768px) {
+    .courseInfoContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+    }
+
+    .courseInfoSection {
+        gap: 8px;
+    }
+}

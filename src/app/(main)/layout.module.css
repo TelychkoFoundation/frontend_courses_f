@@ -53,4 +53,8 @@
         gap: 28px;
         margin-top: 80px;
     }
+
+    .breadcrumbsContainer {
+        padding: 0 8px;
+    }
 }
