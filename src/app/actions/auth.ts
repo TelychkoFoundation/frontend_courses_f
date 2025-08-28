@@ -55,7 +55,7 @@ export const saveUser = async (userData: IGoogleUserData) => {
       new: true,
       upsert: true,
     },
-  );
+  ).lean();
 
   return { success: true };
 };
