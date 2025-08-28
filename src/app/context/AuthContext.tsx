@@ -20,6 +20,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUserDatabaseData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [dbSuccess, setDbSuccess] = useState<boolean>(false);
 
   const { showToast } = useToast();
   const { status, data: session } = useSession();
@@ -27,25 +28,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleAuth = async () => {
-      if (status === "loading") {
-        setLoading(true);
-        return;
+    setLoading(true);
+
+    const connectDB = async () => {
+      const { success: dbSuccess, error: dbError } = await checkDBConnection();
+      if (dbSuccess) {
+        setDbSuccess(true);
       }
 
+      if (dbError) {
+        showToast(dbError as string, "error");
+        setUser(null);
+        setLoading(false);
+      }
+    };
+
+    connectDB();
+  }, []);
+
+  useEffect(() => {
+    if (!dbSuccess) {
+      return;
+    }
+
+    const handleAuth = async () => {
       if (status === "unauthenticated") {
         setUser(null);
         setLoading(false);
         router.push("/");
-        return;
-      }
-
-      const { success: dbSuccess, error: dbError } = await checkDBConnection();
-
-      if (!dbSuccess) {
-        showToast(dbError as string, "error");
-        setUser(null);
-        setLoading(false);
         return;
       }
 
@@ -71,7 +81,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     handleAuth();
-  }, [status, session, pathname, router, showToast]);
+  }, [status, session, pathname, router, showToast, dbSuccess]);
 
   return (
     <AuthContext.Provider

@@ -9,7 +9,6 @@ export const getAllCourses = async () => {
     const courses = await Course.find().sort({ createdAt: "asc" });
     return { success: true, data: JSON.parse(JSON.stringify(courses)) };
   } catch (error) {
-    console.log(error, "ERROR");
     return { success: false, error: (error as Error).message };
   }
 };
