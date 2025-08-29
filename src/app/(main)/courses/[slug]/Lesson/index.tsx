@@ -1,10 +1,10 @@
 import { MouseEvent, useMemo, useTransition } from "react";
-import { Button, ButtonType } from "@/components";
-import { ILesson, IPurchasedLesson } from "@/typings";
+import { Badge, BadgeSize, BadgeType, Button, ButtonType } from "@/components";
+import { ICourse, ILesson, IPurchasedLesson } from "@/typings";
 import { LockIcon, LockIconSize } from "@/images";
 import { useParams, useRouter } from "next/navigation";
 import LessonShortInfo from "../LessonShortInfo";
-import { useAuth } from "@/hooks";
+import { useAuth, useCourses } from "@/hooks";
 import { createPaymentForLesson } from "@/actions";
 import { useSession } from "next-auth/react";
 import styles from "./index.module.css";
@@ -21,6 +21,19 @@ export default function Lesson({ lesson }: ILessonProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const { data } = useSession();
+  const { allCourses } = useCourses();
+
+  const lessonCourse: string = useMemo(() => {
+    const course: ICourse | undefined = allCourses?.find(
+      (course: ICourse) => course._id === lesson.course_id,
+    );
+
+    if (course) {
+      return course.title;
+    }
+
+    return "";
+  }, [allCourses?.length, lesson]);
 
   const payForLesson = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -93,6 +106,11 @@ export default function Lesson({ lesson }: ILessonProps) {
         <img src="/poster.png" alt="Poster" />
       </div>
       <figcaption className={styles.info}>
+        {params.lesson_slug ? (
+          <Badge type={BadgeType.Tag} size={BadgeSize.Large}>
+            {lessonCourse}
+          </Badge>
+        ) : null}
         <h5 className={styles.title}>{lesson.title}</h5>
         <LessonShortInfo
           xp_reward={lesson.xp_reward}

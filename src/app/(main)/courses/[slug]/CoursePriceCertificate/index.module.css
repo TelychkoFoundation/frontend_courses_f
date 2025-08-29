@@ -134,5 +134,17 @@
 @media (max-width: 768px) {
     .coursePriceCertificateContainer {
         width: 100%;
+        padding: 24px;
+        gap: 8px;
+    }
+
+    .coursePriceCertificateCurrentPrice {
+        font-size: 26px;
+    }
+
+    .coursePriceCertificateContainer.coursePriceCertificateContainerOpen  {
+        height: fit-content;
+        gap: 16px;
+        padding: 24px 28px;
     }
 }

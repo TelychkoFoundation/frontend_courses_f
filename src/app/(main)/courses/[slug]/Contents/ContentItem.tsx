@@ -13,7 +13,10 @@ export default function ContentItem({ id, children }: IContentItemProps) {
   const params = useParams();
 
   return (
-    <Link href={`/courses/${params.slug}/${id}`}>
+    <Link
+      href={`/courses/${params.slug}/${id}`}
+      onClick={event => event.stopPropagation()}
+    >
       <li className={styles.contentsListItem}>
         <div className={styles.contentsListLessonStatus}>
           <LessonStatusBar />

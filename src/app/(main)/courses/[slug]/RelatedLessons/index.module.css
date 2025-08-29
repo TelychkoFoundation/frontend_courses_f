@@ -17,3 +17,23 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
     list-style-type: none;
 }
+
+@media (max-width: 768px) {
+    .title {
+        padding: 0 8px;
+    }
+
+    .grid {
+        display: flex;
+        width: 100%;
+        scroll-behavior: smooth;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .grid li {
+        min-width: 300px;
+    }
+}

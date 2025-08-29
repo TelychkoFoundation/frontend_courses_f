@@ -2,12 +2,19 @@ import { transformDate } from "@/utils";
 import { useMemo, memo } from "react";
 import { CourseDifficultyType, IMyCourses } from "@/typings";
 import { Badge, BadgeSize, BadgeType, LinearProgressBar } from "@/components";
-import { useCourses, useAuth } from "@/hooks";
+import {
+  useCourses,
+  useAuth,
+  useDeviceType,
+  DeviceType,
+  DeviceTypes,
+} from "@/hooks";
 import styles from "./index.module.css";
 
 export default memo(function MainInfo() {
   const { currentCourse } = useCourses();
   const { user } = useAuth();
+  const deviceType: DeviceType = useDeviceType();
 
   const hasStarted: boolean = useMemo(() => {
     if (!user) {
@@ -98,6 +105,24 @@ export default memo(function MainInfo() {
 
     return null;
   }, [hasStarted, courseProgress]);
+
+  if (deviceType === DeviceTypes.mobile) {
+    return (
+      <>
+        <section className={styles.courseInfoSectionContainer}>
+          <div className={styles.courseInfoSection}>
+            <p className={styles.courseInfoSectionTitle}>Прогрес курсу</p>
+            {renderCourseProgress}
+          </div>
+          <div className={styles.courseInfoSection}>
+            <p className={styles.courseInfoSectionTitle}>складність</p>
+            {renderDifficulty}
+          </div>
+        </section>
+        <p>{currentCourse?.description}</p>
+      </>
+    );
+  }
 
   return (
     <>

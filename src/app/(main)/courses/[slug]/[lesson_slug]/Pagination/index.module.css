@@ -46,3 +46,11 @@
 .lockIcon, .exitIcon {
     fill: var(--foreground);
 }
+
+@media (max-width: 768px) {
+    .paginationSection {
+        width: 100%;
+        padding: 24px 20px;
+        gap: 4px;
+    }
+}

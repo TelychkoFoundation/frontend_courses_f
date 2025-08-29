@@ -8,13 +8,20 @@ const languages: string[] = ["UA", "EN"];
 export const Language = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("UA");
 
+  const selectLanguage = () => {
+    if (selectedLanguage === "UA") {
+      setSelectedLanguage("EN");
+    } else {
+      setSelectedLanguage("UA");
+    }
+  };
+
   return (
-    <section className={styles.languages}>
-      {languages.map((language: string, index: number) => (
+    <section className={styles.languages} onClick={selectLanguage}>
+      {languages.map((language: string) => (
         <div
-          key={index}
+          key={language}
           className={`${styles.language} ${selectedLanguage === language ? styles.selectedLanguage : ""}`}
-          onClick={() => setSelectedLanguage(language)}
         >
           {language}
         </div>

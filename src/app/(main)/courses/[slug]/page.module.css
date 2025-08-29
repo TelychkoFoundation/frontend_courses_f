@@ -30,4 +30,16 @@
         display: flex;
         flex-direction: column;
     }
+
+    .courseLessonsContainer {
+        gap: 28px;
+    }
+
+    .lessonsContent {
+        flex-direction: column;
+    }
+
+    .lessonsWrapper {
+        margin-top: 28px;
+    }
 }

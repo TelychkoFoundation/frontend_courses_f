@@ -86,3 +86,46 @@
     font-weight: 600;
     line-height: 18px;
 }
+
+@media (max-width: 768px) {
+    .contentsContainer {
+        display: flex;
+        padding: 24px 32px;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+        width: 100%;
+        border-radius: 24px;
+        border: 1px solid var(--outline);
+        background: var(--background);
+    }
+
+    .preview {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+
+    .title {
+        color: var(--foreground);
+        font-family: var(--font-taktika), sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px;
+    }
+
+    .listIcon {
+        fill: var(--foreground);
+    }
+
+    .category {
+        padding: 8px 0;
+    }
+
+    .contentsListItem {
+        height: 48px;
+    }
+}

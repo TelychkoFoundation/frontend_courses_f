@@ -1,6 +1,5 @@
 "use client";
 
-import { getAllCourses } from "@/actions";
 import { ICourse } from "@/typings";
 import styles from "./index.module.css";
 import { ReactElement, useState, useEffect } from "react";
@@ -8,20 +7,11 @@ import { isNewCourse } from "@/utils";
 import { NewCourseShadow } from "@/images";
 import { Logo } from "../../(main)/courses/Logo";
 import { Badge, BadgeType } from "@/components";
+import { useCourses } from "@/hooks";
 
 export default function Courses() {
   const [courseHoveredID, setCourseHoveredID] = useState<string | null>(null);
-  const [courses, setCourses] = useState<ICourse[]>([]);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      const { success, data } = await getAllCourses();
-
-      if (success) setCourses(data);
-    };
-
-    fetchCourses();
-  }, []);
+  const { allCourses } = useCourses();
 
   const renderShadow = (updatedAt: Date): ReactElement | null => {
     if (isNewCourse(updatedAt)) {
@@ -43,7 +33,7 @@ export default function Courses() {
     <section className={styles.container}>
       <h2 className={styles.title}>Курси</h2>
       <section className={styles.carousel}>
-        {courses.map((course: ICourse) => (
+        {allCourses?.map((course: ICourse) => (
           <div
             key={course._id as string}
             className={styles.course}

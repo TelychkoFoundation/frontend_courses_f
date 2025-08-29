@@ -45,6 +45,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 41px;
+    word-wrap: break-word;
 }
 
 @media (max-width: 768px) {

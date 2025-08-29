@@ -3,7 +3,7 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { CourseKeyTypes, ICourse } from "@/typings";
 import { useParams } from "next/navigation";
-import { getCurrentCourse } from "@/actions";
+import { getAllCourses, getCurrentCourse } from "@/actions";
 
 interface CoursesContextType {
   allCourses: ICourse[] | null;
@@ -28,6 +28,16 @@ export const CoursesProvider = ({ children }: { children: ReactNode }) => {
     useState<boolean>(false);
 
   const params = useParams();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const { success, data } = await getAllCourses();
+
+      if (success) setAllCourses(data);
+    };
+
+    fetchCourses();
+  }, []);
 
   useEffect(() => {
     if (params.slug) {

@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     gap: 2px;
+    cursor: pointer;
 }
 
 .language {
@@ -39,7 +40,7 @@
     line-height: 23px;
     text-align: center;
     color: var(--secondary);
-    cursor: pointer;
+    user-select: none;
 }
 
 .selectedLanguage {

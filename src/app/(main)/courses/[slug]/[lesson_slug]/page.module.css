@@ -42,3 +42,35 @@
     align-self: stretch;
     margin: 32px 0 96px 0;
 }
+
+@media (max-width: 768px) {
+    .currentLessonPage {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .videoContainer {
+        height: 320px;
+    }
+
+    .paginationContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .currentLessonOptions {
+        width: 100%;
+        height: 549px;
+        margin-top: 28px;
+    }
+
+    .relatedLessonsContainer {
+        display: flex;
+        padding: 16px 0 40px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        margin: 28px 0;
+        gap: 16px;
+    }
+}

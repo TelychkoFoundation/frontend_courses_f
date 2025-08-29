@@ -32,4 +32,5 @@ export { default as StarIcon } from "./star";
 export { default as ButtonLoadingIcon } from "./button-loading";
 export { default as HomeIcon } from "./home";
 export { default as ExitIcon } from "./exit";
+export { default as ListIcon } from "./list";
 export * from "./course-icons";
