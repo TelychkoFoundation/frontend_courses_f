@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { CoursesProvider, LessonsProvider } from "@/context";
+import { LessonsProvider } from "@/context";
 import Header from "./Header";
 import styles from "./layout.module.css";
 
@@ -9,13 +9,11 @@ export default async function CoursesLayout({
   children: ReactNode;
 }) {
   return (
-    <CoursesProvider>
-      <LessonsProvider>
-        <main className={styles.container}>
-          <Header />
-          <div>{children}</div>
-        </main>
-      </LessonsProvider>
-    </CoursesProvider>
+    <LessonsProvider>
+      <main className={styles.container}>
+        <Header />
+        <div>{children}</div>
+      </main>
+    </LessonsProvider>
   );
 }

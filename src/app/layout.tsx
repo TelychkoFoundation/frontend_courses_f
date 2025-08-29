@@ -2,7 +2,12 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
-import { ToastProvider, ThemeProvider, AuthProvider } from "@/context";
+import {
+  ToastProvider,
+  ThemeProvider,
+  AuthProvider,
+  CoursesProvider,
+} from "@/context";
 import { ToastContainer } from "@/components";
 import { ReactNode } from "react";
 import "./styles/globals.css";
@@ -64,7 +69,9 @@ export default async function RootLayout({
         <ThemeProvider>
           <ToastProvider>
             <SessionProvider>
-              <AuthProvider>{children}</AuthProvider>
+              <AuthProvider>
+                <CoursesProvider>{children}</CoursesProvider>
+              </AuthProvider>
             </SessionProvider>
             <ToastContainer />
           </ToastProvider>
