@@ -53,6 +53,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const handleAuth = async () => {
       if (status === "unauthenticated") {
+        if (pathname === "/terms") {
+          router.push("/terms");
+          return;
+        }
+
+        if (pathname === "/policy") {
+          router.push("/policy");
+          return;
+        }
+
         setUser(null);
         setLoading(false);
         router.push("/");

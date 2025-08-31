@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Head from "next/head";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
@@ -65,6 +66,13 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="4LB5XuCHlhGAZRXTv2UtuvLz4YcCnZwpDbOzxvHwrNc"
+        />
+      </Head>
+
       <body className={`${taktikaFont.variable} ${interFont.variable}`}>
         <ThemeProvider>
           <ToastProvider>
