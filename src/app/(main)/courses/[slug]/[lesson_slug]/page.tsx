@@ -2,13 +2,14 @@
 
 import VideoContainer from "./VideoContainer";
 import Options from "./Options";
-import { useLessons } from "@/hooks";
+import { useLessons, useScrollToTop } from "@/hooks";
 import Pagination from "./Pagination";
 import RelatedLessons from "../RelatedLessons";
 import styles from "./page.module.css";
 
 export default function CurrentLessonPage() {
   const { currentLesson } = useLessons();
+  useScrollToTop();
 
   if (!currentLesson) {
     return null;

@@ -10,6 +10,7 @@
     border: 1px solid var(--outline);
     background: var(--background);
     cursor: pointer;
+    user-select: none;
 }
 
 .title {
@@ -26,12 +27,21 @@
 .description {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     color: var(--foreground);
     font-family: var(--font-taktika), sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: 22px;
+}
+
+.descriptionInner {
+    display: flex;
+}
+
+.descriptionInner div {
+    line-height: 1.5;
 }
 
 .inDev {

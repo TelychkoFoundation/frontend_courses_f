@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export type DeviceType = "mobile" | "tablet" | "desktop";
+export type DeviceType = "mobile" | "tablet" | "desktop" | null;
 
 export enum DeviceTypes {
   mobile = "mobile",
@@ -10,8 +10,8 @@ export enum DeviceTypes {
   desktop = "desktop",
 }
 
-export const useDeviceType = (): DeviceType => {
-  const [deviceType, setDeviceType] = useState<DeviceType>(DeviceTypes.desktop);
+export const useDeviceType = (): DeviceType | null => {
+  const [deviceType, setDeviceType] = useState<DeviceType | null>(null);
 
   useEffect(() => {
     const handleResize = () => {

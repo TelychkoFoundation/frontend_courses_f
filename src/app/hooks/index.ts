@@ -7,5 +7,6 @@ export { useOutsideClick } from "./useOutsideClick";
 export { useCourses } from "./useCourses";
 export { useTheme } from "./useTheme";
 export { useLessons } from "./useLessons";
+export { useScrollToTop } from "./useScrollToTop";
 export { useDeviceType, DeviceTypes } from "./useDeviceType";
 export type { DeviceType } from "./useDeviceType";

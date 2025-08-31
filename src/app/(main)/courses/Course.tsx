@@ -33,7 +33,7 @@ export default function Course({
       return;
     }
 
-    router.push(`/courses/${courseKey}`);
+    router.push(`/courses/${courseKey}`, { scroll: true });
   };
 
   const renderBadge = (): ReactElement | null => {

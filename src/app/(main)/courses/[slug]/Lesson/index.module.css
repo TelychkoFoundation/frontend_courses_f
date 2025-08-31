@@ -13,6 +13,10 @@
     cursor: pointer;
 }
 
+.lessonRelated {
+    height: 334px;
+}
+
 .lesson:hover {
     border: 1px solid var(--secondary);
 }
@@ -86,6 +90,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: 23px;
+    flex: 1;
 }
 
 @media (max-width: 768px) {
@@ -104,10 +109,5 @@
 
     .title {
         font-size: 16px;
-    }
-
-    .info {
-        flex: none;
-        position: relative;
     }
 }

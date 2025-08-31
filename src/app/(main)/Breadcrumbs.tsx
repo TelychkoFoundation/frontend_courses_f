@@ -18,22 +18,29 @@ export default function Breadcrumbs() {
           <HomeIcon className={styles.homeIcon} />
         </span>
         <span>/</span>
-        <Link href="/courses" className={styles.coursesSegment}>
+        <Link href="/courses" className={styles.coursesSegment} scroll={true}>
           Курси
         </Link>
         <span>/</span>
         <Link
           href={`/courses/${params.slug}`}
-          className={styles.coursesSegment}
+          scroll={true}
+          className={currentCourse ? styles.coursesSegment : styles.skeleton}
         >
           {currentCourse?.title}
         </Link>
         {params.lesson_slug ? (
           <>
             <span>/</span>
-            <span className={styles.coursesSegment}>
+            <Link
+              href={`/courses/${params.slug}/${params.lesson_slug}`}
+              scroll={true}
+              className={
+                currentLesson?.lesson ? styles.coursesSegment : styles.skeleton
+              }
+            >
               {currentLesson?.lesson?.title}
-            </span>
+            </Link>
           </>
         ) : null}
       </div>

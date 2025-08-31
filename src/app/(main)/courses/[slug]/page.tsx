@@ -4,11 +4,12 @@ import CourseInfo from "./CourseInfo";
 import CoursePriceCertificate from "./CoursePriceCertificate";
 import Lessons from "./Lessons";
 import Contents from "./Contents";
-import { useLessons } from "@/hooks";
+import { useLessons, useScrollToTop } from "@/hooks";
 import styles from "./page.module.css";
 
 export default function CoursePage() {
   const { allLessons } = useLessons();
+  useScrollToTop();
 
   return (
     <div className={styles.courseLessonsContainer}>

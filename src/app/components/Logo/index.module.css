@@ -11,6 +11,33 @@
     gap: 6px;
 }
 
+.skeleton {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    border: 1px solid var(--outline);
+    background: var(--skeleton-bg);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: var(--skeleton-pulse-start);
+    }
+    50% {
+        background-color: var(--skeleton-pulse-middle);
+    }
+    100% {
+        background-color: var(--skeleton-pulse-end);
+    }
+}
+
 .iconRect {
     fill: var(--foreground);
 }

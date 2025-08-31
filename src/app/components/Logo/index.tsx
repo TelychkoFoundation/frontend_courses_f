@@ -4,6 +4,10 @@ import styles from "./index.module.css";
 export default function Logo() {
   const deviceType = useDeviceType();
 
+  if (!deviceType) {
+    return <div className={styles.skeleton} />;
+  }
+
   return (
     <div className={styles.logoContainer}>
       <svg

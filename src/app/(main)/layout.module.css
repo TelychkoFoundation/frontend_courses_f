@@ -44,6 +44,15 @@
     cursor: pointer;
 }
 
+.skeleton {
+    height: 12px;
+    width: 90px;
+    background: var(--skeleton-bg);
+    animation: pulse 1.5s infinite ease-in-out;
+    border-radius: 400px;
+    margin-top: 2px;
+}
+
 .mainTitle {
     font-family: var(--font-taktika), sans-serif;
     font-size: 36px;
@@ -51,6 +60,18 @@
     font-weight: 700;
     line-height: 41px;
     word-wrap: break-word;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: var(--skeleton-pulse-start);
+    }
+    50% {
+        background-color: var(--skeleton-pulse-middle);
+    }
+    100% {
+        background-color: var(--skeleton-pulse-end);
+    }
 }
 
 @media (max-width: 768px) {
@@ -79,5 +100,11 @@
 
     .homeIconContainer svg {
         margin-bottom: -2px;
+    }
+
+    .skeleton {
+        display: inline-block;
+        width: 100px;
+        margin: -2px 6px;
     }
 }

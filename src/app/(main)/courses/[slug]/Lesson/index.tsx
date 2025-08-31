@@ -94,11 +94,14 @@ export default function Lesson({ lesson }: ILessonProps) {
   };
 
   const redirectToLesson = () => {
-    router.push(`/courses/${params.slug}/${lesson._id}`);
+    router.push(`/courses/${params.slug}/${lesson._id}`, { scroll: true });
   };
 
   return (
-    <figure className={styles.lesson} onClick={redirectToLesson}>
+    <figure
+      className={`${styles.lesson} ${params.lesson_slug ? styles.lessonRelated : ""}`}
+      onClick={redirectToLesson}
+    >
       <div
         className={`${styles.poster} ${inDev ? styles.darker : ""} ${isDone ? styles.donePoster : ""}`}
       >

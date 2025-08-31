@@ -38,20 +38,24 @@ export default function Pagination() {
 
   const redirectToPrevious = () => {
     if (!previous) {
-      router.push(`/courses/${params.slug}`);
+      router.push(`/courses/${params.slug}`, { scroll: true });
       return;
     }
 
-    router.push(`/courses/${params.slug}/${previous?.lesson._id}`);
+    router.push(`/courses/${params.slug}/${previous?.lesson._id}`, {
+      scroll: true,
+    });
   };
 
   const redirectToNext = () => {
     if (!next) {
-      router.push(`/courses/${params.slug}`);
+      router.push(`/courses/${params.slug}`, { scroll: true });
       return;
     }
 
-    router.push(`/courses/${params.slug}/${next?.lesson._id}`);
+    router.push(`/courses/${params.slug}/${next?.lesson._id}`, {
+      scroll: true,
+    });
   };
 
   return (
@@ -64,32 +68,45 @@ export default function Pagination() {
           {previous ? "минулий урок" : "завершити"}
         </span>
         <div className={styles.description}>
-          {!previous ? (
-            <ExitIcon className={styles.exitIcon} />
-          ) : (
-            renderLockIcon(currentLesson?.lesson as ILesson)
-          )}
+          <div className={styles.descriptionInner}>
+            <div>
+              {!previous ? (
+                <ExitIcon className={styles.exitIcon} />
+              ) : (
+                renderLockIcon(currentLesson?.lesson as ILesson)
+              )}
+            </div>
+            &nbsp;&nbsp;
+            <span>
+              {previous ? previous.lesson.title : "Повернутися до курсу"}
+            </span>
+          </div>
           &nbsp;&nbsp;
-          {previous ? previous.lesson.title : "Повернутися до курсу"}
-          &nbsp;&nbsp;
-          {!previous
-            ? null
-            : renderStatusIcon(currentLesson?.lesson as ILesson)}
+          <span>
+            {!previous
+              ? null
+              : renderStatusIcon(currentLesson?.lesson as ILesson)}
+          </span>
         </div>
       </section>
       <section className={styles.paginationSection} onClick={redirectToNext}>
-        <span className={styles.title}>
-          {next ? "наступний урок" : "старт"}
-        </span>
+        <div className={styles.title}>{next ? "наступний урок" : "старт"}</div>
         <div className={styles.description}>
-          {!next ? (
-            <ExitIcon className={styles.exitIcon} />
-          ) : (
-            renderLockIcon(currentLesson?.lesson as ILesson)
-          )}
+          <div className={styles.descriptionInner}>
+            <div>
+              {!next ? (
+                <ExitIcon className={styles.exitIcon} />
+              ) : (
+                renderLockIcon(currentLesson?.lesson as ILesson)
+              )}
+            </div>
+            &nbsp;&nbsp;
+            <span>{next ? next.lesson.title : "Повернутися до курсу"}</span>
+          </div>
           &nbsp;&nbsp;
-          {next ? next.lesson.title : "Повернутися до курсу"}&nbsp;&nbsp;
-          {!next ? null : renderStatusIcon(currentLesson?.lesson as ILesson)}
+          <span>
+            {!next ? null : renderStatusIcon(currentLesson?.lesson as ILesson)}
+          </span>
         </div>
       </section>
     </>
