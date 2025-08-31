@@ -105,4 +105,9 @@
     .title {
         font-size: 16px;
     }
+
+    .info {
+        flex: none;
+        position: relative;
+    }
 }

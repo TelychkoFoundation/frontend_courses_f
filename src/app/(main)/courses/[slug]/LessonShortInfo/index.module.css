@@ -25,3 +25,10 @@
     margin-left: auto;
     line-height: 0;
 }
+
+@media (max-width: 768px) {
+    .container {
+        position: absolute;
+        bottom: 20px;
+    }
+}

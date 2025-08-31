@@ -26,8 +26,13 @@
     line-height: normal;
 }
 
+.homeIconContainer {
+    line-height: 0;
+}
+
 .homeIcon {
     fill: var(--foreground);
+    margin-right: 6px;
 }
 
 .coursesSegment {
@@ -65,5 +70,14 @@
 
     .coursesSegment {
         margin: 0 6px;
+    }
+
+    .homeIconContainer {
+        line-height: 0;
+        margin-right: 6px;
+    }
+
+    .homeIconContainer svg {
+        margin-bottom: -2px;
     }
 }

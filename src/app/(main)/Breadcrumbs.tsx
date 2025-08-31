@@ -14,7 +14,9 @@ export default function Breadcrumbs() {
   return (
     <div className={styles.breadcrumbsContainer}>
       <div className={styles.breadcrumbs}>
-        <HomeIcon className={styles.homeIcon} />
+        <span className={styles.homeIconContainer}>
+          <HomeIcon className={styles.homeIcon} />
+        </span>
         <span>/</span>
         <Link href="/courses" className={styles.coursesSegment}>
           Курси
