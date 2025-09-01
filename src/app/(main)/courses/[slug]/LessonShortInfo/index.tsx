@@ -4,18 +4,19 @@ import { DoneIcon } from "@/images";
 import styles from "./index.module.css";
 
 const inDev = false;
-const isDone = false;
 
 interface ILessonShortInfoProps {
   xp_reward: number;
   views: number;
   isCurrentLessonPaid: boolean;
+  isCurrentLessonCompleted: boolean;
 }
 
 export default function LessonShortInfo({
   xp_reward,
   views,
   isCurrentLessonPaid,
+  isCurrentLessonCompleted,
 }: ILessonShortInfoProps) {
   const renderViews = (views: number): string => {
     if (inDev) {
@@ -30,7 +31,7 @@ export default function LessonShortInfo({
       return;
     }
 
-    if (isDone) {
+    if (isCurrentLessonCompleted) {
       return <Image src={DoneIcon} alt="Done Icon" />;
     }
 
@@ -39,7 +40,9 @@ export default function LessonShortInfo({
 
   return (
     <section className={styles.container}>
-      <Badge type={isDone ? BadgeType.Done : BadgeType.NotStarted}>
+      <Badge
+        type={isCurrentLessonCompleted ? BadgeType.Done : BadgeType.NotStarted}
+      >
         +{xp_reward}XP
       </Badge>
       <span className={`${styles.views} ${inDev ? styles.italic : ""}`}>

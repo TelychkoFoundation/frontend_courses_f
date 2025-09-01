@@ -7,7 +7,8 @@ interface IDescriptionProps {
 }
 
 export default function Description({ isActive }: IDescriptionProps) {
-  const { currentLesson, isCurrentLessonPaid } = useLessons();
+  const { currentLesson, isCurrentLessonPaid, isCurrentLessonCompleted } =
+    useLessons();
 
   return (
     <>
@@ -25,6 +26,7 @@ export default function Description({ isActive }: IDescriptionProps) {
           xp_reward={currentLesson?.lesson.xp_reward as number}
           views={currentLesson?.lesson.views as number}
           isCurrentLessonPaid={isCurrentLessonPaid}
+          isCurrentLessonCompleted={isCurrentLessonCompleted}
         />
       </section>
       {isActive ? (

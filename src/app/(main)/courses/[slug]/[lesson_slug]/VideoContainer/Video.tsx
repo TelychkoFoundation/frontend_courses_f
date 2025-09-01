@@ -15,7 +15,7 @@ export default function Video() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (videoRef.current && currentLesson?.lesson.video_key) {
+    if (currentLesson?.lesson.video_key) {
       const getVideoUrl = async () => {
         setLoading(true);
         const { success, url } = await getVideoSignedUrl(
@@ -131,24 +131,22 @@ export default function Video() {
     };
   }, [currentLesson, user]);
 
+  if (loading) {
+    return null;
+  }
+
+  console.log(user, "USER");
+
   return (
-    <div className={styles.videoWrapper}>
-      {loading ? (
-        <p>Завантаження відео...</p>
-      ) : url ? (
-        <video
-          key={url} // Ключ змінюється, щоб примусити перемалювати відео
-          ref={videoRef}
-          controls
-          disablePictureInPicture
-          onContextMenu={e => e.preventDefault()}
-          className={styles.video}
-          preload="metadata"
-          src={url}
-        />
-      ) : (
-        <p>Не вдалося завантажити відео.</p>
-      )}
-    </div>
+    <video
+      key={url}
+      ref={videoRef}
+      controls
+      disablePictureInPicture
+      onContextMenu={e => e.preventDefault()}
+      className={styles.video}
+      preload="metadata"
+      src={url}
+    />
   );
 }

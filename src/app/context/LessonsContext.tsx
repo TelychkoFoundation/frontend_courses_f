@@ -4,6 +4,7 @@ import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
 import {
   ICategoryLesson,
   ICategoryStructure,
+  ILessonProgress,
   IPurchasedLesson,
 } from "@/typings";
 import { useCourses, useToast, useAuth } from "@/hooks";
@@ -19,6 +20,7 @@ interface LessonsContextType {
   setCurrentLesson: (currentLesson: ICategoryLesson | null) => void;
   clearCurrentLesson: () => void;
   isCurrentLessonPaid: boolean;
+  isCurrentLessonCompleted: boolean;
 }
 
 export const LessonsContext = createContext<LessonsContextType | undefined>(
@@ -44,6 +46,22 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
         (purchasedLesson: IPurchasedLesson): boolean =>
           purchasedLesson.lesson_id === currentLesson.lesson._id,
       );
+    }
+
+    return false;
+  }, [currentLesson, user]);
+
+  const isCurrentLessonCompleted: boolean = useMemo(() => {
+    if (user && currentLesson) {
+      const lessonProgressData: ILessonProgress | undefined =
+        user.lesson_progress?.find(
+          (lessonProgress: ILessonProgress): boolean =>
+            lessonProgress.lesson_id === currentLesson.lesson._id,
+        );
+
+      if (lessonProgressData) {
+        return lessonProgressData.completed;
+      }
     }
 
     return false;
@@ -116,6 +134,7 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
         setCurrentLesson,
         clearCurrentLesson,
         isCurrentLessonPaid,
+        isCurrentLessonCompleted,
       }}
     >
       {children}

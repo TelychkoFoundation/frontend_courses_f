@@ -78,7 +78,7 @@ export default function Mentorship() {
         {!isCurrentLessonPaid ? (
           <LockIcon className={styles.lockIconTg} />
         ) : (
-          <TelegramIcon />
+          <TelegramIcon className={styles.lockIconTg} />
         )}
       </TgCircle>
     );

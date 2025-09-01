@@ -1,10 +1,10 @@
 import { MouseEvent, useMemo, useTransition } from "react";
 import { Badge, BadgeSize, BadgeType, Button, ButtonType } from "@/components";
-import { ICourse, ILesson, IPurchasedLesson } from "@/typings";
+import { ICourse, ILesson } from "@/typings";
 import { LockIcon, LockIconSize } from "@/images";
 import { useParams, useRouter } from "next/navigation";
 import LessonShortInfo from "../LessonShortInfo";
-import { useAuth, useCourses } from "@/hooks";
+import { useAuth, useCourses, useLessons } from "@/hooks";
 import { createPaymentForLesson } from "@/actions";
 import { useSession } from "next-auth/react";
 import styles from "./index.module.css";
@@ -22,6 +22,8 @@ export default function Lesson({ lesson }: ILessonProps) {
   const [isPending, startTransition] = useTransition();
   const { data } = useSession();
   const { allCourses } = useCourses();
+  const { user } = useAuth();
+  const { isCurrentLessonCompleted, isCurrentLessonPaid } = useLessons();
 
   const lessonCourse: string = useMemo(() => {
     const course: ICourse | undefined = allCourses?.find(
@@ -54,20 +56,11 @@ export default function Lesson({ lesson }: ILessonProps) {
     );
   };
 
-  const { user } = useAuth();
-
-  const isCurrentLessonPaid: boolean = useMemo(() => {
-    if (user) {
-      return !!user.purchased_lessons?.find(
-        (purchasedLesson: IPurchasedLesson): boolean =>
-          purchasedLesson.lesson_id === lesson._id,
-      );
+  const renderLock = () => {
+    if (!user) {
+      return;
     }
 
-    return false;
-  }, [lesson._id, user]);
-
-  const renderLock = () => {
     if (!isCurrentLessonPaid) {
       return (
         <div className={styles.lockPosition}>
@@ -119,6 +112,7 @@ export default function Lesson({ lesson }: ILessonProps) {
           xp_reward={lesson.xp_reward}
           views={lesson.views}
           isCurrentLessonPaid={isCurrentLessonPaid}
+          isCurrentLessonCompleted={isCurrentLessonCompleted}
         />
       </figcaption>
     </figure>

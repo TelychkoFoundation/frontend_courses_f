@@ -19,9 +19,7 @@ export default function CurrentLessonPage() {
     <>
       <div className={styles.currentLessonPage}>
         <article className={styles.currentLessonVideo}>
-          <section className={styles.videoContainer}>
-            <VideoContainer />
-          </section>
+          <VideoContainer />
           <section className={styles.paginationContainer}>
             <Pagination />
           </section>

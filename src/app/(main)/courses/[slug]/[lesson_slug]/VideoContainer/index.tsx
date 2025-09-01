@@ -9,6 +9,8 @@ import Video from "./Video";
 import { useSession } from "next-auth/react";
 import styles from "./index.module.css";
 
+const isPublished = false;
+
 export default function VideoContainer() {
   const { isCurrentLessonPaid, currentLesson } = useLessons();
   const { data } = useSession();
@@ -33,32 +35,42 @@ export default function VideoContainer() {
   };
 
   const renderVideoInfo = () => {
-    if (!isCurrentLessonPaid) {
+    if (isCurrentLessonPaid) {
+      return <Video />;
+    }
+
+    if (!isPublished) {
       return (
-        <div className={styles.nonPaidButtonContainer}>
-          <Button
-            type={ButtonType.PRIMARY}
-            className={styles.nonPaidButton}
-            onClick={payForLesson}
-            loading={isPending}
-          >
-            <LockIcon className={styles.lockIcon} />
-            <span className={styles.price}>46 грн</span>
-          </Button>
-        </div>
+        <Badge type={BadgeType.InDev} size={BadgeSize.Large}>
+          в розробці
+        </Badge>
       );
     }
 
     return (
-      <Badge type={BadgeType.InDev} size={BadgeSize.Large}>
-        в розробці
-      </Badge>
+      <div className={styles.nonPaidButtonContainer}>
+        <Button
+          type={ButtonType.PRIMARY}
+          className={styles.nonPaidButton}
+          onClick={payForLesson}
+          loading={isPending}
+        >
+          <LockIcon className={styles.lockIcon} />
+          <span className={styles.price}>46 грн</span>
+        </Button>
+      </div>
     );
   };
 
-  if (isCurrentLessonPaid) {
-    return <Video />;
-  }
+  console.log(currentLesson);
 
-  return <section className={styles.lock}>{renderVideoInfo()}</section>;
+  return (
+    <section
+      className={`${styles.videoContainer} ${isCurrentLessonPaid ? styles.active : ""}`}
+    >
+      <div className={isCurrentLessonPaid ? styles.unlock : styles.lock}>
+        {renderVideoInfo()}
+      </div>
+    </section>
+  );
 }
