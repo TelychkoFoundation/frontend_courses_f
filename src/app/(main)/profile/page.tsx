@@ -1,20 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useScrollToTop } from "@/hooks";
+import ProfileNavigation from "./ProfileNavigation";
+import ProfileContent from "./ProfileContent";
+import styles from "./page.module.css";
 
 export default function Page() {
-  const router = useRouter();
-  useScrollToTop();
-
-  const deleteUserHandler = async () => {
-    router.push("/");
-  };
-
   return (
-    <div>
-      Profile
-      <button onClick={deleteUserHandler}>Delete user</button>
+    <div className={styles.profileContainer}>
+      <ProfileNavigation />
+      <ProfileContent />
     </div>
   );
 }

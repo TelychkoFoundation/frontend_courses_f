@@ -33,6 +33,7 @@ export default function LessonShortInfo({
       return;
     }
 
+    console.log(lessonProgress, isCurrentLessonCompleted);
     if (isCurrentLessonCompleted || lessonProgress === 100) {
       return <Image src={DoneIcon} alt="Done Icon" />;
     }

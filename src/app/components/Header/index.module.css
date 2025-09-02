@@ -117,6 +117,16 @@
     stroke: var(--new);
 }
 
+.rightIconContainer {
+    margin-left: auto;
+    line-height: 0;
+}
+
+.rightIcon {
+    stroke: var(--secondary);
+    fill: var(--secondary);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

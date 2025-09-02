@@ -1,4 +1,5 @@
 import { DeviceTypes, useDeviceType } from "@/hooks";
+import Link from "next/link";
 import styles from "./index.module.css";
 
 export default function Logo() {
@@ -9,7 +10,7 @@ export default function Logo() {
   }
 
   return (
-    <div className={styles.logoContainer}>
+    <Link href="/courses" className={styles.logoContainer}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="44"
@@ -132,6 +133,6 @@ export default function Logo() {
           </svg>
         </section>
       ) : null}
-    </div>
+    </Link>
   );
 }

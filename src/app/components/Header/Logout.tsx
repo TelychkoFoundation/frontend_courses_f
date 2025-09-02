@@ -1,10 +1,11 @@
 "use client";
 
+import { ReactElement } from "react";
 import { LogoutIcon } from "@/images";
 import { signOut } from "next-auth/react";
 import styles from "./index.module.css";
 
-export default function Logout() {
+export default function Logout({ icon }: { icon?: ReactElement | undefined }) {
   return (
     <li
       onClick={() => signOut({ redirectTo: "/" })}
@@ -12,6 +13,7 @@ export default function Logout() {
     >
       <LogoutIcon />
       <span className={styles.dropdownItemNameLogout}>Вийти</span>
+      {icon}
     </li>
   );
 }

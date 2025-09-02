@@ -28,3 +28,46 @@
     list-style-type: none;
     width: 296px;
 }
+
+.dropdownMobile {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--background);
+    z-index: 100;
+    animation: fadeIn 0.2s ease;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.dropdownMobile section:nth-child(1) {
+    padding: 16px 32px;
+    color: var(--foreground);
+    font-family: var(--font-taktika), "sans-serif";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--outline);
+}
+
+.dropdownMobile section:nth-child(1) svg {
+    margin-right: 25%;
+}
+
+.dropdownMobileList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style-type: none;
+    padding: 28px 20px;
+}
+
+.leftIcon {
+    fill: var(--foreground);
+}

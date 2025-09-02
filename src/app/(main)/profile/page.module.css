@@ -1,0 +1,67 @@
+.profileContainer {
+    display: flex;
+    padding: 40px 0;
+}
+
+.nav {
+    padding: 32px 20px;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 24px;
+    border: 1px solid var(--outline);
+    background: var(--background);
+    margin-top: 50px;
+    width: 312px;
+}
+
+.nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    list-style-type: none;
+}
+
+.dropdownItem, .dropdownItemLogout {
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-radius: 16px;
+    border: none;
+    width: 100%;
+}
+
+.dropdownItemName, .dropdownItemNameLogout {
+    color: var(--secondary);
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.rightIconContainer {
+    line-height: 0;
+}
+
+.rightIcon {
+    stroke: var(--secondary);
+    fill: var(--secondary);
+}
+
+.contentContainer {
+    padding-left: 104px;
+}
+
+.title {
+    color: var(--foreground);
+    font-family: var(--font-taktika), "sans-serif";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px;
+}
