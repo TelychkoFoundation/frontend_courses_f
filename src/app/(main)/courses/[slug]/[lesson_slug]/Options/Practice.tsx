@@ -1,14 +1,16 @@
+import { memo } from "react";
 import { PracticeIcon, LockIcon, LockIconSize } from "@/images";
-import { useLessons } from "@/hooks";
 import styles from "./index.module.css";
 
 interface IPracticeProps {
   isActive: boolean;
+  isCurrentLessonPaid: boolean;
 }
 
-export default function Practice({ isActive }: IPracticeProps) {
-  const { isCurrentLessonPaid } = useLessons();
-
+export default memo(function Practice({
+  isActive,
+  isCurrentLessonPaid,
+}: IPracticeProps) {
   return (
     <>
       <section className={styles.collapsedSection}>
@@ -33,4 +35,4 @@ export default function Practice({ isActive }: IPracticeProps) {
       ) : null}
     </>
   );
-}
+});

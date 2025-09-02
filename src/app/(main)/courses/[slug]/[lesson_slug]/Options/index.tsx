@@ -5,13 +5,18 @@ import Description from "./Description";
 import Practice from "./Practice";
 import Document from "./Document";
 import Mentorship from "./Mentorship";
-import { useLessons } from "@/hooks";
+import { useLessons, useLessonDetails } from "@/hooks";
 import styles from "./index.module.css";
 
 export default function Options() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-
-  const { isCurrentLessonPaid } = useLessons();
+  const { currentLesson } = useLessons();
+  const { isCurrentLessonPaid, isCurrentLessonCompleted, lessonProgress } =
+    useLessonDetails(
+      currentLesson?.lesson._id as string,
+      currentLesson?.lesson.course_id as string,
+      currentLesson?.lesson.video_duration,
+    );
 
   const toggleAccordion = (index: number) => {
     if (!isCurrentLessonPaid) {
@@ -26,10 +31,24 @@ export default function Options() {
   };
 
   const options = [
-    <Description key={0} isActive={activeIndex === 0} />,
-    <Mentorship key={1} />,
-    <Document key={2} isActive={activeIndex === 2} />,
-    <Practice key={3} isActive={activeIndex === 3} />,
+    <Description
+      key={0}
+      isActive={activeIndex === 0}
+      isCurrentLessonPaid={isCurrentLessonPaid}
+      isCurrentLessonCompleted={isCurrentLessonCompleted}
+      lessonProgress={lessonProgress}
+    />,
+    <Mentorship key={1} isCurrentLessonPaid={isCurrentLessonPaid} />,
+    <Document
+      key={2}
+      isActive={activeIndex === 2}
+      isCurrentLessonPaid={isCurrentLessonPaid}
+    />,
+    <Practice
+      key={3}
+      isActive={activeIndex === 3}
+      isCurrentLessonPaid={isCurrentLessonPaid}
+    />,
   ];
 
   return (

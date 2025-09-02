@@ -1,12 +1,9 @@
 import { useMemo } from "react";
-import { ICategoryLesson, ILesson } from "@/typings";
+import { ICategoryLesson } from "@/typings";
 import { useParams, useRouter } from "next/navigation";
-import Image from "next/image";
-import { Badge, BadgeType, CircleProgressBar } from "@/components";
-import { LockIcon, DoneIcon, ExitIcon } from "@/images";
 import { useLessons } from "@/hooks";
 import { findPreviousAndNextLessons } from "@/utils";
-import styles from "./index.module.css";
+import PaginationItem from "./PaginationItem";
 
 export default function Pagination() {
   const { currentLesson, allLessons } = useLessons();
@@ -24,17 +21,6 @@ export default function Pagination() {
     previousAndNextLesson?.previousLesson;
   const next: ICategoryLesson | null | undefined =
     previousAndNextLesson?.nextLesson;
-
-  const renderLockIcon = (lesson: ILesson) => {
-    return <LockIcon className={styles.lockIcon} />;
-  };
-
-  const renderStatusIcon = (lesson: ILesson) => {
-    // return <Image src={DoneIcon} alt="Done Icon" />;
-    return <CircleProgressBar progress={64} />;
-    // return <Badge type={BadgeType.New}>46 грн</Badge>;
-    // return <span className={styles.inDev}>в розробці</span>;
-  };
 
   const redirectToPrevious = () => {
     if (!previous) {
@@ -60,55 +46,24 @@ export default function Pagination() {
 
   return (
     <>
-      <section
-        className={styles.paginationSection}
-        onClick={redirectToPrevious}
-      >
-        <span className={styles.title}>
-          {previous ? "минулий урок" : "завершити"}
-        </span>
-        <div className={styles.description}>
-          <div className={styles.descriptionInner}>
-            <div>
-              {!previous ? (
-                <ExitIcon className={styles.exitIcon} />
-              ) : (
-                renderLockIcon(currentLesson?.lesson as ILesson)
-              )}
-            </div>
-            &nbsp;&nbsp;
-            <span>
-              {previous ? previous.lesson.title : "Повернутися до курсу"}
-            </span>
-          </div>
-          &nbsp;&nbsp;
-          <span>
-            {!previous
-              ? null
-              : renderStatusIcon(currentLesson?.lesson as ILesson)}
-          </span>
-        </div>
-      </section>
-      <section className={styles.paginationSection} onClick={redirectToNext}>
-        <div className={styles.title}>{next ? "наступний урок" : "старт"}</div>
-        <div className={styles.description}>
-          <div className={styles.descriptionInner}>
-            <div>
-              {!next ? (
-                <ExitIcon className={styles.exitIcon} />
-              ) : (
-                renderLockIcon(currentLesson?.lesson as ILesson)
-              )}
-            </div>
-            &nbsp;&nbsp;
-            <span>{next ? next.lesson.title : "Повернутися до курсу"}</span>
-          </div>
-          &nbsp;&nbsp;
-          <span>
-            {!next ? null : renderStatusIcon(currentLesson?.lesson as ILesson)}
-          </span>
-        </div>
-      </section>
+      <PaginationItem
+        redirect={redirectToPrevious}
+        lessonId={previous?.lesson._id as string}
+        courseId={previous?.lesson.course_id as string}
+        title={previous?.lesson ? "минулий урок" : "завершити"}
+        lastTitle={
+          previous?.lesson ? previous?.lesson.title : "Повернутися до курсу"
+        }
+        videoDuration={previous?.lesson.video_duration || 0}
+      />
+      <PaginationItem
+        redirect={redirectToNext}
+        lessonId={next?.lesson._id as string}
+        courseId={next?.lesson.course_id as string}
+        title={next?.lesson ? "наступний урок" : "старт"}
+        lastTitle={next?.lesson ? next?.lesson.title : "Повернутися до курсу"}
+        videoDuration={next?.lesson.video_duration || 0}
+      />
     </>
   );
 }

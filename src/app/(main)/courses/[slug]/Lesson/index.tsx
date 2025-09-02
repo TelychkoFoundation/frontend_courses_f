@@ -1,16 +1,15 @@
-import { MouseEvent, useMemo, useTransition } from "react";
+import { MouseEvent, useTransition } from "react";
 import { Badge, BadgeSize, BadgeType, Button, ButtonType } from "@/components";
-import { ICourse, ILesson } from "@/typings";
+import { ILesson } from "@/typings";
 import { LockIcon, LockIconSize } from "@/images";
 import { useParams, useRouter } from "next/navigation";
 import LessonShortInfo from "../LessonShortInfo";
-import { useAuth, useCourses, useLessons } from "@/hooks";
+import { useAuth, useLessonDetails } from "@/hooks";
 import { createPaymentForLesson } from "@/actions";
 import { useSession } from "next-auth/react";
 import styles from "./index.module.css";
 
 const inDev = false;
-const isDone = false;
 
 interface ILessonProps {
   lesson: ILesson;
@@ -21,21 +20,17 @@ export default function Lesson({ lesson }: ILessonProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const { data } = useSession();
-  const { allCourses } = useCourses();
   const { user } = useAuth();
-  const { isCurrentLessonCompleted, isCurrentLessonPaid } = useLessons();
-
-  const lessonCourse: string = useMemo(() => {
-    const course: ICourse | undefined = allCourses?.find(
-      (course: ICourse) => course._id === lesson.course_id,
-    );
-
-    if (course) {
-      return course.title;
-    }
-
-    return "";
-  }, [allCourses?.length, lesson]);
+  const {
+    isCurrentLessonPaid,
+    isCurrentLessonCompleted,
+    lessonCourse,
+    lessonProgress,
+  } = useLessonDetails(
+    lesson._id as string,
+    lesson.course_id as string,
+    lesson.video_duration,
+  );
 
   const payForLesson = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -96,7 +91,7 @@ export default function Lesson({ lesson }: ILessonProps) {
       onClick={redirectToLesson}
     >
       <div
-        className={`${styles.poster} ${inDev ? styles.darker : ""} ${isDone ? styles.donePoster : ""}`}
+        className={`${styles.poster} ${inDev ? styles.darker : ""} ${isCurrentLessonCompleted ? styles.donePoster : ""}`}
       >
         {renderLock()}
         <img src="/poster.png" alt="Poster" />
@@ -113,6 +108,7 @@ export default function Lesson({ lesson }: ILessonProps) {
           views={lesson.views}
           isCurrentLessonPaid={isCurrentLessonPaid}
           isCurrentLessonCompleted={isCurrentLessonCompleted}
+          lessonProgress={lessonProgress}
         />
       </figcaption>
     </figure>

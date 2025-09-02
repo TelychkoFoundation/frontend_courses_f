@@ -88,7 +88,11 @@ const LessonSchema: Schema = new Schema(
         ref: "Lesson",
       },
     ],
-
+    video_duration: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
     reviews: [ReviewSchema],
 
     createdAt: {

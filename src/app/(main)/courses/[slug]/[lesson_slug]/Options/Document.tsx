@@ -1,14 +1,16 @@
 import { DownloadIcon, LockIcon, LockIconSize } from "@/images";
-import { useLessons } from "@/hooks";
 import styles from "./index.module.css";
+import { memo } from "react";
 
 interface IDocumentProps {
   isActive: boolean;
+  isCurrentLessonPaid: boolean;
 }
 
-export default function Document({ isActive }: IDocumentProps) {
-  const { isCurrentLessonPaid } = useLessons();
-
+export default memo(function Document({
+  isActive,
+  isCurrentLessonPaid,
+}: IDocumentProps) {
   return (
     <>
       <section className={styles.collapsedSection}>
@@ -46,4 +48,4 @@ export default function Document({ isActive }: IDocumentProps) {
       ) : null}
     </>
   );
-}
+});

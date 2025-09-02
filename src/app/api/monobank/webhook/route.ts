@@ -19,8 +19,6 @@ export async function POST(req: NextRequest) {
 
   const { invoiceId, status, reference } = body;
 
-  console.log(invoiceId, status, reference, "bbbbbb");
-
   if (!reference) {
     return new Response("Missing reference", { status: 400 });
   }

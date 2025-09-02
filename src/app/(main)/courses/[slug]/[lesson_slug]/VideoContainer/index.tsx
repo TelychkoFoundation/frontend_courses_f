@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { Badge, BadgeSize, BadgeType, Button, ButtonType } from "@/components";
 import { LockIcon } from "@/images";
 import { createPaymentForLesson } from "@/actions";
-import { useLessons } from "@/hooks";
+import { useAuth, useLessonDetails, useLessons } from "@/hooks";
 import Video from "./Video";
 import { useSession } from "next-auth/react";
 import styles from "./index.module.css";
@@ -12,9 +12,14 @@ import styles from "./index.module.css";
 const isPublished = false;
 
 export default function VideoContainer() {
-  const { isCurrentLessonPaid, currentLesson } = useLessons();
+  const { currentLesson } = useLessons();
+  const { updateLessonVideoDuration } = useAuth();
   const { data } = useSession();
   const [isPending, startTransition] = useTransition();
+  const { isCurrentLessonPaid } = useLessonDetails(
+    currentLesson?.lesson._id as string,
+    currentLesson?.lesson.course_id as string,
+  );
 
   const payForLesson = async () => {
     if (!currentLesson) {
@@ -36,7 +41,12 @@ export default function VideoContainer() {
 
   const renderVideoInfo = () => {
     if (isCurrentLessonPaid) {
-      return <Video />;
+      return (
+        <Video
+          currentLesson={currentLesson}
+          updateLessonVideoDuration={updateLessonVideoDuration}
+        />
+      );
     }
 
     if (!isPublished) {
@@ -61,8 +71,6 @@ export default function VideoContainer() {
       </div>
     );
   };
-
-  console.log(currentLesson);
 
   return (
     <section

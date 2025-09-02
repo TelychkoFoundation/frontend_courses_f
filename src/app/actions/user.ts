@@ -111,6 +111,17 @@ export async function updateUserProgress(
   }
 }
 
+export async function updateLessonViews(lessonId: string) {
+  try {
+    await Lesson.updateOne({ _id: lessonId }, { $inc: { views: 1 } });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update lesson views:", error);
+    return { success: false, error: "Failed to update lesson views" };
+  }
+}
+
 export async function isFullCoursePurchased(userID: number, courseID: string) {
   try {
     const user: IUserDatabaseData | null = await User.findOne({ id: userID });
@@ -130,5 +141,27 @@ export async function isFullCoursePurchased(userID: number, courseID: string) {
   } catch (error) {
     console.error("❌ Error checking course purchase:", error);
     return { success: false, error: (error as Error).message };
+  }
+}
+
+export async function setLessonDuration(lessonId: string, duration: number) {
+  try {
+    const result = await Lesson.updateOne(
+      { _id: new Types.ObjectId(lessonId) },
+      { $set: { video_duration: Math.floor(duration) } },
+    );
+
+    if (result.matchedCount === 0) {
+      console.error(`Lesson with ID ${lessonId} not found.`);
+      return { success: false, error: "Lesson not found" };
+    }
+
+    console.log(
+      `Duration for lesson ${lessonId} updated to ${Math.floor(duration)}s.`,
+    );
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update lesson duration:", error);
+    return { success: false, error: "Failed to update lesson duration" };
   }
 }

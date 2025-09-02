@@ -10,6 +10,7 @@ interface ILessonShortInfoProps {
   views: number;
   isCurrentLessonPaid: boolean;
   isCurrentLessonCompleted: boolean;
+  lessonProgress: number;
 }
 
 export default function LessonShortInfo({
@@ -17,6 +18,7 @@ export default function LessonShortInfo({
   views,
   isCurrentLessonPaid,
   isCurrentLessonCompleted,
+  lessonProgress,
 }: ILessonShortInfoProps) {
   const renderViews = (views: number): string => {
     if (inDev) {
@@ -31,11 +33,11 @@ export default function LessonShortInfo({
       return;
     }
 
-    if (isCurrentLessonCompleted) {
+    if (isCurrentLessonCompleted || lessonProgress === 100) {
       return <Image src={DoneIcon} alt="Done Icon" />;
     }
 
-    return <CircleProgressBar progress={0} />;
+    return <CircleProgressBar progress={lessonProgress} />;
   };
 
   return (

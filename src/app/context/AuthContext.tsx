@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, ReactNode, useEffect } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { IUserDatabaseData } from "@/typings";
 import { checkDBConnection, getUser } from "@/actions";
 import { useToast } from "@/hooks";
@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 interface AuthContextType {
   user: IUserDatabaseData | null;
   loading: boolean;
+  updateLessonVideoDuration: (duration: number, lessonID: string) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -93,11 +94,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleAuth();
   }, [status, session, pathname, router, showToast, dbSuccess]);
 
+  const updateLessonVideoDuration = (duration: number, lessonID: string) => {
+    if (!user || !user.lesson_progress) return null;
+
+    user.lesson_progress = user.lesson_progress?.map(progress => {
+      if (progress.lesson_id === (lessonID as any)) {
+        progress.duration = duration;
+      }
+
+      return progress;
+    });
+
+    setUser({ ...user } as IUserDatabaseData);
+  };
+
   return (
     <AuthContext.Provider
       value={{
         user,
         loading,
+        updateLessonVideoDuration,
       }}
     >
       <Header />

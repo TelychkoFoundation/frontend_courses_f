@@ -1,11 +1,13 @@
+import { memo } from "react";
 import { TelegramIcon, LockIcon } from "@/images";
 import { TgCircle } from "@/components";
-import { useLessons } from "@/hooks";
 import styles from "./index.module.css";
 
-export default function Mentorship() {
-  const { isCurrentLessonPaid } = useLessons();
-
+export default memo(function Mentorship({
+  isCurrentLessonPaid,
+}: {
+  isCurrentLessonPaid: boolean;
+}) {
   const openAssist = async () => {
     // if (!user) {
     //   return;
@@ -93,4 +95,4 @@ export default function Mentorship() {
       {renderIcon()}
     </section>
   );
-}
+});

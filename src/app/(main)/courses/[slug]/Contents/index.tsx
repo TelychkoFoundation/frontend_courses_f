@@ -36,11 +36,18 @@ export default function Contents({ allLessons }: IContentsProps) {
                 <div key={categoryIndex}>
                   <p className={styles.category}>{category}</p>
                   <ol>
-                    {lessons?.map(({ _id, title }: ILesson) => (
-                      <ContentItem key={_id as string} id={_id as string}>
-                        {title}
-                      </ContentItem>
-                    ))}
+                    {lessons?.map(
+                      ({ _id, title, course_id, video_duration }: ILesson) => (
+                        <ContentItem
+                          key={_id as string}
+                          lessonId={_id as string}
+                          courseId={course_id as string}
+                          videoDuration={video_duration || 0}
+                        >
+                          {title}
+                        </ContentItem>
+                      ),
+                    )}
                   </ol>
                   {allLessons.length - 1 !== categoryIndex ? (
                     <div className={styles.divider}>
@@ -68,11 +75,18 @@ export default function Contents({ allLessons }: IContentsProps) {
             <div key={categoryIndex}>
               <p className={styles.category}>{category}</p>
               <ol>
-                {lessons?.map(({ _id, title }: ILesson) => (
-                  <ContentItem key={_id as string} id={_id as string}>
-                    {title}
-                  </ContentItem>
-                ))}
+                {lessons?.map(
+                  ({ _id, title, course_id, video_duration }: ILesson) => (
+                    <ContentItem
+                      key={_id as string}
+                      lessonId={_id as string}
+                      courseId={course_id as string}
+                      videoDuration={video_duration || 0}
+                    >
+                      {title}
+                    </ContentItem>
+                  ),
+                )}
               </ol>
               {allLessons.length - 1 !== categoryIndex ? (
                 <div className={styles.divider}>

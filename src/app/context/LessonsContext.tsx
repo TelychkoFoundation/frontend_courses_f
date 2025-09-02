@@ -1,12 +1,7 @@
 "use client";
 
 import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
-import {
-  ICategoryLesson,
-  ICategoryStructure,
-  ILessonProgress,
-  IPurchasedLesson,
-} from "@/typings";
+import { ICategoryLesson, ICategoryStructure } from "@/typings";
 import { useCourses, useToast, useAuth } from "@/hooks";
 import { getLessonsForCourse, getLessonById } from "@/actions";
 import { useParams } from "next/navigation";
@@ -19,8 +14,6 @@ interface LessonsContextType {
   currentLesson: ICategoryLesson | null;
   setCurrentLesson: (currentLesson: ICategoryLesson | null) => void;
   clearCurrentLesson: () => void;
-  isCurrentLessonPaid: boolean;
-  isCurrentLessonCompleted: boolean;
 }
 
 export const LessonsContext = createContext<LessonsContextType | undefined>(
@@ -37,35 +30,7 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
 
   const params = useParams();
   const { currentCourse } = useCourses();
-  const { user } = useAuth();
   const { showToast } = useToast();
-
-  const isCurrentLessonPaid: boolean = useMemo(() => {
-    if (user && currentLesson) {
-      return !!user.purchased_lessons?.find(
-        (purchasedLesson: IPurchasedLesson): boolean =>
-          purchasedLesson.lesson_id === currentLesson.lesson._id,
-      );
-    }
-
-    return false;
-  }, [currentLesson, user]);
-
-  const isCurrentLessonCompleted: boolean = useMemo(() => {
-    if (user && currentLesson) {
-      const lessonProgressData: ILessonProgress | undefined =
-        user.lesson_progress?.find(
-          (lessonProgress: ILessonProgress): boolean =>
-            lessonProgress.lesson_id === currentLesson.lesson._id,
-        );
-
-      if (lessonProgressData) {
-        return lessonProgressData.completed;
-      }
-    }
-
-    return false;
-  }, [currentLesson, user]);
 
   useEffect(() => {
     if (!currentCourse) {
@@ -133,8 +98,6 @@ export const LessonsProvider = ({ children }: { children: ReactNode }) => {
         currentLesson,
         setCurrentLesson,
         clearCurrentLesson,
-        isCurrentLessonPaid,
-        isCurrentLessonCompleted,
       }}
     >
       {children}

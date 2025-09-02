@@ -4,11 +4,18 @@ import styles from "./index.module.css";
 
 interface IDescriptionProps {
   isActive: boolean;
+  isCurrentLessonPaid: boolean;
+  isCurrentLessonCompleted: boolean;
+  lessonProgress: number;
 }
 
-export default function Description({ isActive }: IDescriptionProps) {
-  const { currentLesson, isCurrentLessonPaid, isCurrentLessonCompleted } =
-    useLessons();
+export default function Description({
+  isActive,
+  isCurrentLessonPaid,
+  isCurrentLessonCompleted,
+  lessonProgress,
+}: IDescriptionProps) {
+  const { currentLesson } = useLessons();
 
   return (
     <>
@@ -27,6 +34,7 @@ export default function Description({ isActive }: IDescriptionProps) {
           views={currentLesson?.lesson.views as number}
           isCurrentLessonPaid={isCurrentLessonPaid}
           isCurrentLessonCompleted={isCurrentLessonCompleted}
+          lessonProgress={lessonProgress}
         />
       </section>
       {isActive ? (

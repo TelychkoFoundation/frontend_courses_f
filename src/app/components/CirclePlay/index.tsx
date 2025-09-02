@@ -8,7 +8,6 @@ interface CirclePlayProps {
 export default function CirclePlay({ progress }: CirclePlayProps) {
   const circleRadius = 14.5;
   const circumference = 2 * Math.PI * circleRadius;
-
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
