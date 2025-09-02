@@ -3,6 +3,7 @@
 import { ReactElement, useState } from "react";
 import { ICourse } from "@/typings";
 import { useRouter } from "next/navigation";
+import { useCourseDetails } from "@/hooks";
 import { BadgeType, Badge, LinearProgressBar } from "@/components";
 import { NewCourseShadow } from "@/images";
 import { isNewCourse } from "@/utils";
@@ -13,11 +14,12 @@ interface ICourseProps {
   course: ICourse;
 }
 
-export default function Course({
-  course: { is_published, courseKey, updatedAt, title, short_description },
-}: ICourseProps) {
+export default function Course({ course }: ICourseProps) {
   const [courseHovered, setCourseHovered] = useState<boolean>(false);
+  const { courseProgress } = useCourseDetails(course as ICourse);
 
+  const { is_published, courseKey, updatedAt, title, short_description } =
+    course;
   const router = useRouter();
 
   const setCourseHoveredHandler = () => {
@@ -61,7 +63,7 @@ export default function Course({
       return "Старт 14 жовтня";
     }
 
-    return <LinearProgressBar />;
+    return <LinearProgressBar progress={courseProgress} />;
   };
 
   return (

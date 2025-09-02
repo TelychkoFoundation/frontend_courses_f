@@ -1,58 +1,22 @@
 import { transformDate } from "@/utils";
 import { useMemo, memo } from "react";
-import { CourseDifficultyType, IMyCourses } from "@/typings";
+import { CourseDifficultyType, ICourse, IMyCourses } from "@/typings";
 import { Badge, BadgeSize, BadgeType, LinearProgressBar } from "@/components";
 import {
   useCourses,
-  useAuth,
   useDeviceType,
   DeviceType,
   DeviceTypes,
+  useCourseDetails,
 } from "@/hooks";
 import styles from "./index.module.css";
 
 export default memo(function MainInfo() {
   const { currentCourse } = useCourses();
-  const { user } = useAuth();
   const deviceType: DeviceType = useDeviceType();
-
-  const hasStarted: boolean = useMemo(() => {
-    if (!user) {
-      return false;
-    }
-
-    if (!user.my_courses?.length) {
-      return false;
-    }
-
-    if (!currentCourse) {
-      return false;
-    }
-
-    return user.my_courses.some(
-      (myCourse: IMyCourses): boolean =>
-        myCourse.course_id === currentCourse._id,
-    );
-  }, [user, currentCourse]);
-
-  const courseProgress: IMyCourses | null | undefined = useMemo(() => {
-    if (!user) {
-      return null;
-    }
-
-    if (!user.my_courses?.length) {
-      return null;
-    }
-
-    if (!currentCourse) {
-      return null;
-    }
-
-    return user.my_courses.find(
-      (myCourse: IMyCourses): boolean =>
-        myCourse.course_id === currentCourse._id,
-    );
-  }, [user, currentCourse]);
+  const { completedLessons, courseProgress, courseDetails } = useCourseDetails(
+    currentCourse as ICourse,
+  );
 
   const renderDifficulty = useMemo(() => {
     if (!currentCourse) {
@@ -83,7 +47,7 @@ export default memo(function MainInfo() {
   }, [currentCourse]);
 
   const renderCourseProgress = useMemo(() => {
-    if (!hasStarted) {
+    if (!courseDetails.hasStarted) {
       return (
         <Badge type={BadgeType.NotStarted} size={BadgeSize.Large}>
           не розпочато
@@ -91,20 +55,25 @@ export default memo(function MainInfo() {
       );
     }
 
-    if (!courseProgress) {
+    if (!courseDetails) {
       return null;
     }
 
-    if (courseProgress.status === "in_progress") {
-      return <LinearProgressBar message="14 з 20 уроків переглянуто" />;
+    if (courseDetails.status === "in_progress") {
+      return (
+        <LinearProgressBar
+          message={`${completedLessons} з ${currentCourse?.lessons.length} уроків переглянуто`}
+          progress={courseProgress}
+        />
+      );
     }
 
-    if (courseProgress.status === "completed") {
+    if (courseDetails.status === "completed") {
       return <p>завершено 19.12.2025</p>;
     }
 
     return null;
-  }, [hasStarted, courseProgress]);
+  }, [courseDetails.hasStarted, courseDetails]);
 
   if (deviceType === DeviceTypes.mobile) {
     return (

@@ -10,4 +10,5 @@ export { useLessons } from "./useLessons";
 export { useScrollToTop } from "./useScrollToTop";
 export { useDeviceType, DeviceTypes } from "./useDeviceType";
 export { useLessonDetails } from "./useLessonDetails";
+export { useCourseDetails } from "./useCourseDetails";
 export type { DeviceType } from "./useDeviceType";

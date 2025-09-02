@@ -1,12 +1,16 @@
 import styles from "./index.module.css";
 
 interface ILinearProgressBarProps {
+  progress: number;
   message?: string;
 }
 
 export default function LinearProgressBar({
   message,
+  progress,
 }: ILinearProgressBarProps) {
+  const barWidth: number = (progress / 100) * 255;
+
   return (
     <div className={styles.container}>
       <svg
@@ -28,7 +32,7 @@ export default function LinearProgressBar({
         <rect
           x="3"
           y="3"
-          width="121" // !!!
+          width={barWidth}
           height="6"
           rx="3"
           className={styles.progress}
