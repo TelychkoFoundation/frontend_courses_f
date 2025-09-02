@@ -34,4 +34,5 @@ export { default as ExitIcon } from "./exit";
 export { default as ListIcon } from "./list";
 export { default as ChevronLeftBoldIcon } from "./chevron-left-bold";
 export { default as ChevronRightBoldIcon } from "./chevron-right-bold";
+export { default as InfoIcon } from "./info";
 export * from "./course-icons";

@@ -14,6 +14,7 @@ export enum ButtonType {
 
 interface ButtonProps {
   type?: ButtonType;
+  defaultType?: "button" | "submit" | "reset";
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   className?: string;
@@ -30,10 +31,16 @@ export const Button: FC<ButtonProps> = ({
   loading = false,
   children,
   id,
+  defaultType,
 }) => {
   if (type === ButtonType.TELEGRAM_MOBILE) {
     return (
-      <button id={id} className={styles.telegramMobile} onClick={onClick}>
+      <button
+        id={id}
+        className={styles.telegramMobile}
+        onClick={onClick}
+        type={defaultType}
+      >
         {loading ? <ButtonLoadingIcon className={styles.loading} /> : children}
       </button>
     );
@@ -41,7 +48,12 @@ export const Button: FC<ButtonProps> = ({
 
   if (type === ButtonType.TELEGRAM) {
     return (
-      <button id={id} className={styles.telegram} onClick={onClick}>
+      <button
+        id={id}
+        className={styles.telegram}
+        onClick={onClick}
+        type={defaultType}
+      >
         {loading ? <ButtonLoadingIcon className={styles.loading} /> : children}
       </button>
     );
@@ -53,6 +65,7 @@ export const Button: FC<ButtonProps> = ({
         className={`${styles[type]} ${disabled ? styles.disabled : ""}`}
         onClick={onClick}
         disabled={disabled}
+        type={defaultType}
       >
         {children}
       </button>
@@ -65,6 +78,7 @@ export const Button: FC<ButtonProps> = ({
         className={`${styles[type]} ${disabled ? styles.disabled : ""} ${className}`}
         onClick={onClick}
         disabled={disabled}
+        type={defaultType}
       >
         {loading ? (
           <ButtonLoadingIcon className={styles.playLoading} />
@@ -83,6 +97,7 @@ export const Button: FC<ButtonProps> = ({
       } ${className}`}
       onClick={disabled ? () => {} : onClick}
       disabled={disabled}
+      type={defaultType}
     >
       {loading ? <ButtonLoadingIcon className={styles.loading} /> : children}
     </button>

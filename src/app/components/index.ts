@@ -12,5 +12,6 @@ export { default as CirclePlay } from "./CirclePlay";
 export { default as TgCircle } from "./TgCircle";
 export { default as Logo } from "./Logo";
 export { default as AuthButton } from "./AuthButton";
+export { default as Input } from "./Input";
 export * from "./Badge";
 export * from "./Button";

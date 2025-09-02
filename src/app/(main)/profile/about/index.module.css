@@ -1,0 +1,124 @@
+.aboutContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 105px;
+    align-self: stretch;
+}
+
+.aboutColumn {
+    display: flex;
+    width: 311px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.textSkeleton {
+    height: 17px;
+    width: 35%;
+    border-radius: 8px;
+    background: var(--skeleton-bg);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.avatarSkeleton {
+    height: 120px;
+    width: 120px;
+    border-radius: 400px;
+    background: var(--skeleton-bg);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.aboutInner, .socialsInner, .certificatesInner, .deleteAccountInner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.deleteAccountInner {
+    gap: 16px;
+}
+
+.aboutInner h5, .socialsInner h5, .certificatesInner h5, .deleteAccountInner h5 {
+    color: var(--foreground);
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 23px;
+}
+
+.aboutInner p {
+    color: var(--foreground);
+    font-family: var(--font-inter), 'sans-serif';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Кількість рядків, яку потрібно відобразити */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.avatar {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 400px;
+    border: 1px solid var(--outline);
+}
+
+.socialsForm {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.socialsForm label {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    color: var(--foreground);
+    font-family: var(--font-taktika), 'sans-serif';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 116.667% */
+}
+
+.socialsForm input {
+    height: 44px;
+}
+
+.socialsForm button {
+    max-width: 147px;
+}
+
+.deleteBtn, .deleteBtn:hover {
+    color: var(--new);
+    border: 1px solid var(--new);
+    max-width: 147px;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: var(--skeleton-pulse-start);
+    }
+    50% {
+        background-color: var(--skeleton-pulse-middle);
+    }
+    100% {
+        background-color: var(--skeleton-pulse-end);
+    }
+}
